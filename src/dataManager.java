@@ -20,6 +20,7 @@ import java.security.*;
 import java.math.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -333,6 +334,23 @@ public class dataManager {
             System.err.println(e);
             return false;
         }
+    }
+    
+    public ArrayList<String> getReaders()
+    {
+        ArrayList<String> a = new ArrayList<String>();
+          try {
+            resultSet = st.executeQuery("select * from User");
+            while (resultSet.next()) {
+                if(resultSet.getInt("type")==2)
+                    a.add(resultSet.getString("login"));
+            }
+            return a;
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return a;
+
     }
 
 }
