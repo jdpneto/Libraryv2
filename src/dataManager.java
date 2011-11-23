@@ -75,19 +75,93 @@ public class dataManager {
     }
     
     
+    /***************ADDRESS*******************/
+    
+    public boolean storeAddress(String street, String city, String postalcode, String country)
+    {
+        try {
+            String insert = "INSERT INTO Address (street,city,postalcode,country) "
+                    + "VALUES('" + street + "','" + city + "','" + postalcode + "','" + country +"');";
+            System.out.println(insert);
+            st.execute(insert);
+            return true;
+            
+            
+        }catch (Exception e) {
+            System.err.println(e);
+            return false;
+        }
+    }
+    
+    public Address getAddressByStreet(String street)
+    {
+        String city;
+        int id;
+        //String street;
+        String postalcode;
+        String country;
+        Address a = null;
+        
+        
+        
+        try{
+            resultSet = st.executeQuery("select * from Address where street='"+street+"';");
+            while(resultSet.next())
+            {
+                id = resultSet.getInt("idAddress");
+                city = resultSet.getString("city");
+                postalcode = resultSet.getString("postalcode");
+                country = resultSet.getString("country");
+                //Address(String street, String city, String postal_code, String country)
+                a = new Address(id,street,city,postalcode,country);
+            }
+        }catch (Exception e) {
+            System.err.println(e);
+        }
+        return a;
+    }
+    
+    public Address getAddressById(int id)
+    {
+        String city;
+        String street;
+        String postalcode;
+        String country;
+        Address a = null;
+        
+        
+        
+        try{
+            resultSet = st.executeQuery("select * from Address where idAddress="+id+";");
+            while(resultSet.next())
+            {
+                city = resultSet.getString("city");
+                street = resultSet.getString("street");
+                postalcode = resultSet.getString("postalcode");
+                country = resultSet.getString("country");
+                //Address(String street, String city, String postal_code, String country)
+                a = new Address(id,street,city,postalcode,country);
+            }
+        }catch (Exception e) {
+            System.err.println(e);
+        }
+        return a;
+    }
+    
+    
     /***************USERS*******************/
     
     public Date stringToDate(String d)
     {
-       Date da = null;
+        Date da = null;
         try {
             da = new SimpleDateFormat("dd/MM/yyyy").parse(d);
         } catch (Exception ex) {
             System.err.println(ex);
         }
-       return da;
-       
-    
+        return da;
+        
+        
     }
     
     public String datetoString(Date d)
@@ -129,40 +203,15 @@ public class dataManager {
             while (resultSet.next()) {
                 return true;//resultSet.getInt("type");
             }
-                return false;
-            } catch (Exception e) {
-                System.err.println(e);
-            }
+            return false;
+        } catch (Exception e) {
+            System.err.println(e);
+        }
         return false;
     }
     
     
-    public Address getAddressById(int id)
-    {
-        String city;
-        String street;
-        String postalcode;
-        String country;
-        Address a = null;
-        
-        
-        
-        try{
-            resultSet = st.executeQuery("select * from Address where idAddress="+id+";");
-            while(resultSet.next())
-            {
-                city = resultSet.getString("city");
-                street = resultSet.getString("street");
-                postalcode = resultSet.getString("postalcode");
-                country = resultSet.getString("country");
-                //Address(String street, String city, String postal_code, String country)
-                a = new Address(id,street,city,postalcode,country);
-            }
-        }catch (Exception e) {
-            System.err.println(e);
-        }
-        return a;
-    }
+
     
     
     public Admin getAdminByUsername(String login)
@@ -180,7 +229,7 @@ public class dataManager {
         try{
             resultSet = st.executeQuery("select * from User where login='"+login+"';");
             while(resultSet.next())
-            {   
+            {
                 id = resultSet.getInt("idUser");
                 addr = getAddressById(resultSet.getInt("addr"));
                 doornumber = resultSet.getInt("doornumber");
@@ -193,7 +242,7 @@ public class dataManager {
                 a= new Admin(id,name,email,addr,doornumber,login,pass);
             }
             
-    
+            
         }catch (Exception e) {
             System.err.println(e);
             return a;
@@ -201,7 +250,7 @@ public class dataManager {
         return a;
     }
     
-
+    
     
     
     public Reader getReaderByUsername(String login)
@@ -219,7 +268,7 @@ public class dataManager {
         try{
             resultSet = st.executeQuery("select * from User where login='"+login+"';");
             while(resultSet.next())
-            {   
+            {
                 id = resultSet.getInt("idUser");
                 addr = getAddressById(resultSet.getInt("addr"));
                 doornumber = resultSet.getInt("doornumber");
@@ -233,7 +282,7 @@ public class dataManager {
                 r= new Reader(name,4,expires,id,email,addr,doornumber,login,pass);
             }
             
-    
+            
         }catch (Exception e) {
             System.err.println(e);
             return r;
@@ -257,7 +306,7 @@ public class dataManager {
         try{
             resultSet = st.executeQuery("select * from User where login='"+login+"';");
             while(resultSet.next())
-            {   
+            {
                 id = resultSet.getInt("idUser");
                 addr = getAddressById(resultSet.getInt("addr"));
                 doornumber = resultSet.getInt("doornumber");
@@ -268,11 +317,11 @@ public class dataManager {
                 //public Admin(int id, String name, String e_mail, Address address, String username, String password) {
                 //Reader(String name,int limit, Date expires, int id, String e_mail, Address address,int doornumber, String username, String password)
                 //public Librarian(String name, int id, String e_mail, Address address,int doornumber, String username, String password) {
-    
+                
                 l= new Librarian(name,id,email,addr,doornumber,login,pass);//,4,expires,id,email,addr,doornumber,login,pass);
             }
             
-    
+            
         }catch (Exception e) {
             System.err.println(e);
             return l;
@@ -290,16 +339,16 @@ public class dataManager {
             System.out.println(insert);
             st.execute(insert);
             return true;
-                
+            
             
         }catch (Exception e) {
             System.err.println(e);
             return false;
         }
-          
+        
         
     }
-        
+    
     public boolean storeReader(String name,int limit, Date expires, String email, Address address,int doornumber, String username, String password)
     {
         if(exists(username))
@@ -310,7 +359,7 @@ public class dataManager {
             System.out.println(insert);
             st.execute(insert);
             return true;
-                
+            
             
         }catch (Exception e) {
             System.err.println(e);
@@ -328,7 +377,7 @@ public class dataManager {
             System.out.println(insert);
             st.execute(insert);
             return true;
-                
+            
             
         }catch (Exception e) {
             System.err.println(e);
@@ -339,7 +388,7 @@ public class dataManager {
     public ArrayList<String> getReaders()
     {
         ArrayList<String> a = new ArrayList<String>();
-          try {
+        try {
             resultSet = st.executeQuery("select * from User");
             while (resultSet.next()) {
                 if(resultSet.getInt("type")==2)
@@ -350,7 +399,55 @@ public class dataManager {
             System.err.println(e);
         }
         return a;
-
+        
     }
+    
+    public ArrayList<String> getAdmins()
+    {
+        ArrayList<String> a = new ArrayList<String>();
+        try {
+            resultSet = st.executeQuery("select * from User");
+            while (resultSet.next()) {
+                if(resultSet.getInt("type")==0)
+                    a.add(resultSet.getString("login"));
+            }
+            return a;
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return a;
+        
+    }
+    
+    public ArrayList<String> getLibrarians()
+    {
+        ArrayList<String> a = new ArrayList<String>();
+        try {
+            resultSet = st.executeQuery("select * from User");
+            while (resultSet.next()) {
+                if(resultSet.getInt("type")==1)
+                    a.add(resultSet.getString("login"));
+            }
+            return a;
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return a;
+    }
+    
+    public boolean removeUser(int id) throws SQLException {
+        preparedStatement = (PreparedStatement) con.prepareStatement("DELETE FROM User WHERE idUser = " + id);
+        preparedStatement.executeUpdate();
+        if (preparedStatement != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    
+    
+    /************************BOOKS**************************/
+    
 
 }
