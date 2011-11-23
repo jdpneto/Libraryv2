@@ -14,7 +14,7 @@ public class Book {
     private String isbn;
     private String name;
     private String author;
-    private Date year;
+    private int year;
     private String category;
     private int number_of_copies;
     private ArrayList<Comment> comments;
@@ -24,13 +24,13 @@ public class Book {
         this.isbn = "";
         this.name = "";
         this.author = "";
-        this.year = new Date();
+        this.year = -1;
         this.category = "";
         this.number_of_copies = -1;
         this.comments = new ArrayList<Comment>();
     }
     
-    Book(String isbn, String name, String author, Date year, String category, int number_of_copies, ArrayList<Comment> comments)
+    Book(String isbn, String name, String author, int year, String category, int number_of_copies)
     {
         this.isbn = isbn;
         this.name = name;
@@ -38,7 +38,7 @@ public class Book {
         this.year = year;
         this.category = category;
         this.number_of_copies = number_of_copies;
-        this.comments = comments;
+        this.comments = new ArrayList<Comment>();;
     }
 
     public String getAuthor() {
@@ -89,11 +89,11 @@ public class Book {
         this.number_of_copies = number_of_copies;
     }
 
-    public Date getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(Date year) {
+    public void setYear(int year) {
         this.year = year;
     }
 }

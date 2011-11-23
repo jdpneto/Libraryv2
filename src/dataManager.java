@@ -449,5 +449,80 @@ public class dataManager {
     
     /************************BOOKS**************************/
     
+    public boolean existsBook(String ISBN)
+    {
+        try {
+            resultSet = st.executeQuery("select * from Book where ISBN='" + ISBN + "';");
+            while (resultSet.next()) {
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return false;
+    }
+    
+    public Book getBookByISBN(String ISBN)
+    {
+       Book b = null;
+       String author = "";
+       String title = "";
+       int year = 0;
+       String cat = "";
+       int ncopies = 0;
+        
+        try{
+            resultSet = st.executeQuery("select * from User where ISBN='"+ISBN+"';");
+            while(resultSet.next())
+            {
+                author = resultSet.getString("author");
+                title = resultSet.getString("title");
+                year = resultSet.getInt("year");
+                cat = resultSet.getString("category");
+                ncopies = resultSet.getInt("numberofcopies");
+                //expires = stringToDate(resultSet.getString("expires"));
+                //public Admin(int id, String name, String e_mail, Address address, String username, String password) {
+                //Reader(String name,int limit, Date expires, int id, String e_mail, Address address,int doornumber, String username, String password)
+                // Book(String isbn, String name, String author, Date year, String category, int number_of_copies, ArrayList<Comment> comments)
+                //String isbn, String name, String author, int year, String category, int number_of_copies
+
+                b = new Book(ISBN,title,author,year,cat,ncopies); //,email,addr,doornumber,login,pass);
+            }
+            
+            
+        }catch (Exception e) {
+            System.err.println(e);
+            return b;
+        }
+        return b;
+    }
+    
+   // public Book getBookByName()
+   // {}
+    
+    public boolean storeBook(String ISBN,String author, String title,int year, String cat, int ncopies)
+    {
+        if(existsBook(ISBN))
+            return false;
+        try {
+            String insert = "INSERT INTO Book (ISBN,author,title,year,category,numberofcopies) "
+                    + "VALUES('" + ISBN + "','" 
+                    + author + "','" 
+                    + title + "'," 
+                    + year +",'" 
+                    + cat+ "'," 
+                    + ncopies + ");";
+            System.out.println(insert);
+            st.execute(insert);
+            return true;
+            
+            
+        }catch (Exception e) {
+            System.err.println(e);
+            return false;
+        }
+        
+    }
 
 }
