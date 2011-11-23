@@ -18,6 +18,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.security.*;
 import java.math.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -69,6 +71,29 @@ public class dataManager {
             Logger.getLogger(dataManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "empty";
+    }
+    
+    
+    /***************USERS*******************/
+    
+    public Date stringToDate(String d)
+    {
+       Date da = null;
+        try {
+            da = new SimpleDateFormat("dd/MM/yyyy").parse(d);
+        } catch (Exception ex) {
+            System.err.println(ex);
+        }
+       return da;
+       
+    
+    }
+    
+    public String datetoString(Date d)
+    {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String date = dateFormat.format(d);
+        return date;
     }
     
     
@@ -175,26 +200,7 @@ public class dataManager {
         return a;
     }
     
-    public Date stringToDate(String d)
-    {
-       Date da = new Date();
-       String delimiter = "/";
-       String[] aux;
-       aux = d.split(delimiter);
-       da.setDate(Integer.parseInt(aux[0]));
-       da.setMonth(Integer.parseInt(aux[1]));
-       da.setYear(Integer.parseInt(aux[2]));
-       
-       return da;
-       
-    
-    }
-    
-    public String datetoString(Date d)
-    {
-        String r = d.getDate()+"/"+d.getMonth()+"/"+d.getYear();
-        return r;
-    }
+
     
     
     public Reader getReaderByUsername(String login)
