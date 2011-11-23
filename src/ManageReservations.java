@@ -35,14 +35,12 @@ public class ManageReservations extends javax.swing.JFrame {
         search = new javax.swing.JButton();
         add_reservation = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        list_field = new javax.swing.JList();
         delete_reservation = new javax.swing.JButton();
         librarians_panel = new javax.swing.JButton();
         edit_reservation = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        search_reservations.setText("Search Reservations");
 
         jLabel1.setText("Manage Books");
 
@@ -60,12 +58,7 @@ public class ManageReservations extends javax.swing.JFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(list_field);
 
         delete_reservation.setText("Delete Reservation");
         delete_reservation.addActionListener(new java.awt.event.ActionListener() {
@@ -172,9 +165,9 @@ private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private javax.swing.JButton delete_reservation;
     private javax.swing.JButton edit_reservation;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton librarians_panel;
+    private javax.swing.JList list_field;
     private javax.swing.JButton search;
     private javax.swing.JTextField search_reservations;
     // End of variables declaration//GEN-END:variables

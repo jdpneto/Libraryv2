@@ -34,7 +34,7 @@ public class DeleteUser extends javax.swing.JFrame {
         user_field = new javax.swing.JTextField();
         search_button = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        list_panel = new javax.swing.JList();
         delete_button = new javax.swing.JButton();
         back_button = new javax.swing.JButton();
 
@@ -42,7 +42,6 @@ public class DeleteUser extends javax.swing.JFrame {
 
         jLabel1.setText("Delete User");
 
-        user_field.setText("Search User");
         user_field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 user_fieldActionPerformed(evt);
@@ -56,12 +55,7 @@ public class DeleteUser extends javax.swing.JFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(list_panel);
 
         delete_button.setText("Delete User");
         delete_button.addActionListener(new java.awt.event.ActionListener() {
@@ -144,8 +138,8 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JButton back_button;
     private javax.swing.JButton delete_button;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList list_panel;
     private javax.swing.JButton search_button;
     private javax.swing.JTextField user_field;
     // End of variables declaration//GEN-END:variables

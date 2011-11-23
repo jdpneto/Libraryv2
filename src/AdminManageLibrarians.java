@@ -31,10 +31,10 @@ public class AdminManageLibrarians extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        search_field = new javax.swing.JTextField();
         search = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        list_panel = new javax.swing.JList();
         add_librarian = new javax.swing.JButton();
         edit_librarian = new javax.swing.JButton();
         delete_librarian = new javax.swing.JButton();
@@ -44,8 +44,6 @@ public class AdminManageLibrarians extends javax.swing.JFrame {
 
         jLabel1.setText("Manage Librarians");
 
-        jTextField1.setText("Search Librarian");
-
         search.setText("Search");
         search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,12 +51,7 @@ public class AdminManageLibrarians extends javax.swing.JFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(list_panel);
 
         add_librarian.setText("Add Librarian");
         add_librarian.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +103,7 @@ public class AdminManageLibrarians extends javax.swing.JFrame {
                                         .add(add_librarian, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                                         .add(org.jdesktop.layout.GroupLayout.LEADING, delete_librarian, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .add(layout.createSequentialGroup()
-                                .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 193, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(search_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 193, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(search)))))
                 .add(87, 87, 87))
@@ -122,7 +115,7 @@ public class AdminManageLibrarians extends javax.swing.JFrame {
                 .add(jLabel1)
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(search_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(search))
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
@@ -175,9 +168,9 @@ private void admins_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private javax.swing.JButton delete_librarian;
     private javax.swing.JButton edit_librarian;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JList list_panel;
     private javax.swing.JButton search;
+    private javax.swing.JTextField search_field;
     // End of variables declaration//GEN-END:variables
 }

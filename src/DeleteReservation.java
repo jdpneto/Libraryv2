@@ -31,10 +31,10 @@ public class DeleteReservation extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        librarian_field = new javax.swing.JTextField();
+        reservation_field = new javax.swing.JTextField();
         search_button = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        list_panel = new javax.swing.JList();
         delete_button = new javax.swing.JButton();
         back_button = new javax.swing.JButton();
 
@@ -42,10 +42,9 @@ public class DeleteReservation extends javax.swing.JFrame {
 
         jLabel1.setText("Delete Reservation");
 
-        librarian_field.setText("Search Reservation");
-        librarian_field.addActionListener(new java.awt.event.ActionListener() {
+        reservation_field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                librarian_fieldActionPerformed(evt);
+                reservation_fieldActionPerformed(evt);
             }
         });
 
@@ -56,12 +55,7 @@ public class DeleteReservation extends javax.swing.JFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(list_panel);
 
         delete_button.setText("Delete Reservation");
         delete_button.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +85,7 @@ public class DeleteReservation extends javax.swing.JFrame {
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                             .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
                             .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                                .add(librarian_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 276, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(reservation_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 276, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 54, Short.MAX_VALUE)
                                 .add(search_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 93, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 53, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -107,7 +101,7 @@ public class DeleteReservation extends javax.swing.JFrame {
                 .add(jLabel1)
                 .add(26, 26, 26)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(librarian_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(reservation_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(search_button))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
@@ -122,9 +116,9 @@ public class DeleteReservation extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void librarian_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_librarian_fieldActionPerformed
+private void reservation_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservation_fieldActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_librarian_fieldActionPerformed
+}//GEN-LAST:event_reservation_fieldActionPerformed
 
 private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
 // TODO add your handling code here:
@@ -144,9 +138,9 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JButton back_button;
     private javax.swing.JButton delete_button;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField librarian_field;
+    private javax.swing.JList list_panel;
+    private javax.swing.JTextField reservation_field;
     private javax.swing.JButton search_button;
     // End of variables declaration//GEN-END:variables
 }

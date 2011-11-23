@@ -34,17 +34,15 @@ public class FindBook extends javax.swing.JFrame {
         find_book = new javax.swing.JTextField();
         find_button = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        list_field = new javax.swing.JList();
         comment_button = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        comment_field = new javax.swing.JTextArea();
         users_panel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Find Book");
-
-        find_book.setText("Find Book");
 
         find_button.setText("Find");
         find_button.addActionListener(new java.awt.event.ActionListener() {
@@ -53,12 +51,7 @@ public class FindBook extends javax.swing.JFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(list_field);
 
         comment_button.setText("Comment Book");
         comment_button.addActionListener(new java.awt.event.ActionListener() {
@@ -67,9 +60,9 @@ public class FindBook extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        comment_field.setColumns(20);
+        comment_field.setRows(5);
+        jScrollPane2.setViewportView(comment_field);
 
         users_panel.setText("User's Panel");
         users_panel.addActionListener(new java.awt.event.ActionListener() {
@@ -145,13 +138,13 @@ private void users_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton comment_button;
+    private javax.swing.JTextArea comment_field;
     private javax.swing.JTextField find_book;
     private javax.swing.JButton find_button;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JList list_field;
     private javax.swing.JButton users_panel;
     // End of variables declaration//GEN-END:variables
 }

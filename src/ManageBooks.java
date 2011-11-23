@@ -30,26 +30,24 @@ public class ManageBooks extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        search_books = new javax.swing.JTextField();
+        search_field = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        search = new javax.swing.JButton();
+        search_button = new javax.swing.JButton();
         add_book = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        list_field = new javax.swing.JList();
         delete_book = new javax.swing.JButton();
         librarians_panel = new javax.swing.JButton();
         edit_book = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        search_books.setText("Search Books");
-
         jLabel1.setText("Manage Books");
 
-        search.setText("Search");
-        search.addActionListener(new java.awt.event.ActionListener() {
+        search_button.setText("Search");
+        search_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchActionPerformed(evt);
+                search_buttonActionPerformed(evt);
             }
         });
 
@@ -60,12 +58,7 @@ public class ManageBooks extends javax.swing.JFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(list_field);
 
         delete_book.setText("Delete Book");
         delete_book.addActionListener(new java.awt.event.ActionListener() {
@@ -98,9 +91,9 @@ public class ManageBooks extends javax.swing.JFrame {
                         .add(33, 33, 33)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                                .add(search_books, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 441, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(search_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 441, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .add(search))
+                                .add(search_button))
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -120,8 +113,8 @@ public class ManageBooks extends javax.swing.JFrame {
                 .add(jLabel1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(search_books, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(search))
+                    .add(search_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(search_button))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
@@ -163,19 +156,19 @@ private void edit_bookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     dispose();
 }//GEN-LAST:event_edit_bookActionPerformed
 
-private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_searchActionPerformed
+}//GEN-LAST:event_search_buttonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_book;
     private javax.swing.JButton delete_book;
     private javax.swing.JButton edit_book;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton librarians_panel;
-    private javax.swing.JButton search;
-    private javax.swing.JTextField search_books;
+    private javax.swing.JList list_field;
+    private javax.swing.JButton search_button;
+    private javax.swing.JTextField search_field;
     // End of variables declaration//GEN-END:variables
 }

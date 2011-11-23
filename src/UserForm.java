@@ -34,7 +34,7 @@ public class UserForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        admin_log = new javax.swing.JList();
+        list_field = new javax.swing.JList();
         find_book = new javax.swing.JButton();
         view_notifications = new javax.swing.JButton();
 
@@ -51,12 +51,7 @@ public class UserForm extends javax.swing.JFrame {
 
         jLabel2.setText("Reserved Books:");
 
-        admin_log.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(admin_log);
+        jScrollPane1.setViewportView(list_field);
 
         find_book.setText("Find Book");
         find_book.addActionListener(new java.awt.event.ActionListener() {
@@ -135,11 +130,11 @@ private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 }//GEN-LAST:event_logoutActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList admin_log;
     private javax.swing.JButton find_book;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList list_field;
     private javax.swing.JButton logout;
     private javax.swing.JButton view_notifications;
     // End of variables declaration//GEN-END:variables

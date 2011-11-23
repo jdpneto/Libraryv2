@@ -34,7 +34,7 @@ public class AdminForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        admin_log = new javax.swing.JList();
+        list_panel = new javax.swing.JList();
         user_management = new javax.swing.JButton();
         librarian_management = new javax.swing.JButton();
         statistics = new javax.swing.JButton();
@@ -52,12 +52,7 @@ public class AdminForm extends javax.swing.JFrame {
 
         jLabel2.setText("Log:");
 
-        admin_log.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(admin_log);
+        jScrollPane1.setViewportView(list_panel);
 
         user_management.setText("User Management Panel");
         user_management.addActionListener(new java.awt.event.ActionListener() {
@@ -155,11 +150,11 @@ private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 }//GEN-LAST:event_logoutActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList admin_log;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton librarian_management;
+    private javax.swing.JList list_panel;
     private javax.swing.JButton logout;
     private javax.swing.JButton statistics;
     private javax.swing.JButton user_management;

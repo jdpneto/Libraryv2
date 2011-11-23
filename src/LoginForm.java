@@ -127,6 +127,11 @@ private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:even
         error_msg.setText("Username invalid");
         error_msg.setVisible(true);
     }
+    else if(option == -1){
+        System.out.println("cenas");
+        error_msg.setText("Password invalid");
+        error_msg.setVisible(true);
+    }
 }//GEN-LAST:event_okActionPerformed
 
 private void login_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_fieldActionPerformed
