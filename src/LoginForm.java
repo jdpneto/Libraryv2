@@ -53,6 +53,12 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel2.setText("Password:");
 
+        password_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                password_fieldActionPerformed(evt);
+            }
+        });
+
         ok.setText("Ok");
         ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,8 +68,8 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel3.setText("Welcome to RS Library");
 
-        error_msg.setForeground(new java.awt.Color(255, 0, 0));
-        error_msg.setText("jLabel4");
+        error_msg.setForeground(new java.awt.Color(220, 0, 0));
+        error_msg.setText("Error");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,9 +103,9 @@ public class LoginForm extends javax.swing.JFrame {
                 .add(password_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(18, 18, 18)
                 .add(ok)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 36, Short.MAX_VALUE)
+                .add(28, 28, 28)
                 .add(error_msg)
-                .addContainerGap())
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         error_msg.setVisible(false);
@@ -138,6 +144,10 @@ private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:even
 private void login_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_fieldActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_login_fieldActionPerformed
+
+private void password_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password_fieldActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_password_fieldActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel error_msg;

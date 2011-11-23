@@ -1,3 +1,6 @@
+
+import java.util.Date;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -42,7 +45,6 @@ public class AddUser extends javax.swing.JFrame {
         email_field = new javax.swing.JTextField();
         login_field = new javax.swing.JTextField();
         id_field = new javax.swing.JTextField();
-        password_field = new javax.swing.JTextField();
         submit_button = new javax.swing.JButton();
         back_button = new javax.swing.JButton();
         street_field = new javax.swing.JTextField();
@@ -59,6 +61,8 @@ public class AddUser extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         limit_field = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
+        error_msg = new javax.swing.JLabel();
+        password_field = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,12 +107,6 @@ public class AddUser extends javax.swing.JFrame {
         id_field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 id_fieldActionPerformed(evt);
-            }
-        });
-
-        password_field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                password_fieldActionPerformed(evt);
             }
         });
 
@@ -182,6 +180,15 @@ public class AddUser extends javax.swing.JFrame {
 
         jLabel13.setText("Expires:");
 
+        error_msg.setForeground(new java.awt.Color(255, 0, 0));
+        error_msg.setText("Error");
+
+        password_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                password_fieldActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -215,19 +222,20 @@ public class AddUser extends javax.swing.JFrame {
                             .add(jLabel13))
                         .add(36, 36, 36)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(password_field)
                             .add(expires_field)
                             .add(limit_field)
                             .add(country_field)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, door_number_field)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, postal_code_field)
                             .add(street_field)
-                            .add(password_field)
                             .add(id_field)
                             .add(login_field)
                             .add(email_field)
                             .add(phone_field)
                             .add(name_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, city_field))))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, city_field)
+                            .add(error_msg))))
                 .add(34, 34, 34))
         );
         layout.setVerticalGroup(
@@ -257,8 +265,8 @@ public class AddUser extends javax.swing.JFrame {
                     .add(jLabel5))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(password_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel6))
+                    .add(jLabel6)
+                    .add(password_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel7)
@@ -287,12 +295,16 @@ public class AddUser extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel13)
                     .add(expires_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 44, Short.MAX_VALUE)
+                .add(18, 18, 18)
+                .add(error_msg)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 41, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(submit_button)
                     .add(back_button))
                 .addContainerGap())
         );
+
+        error_msg.setVisible(false);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -317,16 +329,27 @@ private void id_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 // TODO add your handling code here:
 }//GEN-LAST:event_id_fieldActionPerformed
 
-private void password_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password_fieldActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_password_fieldActionPerformed
-
 private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_buttonActionPerformed
 // TODO add your handling code here:
 
-    //testa todos os campos
+    //get all the information
+    String name         = name_field.getText();
+    int limit           = Integer.parseInt(limit_field.getText());
+    Date date           = dat.stringToDate(expires_field.getText());
+    String email        = email_field.getText();
+    String street       = street_field.getText();
+    String city         = city_field.getText();
+    String postal_code  = postal_code_field.getText();
+    String country      = country_field.getText();
+    Address address     = new Address();
+    int door_number     = Integer.parseInt(door_number_field.getText());
+    String username     = login_field.getText();
+    String password     = password_field.getText();
 
-    //envia a informação
+    //store all information
+    dat.storeAddress(street,city,postal_code,country);
+    address = dat.getAddressByStreet(street);
+    dat.storeReader(name,limit,date,email,address,door_number,username,password);
 }//GEN-LAST:event_submit_buttonActionPerformed
 
 private void street_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_street_fieldActionPerformed
@@ -363,6 +386,10 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
 
+private void password_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password_fieldActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_password_fieldActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel add_user;
     private javax.swing.JButton back_button;
@@ -370,6 +397,7 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JTextField country_field;
     private javax.swing.JTextField door_number_field;
     private javax.swing.JTextField email_field;
+    private javax.swing.JLabel error_msg;
     private javax.swing.JTextField expires_field;
     private javax.swing.JTextField id_field;
     private javax.swing.JLabel jLabel1;
@@ -388,7 +416,7 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JTextField limit_field;
     private javax.swing.JTextField login_field;
     private javax.swing.JTextField name_field;
-    private javax.swing.JTextField password_field;
+    private javax.swing.JPasswordField password_field;
     private javax.swing.JTextField phone_field;
     private javax.swing.JTextField postal_code_field;
     private javax.swing.JTextField street_field;
