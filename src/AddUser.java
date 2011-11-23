@@ -37,14 +37,12 @@ public class AddUser extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         name_field = new javax.swing.JTextField();
         phone_field = new javax.swing.JTextField();
         email_field = new javax.swing.JTextField();
         login_field = new javax.swing.JTextField();
-        id_field = new javax.swing.JTextField();
         submit_button = new javax.swing.JButton();
         back_button = new javax.swing.JButton();
         street_field = new javax.swing.JTextField();
@@ -74,8 +72,6 @@ public class AddUser extends javax.swing.JFrame {
 
         jLabel3.setText("Email:");
 
-        jLabel4.setText("ID:");
-
         jLabel5.setText("Login:");
 
         jLabel6.setText("Password:");
@@ -101,12 +97,6 @@ public class AddUser extends javax.swing.JFrame {
         login_field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 login_fieldActionPerformed(evt);
-            }
-        });
-
-        id_field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                id_fieldActionPerformed(evt);
             }
         });
 
@@ -180,7 +170,7 @@ public class AddUser extends javax.swing.JFrame {
 
         jLabel13.setText("Expires:");
 
-        error_msg.setForeground(new java.awt.Color(255, 0, 0));
+        error_msg.setForeground(new java.awt.Color(220, 0, 0));
         error_msg.setText("Error");
 
         password_field.addActionListener(new java.awt.event.ActionListener() {
@@ -194,56 +184,59 @@ public class AddUser extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(292, 292, 292)
+                .add(293, 293, 293)
                 .add(add_user)
-                .addContainerGap(331, Short.MAX_VALUE))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .add(130, 130, 130)
-                        .add(submit_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 145, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 211, Short.MAX_VALUE)
-                        .add(back_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 160, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .add(43, 43, 43)
+                .addContainerGap(330, Short.MAX_VALUE))
+            .add(layout.createSequentialGroup()
+                .add(76, 76, 76)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabel2)
-                            .add(jLabel1)
-                            .add(jLabel3)
                             .add(jLabel6)
-                            .add(jLabel5)
-                            .add(jLabel4)
                             .add(jLabel7)
                             .add(jLabel8)
                             .add(jLabel9)
                             .add(jLabel10)
                             .add(jLabel11)
                             .add(jLabel12)
-                            .add(jLabel13))
+                            .add(jLabel13)
+                            .add(jLabel5))
                         .add(36, 36, 36)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(password_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                            .add(expires_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                            .add(limit_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                            .add(country_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, door_number_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, postal_code_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                            .add(street_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, city_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                            .add(login_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                            .add(error_msg)))
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel2)
+                            .add(jLabel1)
+                            .add(jLabel3))
+                        .add(83, 83, 83)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(password_field)
-                            .add(expires_field)
-                            .add(limit_field)
-                            .add(country_field)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, door_number_field)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, postal_code_field)
-                            .add(street_field)
-                            .add(id_field)
-                            .add(login_field)
                             .add(email_field)
                             .add(phone_field)
-                            .add(name_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, city_field)
-                            .add(error_msg))))
-                .add(34, 34, 34))
+                            .add(name_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 281, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .add(198, 198, 198))
+            .add(layout.createSequentialGroup()
+                .add(112, 112, 112)
+                .add(submit_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 145, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 219, Short.MAX_VALUE)
+                .add(back_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 160, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .add(add_user)
-                .add(18, 18, 18)
+                .add(30, 30, 30)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2)
                     .add(name_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -255,10 +248,6 @@ public class AddUser extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel3)
                     .add(email_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(id_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel4))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(login_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -297,11 +286,11 @@ public class AddUser extends javax.swing.JFrame {
                     .add(expires_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(error_msg)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 41, Short.MAX_VALUE)
+                .add(26, 26, 26)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(submit_button)
                     .add(back_button))
-                .addContainerGap())
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         error_msg.setVisible(false);
@@ -324,10 +313,6 @@ private void email_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 private void login_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_fieldActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_login_fieldActionPerformed
-
-private void id_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_fieldActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_id_fieldActionPerformed
 
 private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_buttonActionPerformed
 // TODO add your handling code here:
@@ -399,7 +384,6 @@ private void password_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JTextField email_field;
     private javax.swing.JLabel error_msg;
     private javax.swing.JTextField expires_field;
-    private javax.swing.JTextField id_field;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -407,7 +391,6 @@ private void password_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

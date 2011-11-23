@@ -211,6 +211,16 @@ private void copies_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
 private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_buttonActionPerformed
 // TODO add your handling code here:
+    //get all the information
+    String title        = title_field.getText();
+    String author       = author_field.getText();
+    String ISBN         = isbn_field.getText();
+    int year            = Integer.parseInt(year_field.getText());
+    String category     = category_field.getText();
+    int numberOfCopies  = Integer.parseInt(copies_field.getText());
+
+    //store all information
+    dat.storeBook(ISBN,author,title,year,category,numberOfCopies);
 }//GEN-LAST:event_submit_buttonActionPerformed
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
