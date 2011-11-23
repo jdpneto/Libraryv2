@@ -77,8 +77,27 @@ public class dataManager {
     
     /***************ADDRESS*******************/
     
+    public boolean existsStreet(String street, String postalcode)
+    {
+        String tmpPostalCode = "";
+        try {
+            resultSet = st.executeQuery("select * from Adress where street='" + street + "';");
+            while (resultSet.next()) {
+                tmpPostalCode = resultSet.getString("postalcode");
+                if(tmpPostalCode.equals(postalcode))
+                    return true;
+            }
+            return false;
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return false;
+    }
+    
     public boolean storeAddress(String street, String city, String postalcode, String country)
     {
+        if(existsStreet(street,postalcode))
+            return false;
         try {
             String insert = "INSERT INTO Address (street,city,postalcode,country) "
                     + "VALUES('" + street + "','" + city + "','" + postalcode + "','" + country +"');";
@@ -139,7 +158,6 @@ public class dataManager {
                 street = resultSet.getString("street");
                 postalcode = resultSet.getString("postalcode");
                 country = resultSet.getString("country");
-                //Address(String street, String city, String postal_code, String country)
                 a = new Address(id,street,city,postalcode,country);
             }
         }catch (Exception e) {
@@ -211,7 +229,7 @@ public class dataManager {
     }
     
     
-
+    
     
     
     public Admin getAdminByUsername(String login)
@@ -465,12 +483,12 @@ public class dataManager {
     
     public Book getBookByISBN(String ISBN)
     {
-       Book b = null;
-       String author = "";
-       String title = "";
-       int year = 0;
-       String cat = "";
-       int ncopies = 0;
+        Book b = null;
+        String author = "";
+        String title = "";
+        int year = 0;
+        String cat = "";
+        int ncopies = 0;
         
         try{
             resultSet = st.executeQuery("select * from User where ISBN='"+ISBN+"';");
@@ -486,7 +504,7 @@ public class dataManager {
                 //Reader(String name,int limit, Date expires, int id, String e_mail, Address address,int doornumber, String username, String password)
                 // Book(String isbn, String name, String author, Date year, String category, int number_of_copies, ArrayList<Comment> comments)
                 //String isbn, String name, String author, int year, String category, int number_of_copies
-
+                
                 b = new Book(ISBN,title,author,year,cat,ncopies); //,email,addr,doornumber,login,pass);
             }
             
@@ -498,8 +516,40 @@ public class dataManager {
         return b;
     }
     
-   // public Book getBookByName()
-   // {}
+    public Book getBookByTitle(String title)
+    {
+        Book b = null;
+        String author = "";
+        String ISBN = "";
+        int year = 0;
+        String cat = "";
+        int ncopies = 0;
+        
+        try{
+            resultSet = st.executeQuery("select * from User where ISBN='"+ISBN+"';");
+            while(resultSet.next())
+            {
+                author = resultSet.getString("author");
+                ISBN = resultSet.getString("ISBN");
+                year = resultSet.getInt("year");
+                cat = resultSet.getString("category");
+                ncopies = resultSet.getInt("numberofcopies");
+                //expires = stringToDate(resultSet.getString("expires"));
+                //public Admin(int id, String name, String e_mail, Address address, String username, String password) {
+                //Reader(String name,int limit, Date expires, int id, String e_mail, Address address,int doornumber, String username, String password)
+                // Book(String isbn, String name, String author, Date year, String category, int number_of_copies, ArrayList<Comment> comments)
+                //String isbn, String name, String author, int year, String category, int number_of_copies
+                
+                b = new Book(ISBN,title,author,year,cat,ncopies); //,email,addr,doornumber,login,pass);
+            }
+            
+            
+        }catch (Exception e) {
+            System.err.println(e);
+            return b;
+        }
+        return b;
+    }
     
     public boolean storeBook(String ISBN,String author, String title,int year, String cat, int ncopies)
     {
@@ -507,11 +557,11 @@ public class dataManager {
             return false;
         try {
             String insert = "INSERT INTO Book (ISBN,author,title,year,category,numberofcopies) "
-                    + "VALUES('" + ISBN + "','" 
-                    + author + "','" 
-                    + title + "'," 
-                    + year +",'" 
-                    + cat+ "'," 
+                    + "VALUES('" + ISBN + "','"
+                    + author + "','"
+                    + title + "',"
+                    + year +",'"
+                    + cat+ "',"
                     + ncopies + ");";
             System.out.println(insert);
             st.execute(insert);
