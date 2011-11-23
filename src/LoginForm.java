@@ -122,14 +122,15 @@ private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:even
         new UserForm(dat).setVisible(true);
         dispose();
     }
-    else if(option == -2){
-        System.out.println("cenas");
-        error_msg.setText("Username invalid");
-        error_msg.setVisible(true);
-    }
+
     else if(option == -1){
         System.out.println("cenas");
         error_msg.setText("Password invalid");
+        error_msg.setVisible(true);
+    }
+    else if(option == -2){
+        System.out.println("cenas");
+        error_msg.setText("Username invalid");
         error_msg.setVisible(true);
     }
 }//GEN-LAST:event_okActionPerformed
