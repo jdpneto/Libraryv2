@@ -335,7 +335,7 @@ public class dataManager {
             return false;
         try {
             String insert = "INSERT INTO User (name,login,email,md5_pass,doornumber,addr,type,expires) "
-                    + "VALUES('" + name + "','" + username + "','" + email + "','" + getMd5(password) +"',"+doornumber+ "'," + address.getId() + ", " + 1 + ",'UNLIMITED');";
+                    + "VALUES('" + name + "','" + username + "','" + email + "','" + getMd5(password) +"','"+doornumber+ "'," + address.getId() + ", " + 1 + ",'UNLIMITED');";
             System.out.println(insert);
             st.execute(insert);
             return true;
@@ -355,7 +355,7 @@ public class dataManager {
             return false;
         try {
             String insert = "INSERT INTO User (name,login,email,md5_pass,doornumber,addr,type,expires) "
-                    + "VALUES('" + name + "','" + username + "','" + email + "','" + getMd5(password) +"',"+doornumber+ "'," + address.getId() + ", " + 2 + ",'"+datetoString(expires)+"');";
+                    + "VALUES('" + name + "','" + username + "','" + email + "','" + getMd5(password) +"','"+doornumber+ "'," + address.getId() + ", " + 2 + ",'"+datetoString(expires)+"');";
             System.out.println(insert);
             st.execute(insert);
             return true;
@@ -373,7 +373,7 @@ public class dataManager {
             return false;
         try {
             String insert = "INSERT INTO User (name,login,email,md5_pass,doornumber,addr,type,expires) "
-                    + "VALUES('" + name + "','" + username + "','" + email + "','" + getMd5(password) +"',"+doornumber+ "'," + address.getId() + ", " + 0 + ",'UNLIMITED');";
+                    + "VALUES('" + name + "','" + username + "','" + email + "','" + getMd5(password) +"','"+doornumber+ "'," + address.getId() + ", " + 0 + ",'UNLIMITED');";
             System.out.println(insert);
             st.execute(insert);
             return true;
