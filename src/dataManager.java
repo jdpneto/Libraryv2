@@ -463,6 +463,18 @@ public class dataManager {
         }
     }
     
+    public boolean editUser(int id, String name, String email, String expires)
+    {
+        try {
+            preparedStatement = (PreparedStatement) con.prepareStatement("UPDATE User SET name='" + name + ",email='" + email + "',expires='" + expires + "' WHERE idUser = " + id);
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.err.println(e);
+            return false;
+        }
+    }
+    
     
     
     /************************BOOKS**************************/
