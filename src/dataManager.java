@@ -82,7 +82,7 @@ public class dataManager {
     {
         String tmpPostalCode = "";
         try {
-            resultSet = st.executeQuery("select * from Adress where street='" + street + "';");
+            resultSet = st.executeQuery("select * from Address where street='" + street + "';");
             while (resultSet.next()) {
                 tmpPostalCode = resultSet.getString("postalcode");
                 if(tmpPostalCode.equals(postalcode))
