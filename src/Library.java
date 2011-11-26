@@ -56,44 +56,44 @@ public class Library {
     
     public void addReader(Reader reader){
         this.readers.add(reader);
-        System.out.println("Reader :" + reader.getUsername() + " succesfully added;");
+//        System.out.println("Reader :" + reader.getUsername() + " succesfully added;");
     }
     
     public void removeReader(int id){
         for(Reader reader : this.readers){
             if(reader.getId()==id){
                 this.readers.remove(reader);
-                System.out.println("Reader :" + reader.getUsername() + " succesfully removed;");
+//                System.out.println("Reader :" + reader.getUsername() + " succesfully removed;");
             }
         }
     }
     
     public void addLibrarian(Librarian librarian){
         this.librarians.add(librarian);
-        System.out.println("Librian :" + librarian.getUsername() + " succesfully added;");
+//        System.out.println("Librian :" + librarian.getUsername() + " succesfully added;");
     }
     
     public void removeLibrarian(int id){
         for(Librarian librarian : this.librarians){
             if(librarian.getId()==id){
                 this.librarians.remove(librarian);
-                System.out.println("Librarian :" + librarian.getUsername() + " succesfully removed;");
+//                System.out.println("Librarian :" + librarian.getUsername() + " succesfully removed;");
             }
         }
     }
 
     public void addAdmin(Admin admin){
         this.admins.add(admin);
-        System.out.println("Admin :" + admin.getUsername() + " succesfully added;");
+//        System.out.println("Admin :" + admin.getUsername() + " succesfully added;");
     }
 
     public void removeAdmin(int id){
-        for(Admin admin : this.admins){
-            if(admin.getId()==id){
-                this.admins.remove(admin);
-                System.out.println("Admin :" + admin.getUsername() + " succesfully removed;s");
-            }
-        }
+//        for(Admin admin : this.admins){
+//            if(admin.getId()==id){
+//                this.admins.remove(admin);
+//                System.out.println("Admin :" + admin.getUsername() + " succesfully removed;s");
+//            }
+//        }
     }
     
     public void addBook(Book book){

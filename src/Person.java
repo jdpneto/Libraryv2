@@ -36,6 +36,12 @@ public class Person {
         this.type = new int[3];
         
     }
+    
+    public Person(String login, String password)
+    {
+        this.login = login;
+        this.password = password;
+    }
 
     public Person(int id, String email, String address, String login, String password, String name, String postalcode, String city, String phone, String expires, int[] type) {
         this.id = id;
