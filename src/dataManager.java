@@ -251,10 +251,12 @@ public class dataManager {
         return p;
     }
     
-    public boolean exists(String username)
+    
+    //person storage helper
+    private boolean existsPerson(String login)
     {
         try {
-            resultSet = st.executeQuery("select * from User where login='" + username + "';");
+            resultSet = st.executeQuery("select * from User where login='" + login + "';");
             while (resultSet.next()) {
                 return true;//resultSet.getInt("type");
             }
@@ -269,122 +271,122 @@ public class dataManager {
     
     
     
-    public Admin getAdminByUsername(String login)
+    public Admin getAdminByUsername(Admin a)
     {
-        Admin a = null;
-        int id = 0;
-        int type = 0;
-        Address addr = null;
-        String name = null;
-        String email = null;
-        String pass = null;
-        int doornumber = 0;
-        //String expires = null;
-        
-        try{
-            resultSet = st.executeQuery("select * from User where login='"+login+"';");
-            while(resultSet.next())
-            {
-                id = resultSet.getInt("idUser");
-                addr = getAddressById(resultSet.getInt("addr"));
-                doornumber = resultSet.getInt("doornumber");
-                name = resultSet.getString("name");
-                email = resultSet.getString("email");
-                pass = resultSet.getString("md5_pass");
-                //expires = resultSet.getString("date");
-                //public Admin(int id, String name, String e_mail, Address address, String username, String password) {
+        PersonBuilder pb;
+        try {
+            //Vai a base de dados confirmar o login e a password...
+            resultSet = st.executeQuery("select * from User where login='" + a.getLogin() + "';");
+            //-1 -> existe mas a pass está mal
+            while (resultSet.next()) {
+                    int[] type = new int[3];
+                    type[0] = resultSet.getInt("adminaccess");
+                    type[1] = resultSet.getInt("readeraccess");
+                    type[2] = resultSet.getInt("librarianaccess");
+                    pb = new PersonBuilder();
+                            pb.setId(resultSet.getInt("idUser"));
+                            pb.setAddress(resultSet.getString("address"));
+                            pb.setName(resultSet.getString("name"));
+                            pb.setLogin(resultSet.getString("login"));
+                            pb.setEmail(resultSet.getString("email"));
+                            pb.setPassword(resultSet.getString("md5_pass"));
+                            pb.setExpires(resultSet.getString("expires"));
+                            pb.setPostalcode(resultSet.getString("postalcode"));
+                            pb.setCity(resultSet.getString("city"));
+                            pb.setCountry(resultSet.getString("country"));
+                            pb.setPhone(resultSet.getString("phonenumber"));
+                    
+                    return pb.buildAdmin();//resultSet.getByte("type");
                 
-                a= new Admin(id,name,email,addr,doornumber,login,pass);
             }
-            
-            
-        }catch (Exception e) {
+        }
+        catch (Exception e) {
             System.err.println(e);
             return a;
         }
+        //nao existe utilizador
         return a;
     }
     
     
     
     
-    public Reader getReaderByUsername(String login)
+    public Reader getReaderByUsername(Reader r)
     {
-        Reader r = null;
-        int id = 0;
-        int type = 0;
-        Address addr = null;
-        String name = null;
-        String email = null;
-        String pass = null;
-        int doornumber = 0;
-        Date expires = null;
-        
-        try{
-            resultSet = st.executeQuery("select * from User where login='"+login+"';");
-            while(resultSet.next())
-            {
-                id = resultSet.getInt("idUser");
-                addr = getAddressById(resultSet.getInt("addr"));
-                doornumber = resultSet.getInt("doornumber");
-                name = resultSet.getString("name");
-                email = resultSet.getString("email");
-                pass = resultSet.getString("md5_pass");
-                expires = stringToDate(resultSet.getString("expires"));
-                //public Admin(int id, String name, String e_mail, Address address, String username, String password) {
-                //Reader(String name,int limit, Date expires, int id, String e_mail, Address address,int doornumber, String username, String password)
+        PersonBuilder pb;
+        try {
+            //Vai a base de dados confirmar o login e a password...
+            resultSet = st.executeQuery("select * from User where login='" + r.getLogin() + "';");
+            //-1 -> existe mas a pass está mal
+            while (resultSet.next()) {
+                    int[] type = new int[3];
+                    type[0] = resultSet.getInt("adminaccess");
+                    type[1] = resultSet.getInt("readeraccess");
+                    type[2] = resultSet.getInt("librarianaccess");
+                    pb = new PersonBuilder();
+                            pb.setId(resultSet.getInt("idUser"));
+                            pb.setAddress(resultSet.getString("address"));
+                            pb.setName(resultSet.getString("name"));
+                            pb.setLogin(resultSet.getString("login"));
+                            pb.setEmail(resultSet.getString("email"));
+                            pb.setPassword(resultSet.getString("md5_pass"));
+                            pb.setExpires(resultSet.getString("expires"));
+                            pb.setPostalcode(resultSet.getString("postalcode"));
+                            pb.setCity(resultSet.getString("city"));
+                            pb.setCountry(resultSet.getString("country"));
+                            pb.setPhone(resultSet.getString("phonenumber"));
+                    
+                    return pb.buildReader();//resultSet.getByte("type");
                 
-                r= new Reader(name,4,expires,id,email,addr,doornumber,login,pass);
             }
-            
-            
-        }catch (Exception e) {
+        }
+        catch (Exception e) {
             System.err.println(e);
             return r;
         }
+        //nao existe utilizador
         return r;
     }
     
     
-    public Librarian getLibrarianByUsername(String login)
+    public Librarian getLibrarianByUsername(Librarian l)
     {
-        Librarian l = null;
-        int id = 0;
-        int type = 0;
-        Address addr = null;
-        String name = null;
-        String email = null;
-        String pass = null;
-        int doornumber = 0;
-        //Date expires = null;
-        
-        try{
-            resultSet = st.executeQuery("select * from User where login='"+login+"';");
-            while(resultSet.next())
-            {
-                id = resultSet.getInt("idUser");
-                addr = getAddressById(resultSet.getInt("addr"));
-                doornumber = resultSet.getInt("doornumber");
-                name = resultSet.getString("name");
-                email = resultSet.getString("email");
-                pass = resultSet.getString("md5_pass");
-                //expires = stringToDate(resultSet.getString("expires"));
-                //public Admin(int id, String name, String e_mail, Address address, String username, String password) {
-                //Reader(String name,int limit, Date expires, int id, String e_mail, Address address,int doornumber, String username, String password)
-                //public Librarian(String name, int id, String e_mail, Address address,int doornumber, String username, String password) {
+        PersonBuilder pb;
+        try {
+            //Vai a base de dados confirmar o login e a password...
+            resultSet = st.executeQuery("select * from User where login='" + l.getLogin() + "';");
+            //-1 -> existe mas a pass está mal
+            while (resultSet.next()) {
+                    int[] type = new int[3];
+                    type[0] = resultSet.getInt("adminaccess");
+                    type[1] = resultSet.getInt("readeraccess");
+                    type[2] = resultSet.getInt("librarianaccess");
+                    pb = new PersonBuilder();
+                            pb.setId(resultSet.getInt("idUser"));
+                            pb.setAddress(resultSet.getString("address"));
+                            pb.setName(resultSet.getString("name"));
+                            pb.setLogin(resultSet.getString("login"));
+                            pb.setEmail(resultSet.getString("email"));
+                            pb.setPassword(resultSet.getString("md5_pass"));
+                            pb.setExpires(resultSet.getString("expires"));
+                            pb.setPostalcode(resultSet.getString("postalcode"));
+                            pb.setCity(resultSet.getString("city"));
+                            pb.setCountry(resultSet.getString("country"));
+                            pb.setPhone(resultSet.getString("phonenumber"));
+                    
+                    return pb.buildLibrarian();//resultSet.getByte("type");
                 
-                l= new Librarian(name,id,email,addr,doornumber,login,pass);//,4,expires,id,email,addr,doornumber,login,pass);
             }
-            
-            
-        }catch (Exception e) {
+        }
+        catch (Exception e) {
             System.err.println(e);
             return l;
         }
+        //nao existe utilizador
         return l;
     }
     
-    public boolean storeLibrarian(String name, String email, Address address,int doornumber, String username, String password)
+    public Librarian storeLibrarian(Librarian l)
     {
         if(exists(username))
             return false;
