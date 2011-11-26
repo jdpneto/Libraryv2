@@ -273,7 +273,42 @@ public class dataManager {
     
     
     
-    
+    public Person getPerson(Person p)
+    {
+        PersonBuilder pb;
+        try {
+            //Vai a base de dados confirmar o login e a password...
+            resultSet = st.executeQuery("select * from User where login='" + p.getLogin() + "';");
+            //-1 -> existe mas a pass está mal
+            while (resultSet.next()) {
+                    int[] type = new int[3];
+                    type[0] = resultSet.getInt("adminaccess");
+                    type[1] = resultSet.getInt("readeraccess");
+                    type[2] = resultSet.getInt("librarianaccess");
+                    pb = new PersonBuilder();
+                            pb.setId(resultSet.getInt("idUser"));
+                            pb.setAddress(resultSet.getString("address"));
+                            pb.setName(resultSet.getString("name"));
+                            pb.setLogin(resultSet.getString("login"));
+                            pb.setEmail(resultSet.getString("email"));
+                            pb.setPassword(resultSet.getString("md5_pass"));
+                            pb.setExpires(resultSet.getString("expires"));
+                            pb.setPostalcode(resultSet.getString("postalcode"));
+                            pb.setCity(resultSet.getString("city"));
+                            pb.setCountry(resultSet.getString("country"));
+                            pb.setPhone(resultSet.getString("phonenumber"));
+                    
+                    return pb.buildPerson();//resultSet.getByte("type");
+                
+            }
+        }
+        catch (Exception e) {
+            System.err.println(e);
+            return p;
+        }
+        //nao existe utilizador
+        return p;
+    }
     public Admin getAdmin(Admin a)
     {
         PersonBuilder pb;
@@ -539,15 +574,41 @@ public class dataManager {
         }
     }
     
-    public boolean editUser(int id, String name, String email, String expires)
+    public Person editUser(Person p)
     {
+        //POSSÌVEL IMPLEMENTACAO DE UM ITERATOR QUE CIRCULA PELOS VÁRIOS CAMPOS
+        //Nao se pode editar id e login
+        Person p2 = getPerson(p);
+        String ps = "UPDATE User SET";
+        if(!p.getAddress().equals(p2.getAddress()))
+            ps+=" address = '" + p.getAddress() + "'";
+        if(!p.getCity().equals(p2.getCity()))
+            ps+=" city = '" + p.getCity()+"'";
+        if(!p.getCountry().equals(p2.getCountry()))
+            ps+=" country = '" + p.getCountry()+"'";
+        if(!p.getEmail().equals(p2.getEmail()))
+            ps+=" email = '" + p.getEmail()+"'";
+        if(!p.getExpires().equals(p2.getExpires()))
+            ps+=" expires = '" + p.getExpires()+"'";
+        if(!p.getName().equals(p2.getName()))
+            ps+=" name = '" + p.getName()+"'";
+        if(!p.getPassword().equals(p2.getPassword()))
+            ps+=" expires = '" + p.getPassword()+"'";
+        if(!p.getPhone().equals(p2.getPhone()))
+            ps+=" phonenumber = '" + p.getPhone()+"'";
+        if(!p.getPostalcode().equals(p2.getPostalcode()))
+            ps+=" postalcode = '" + p.getPostalcode()+"'";
+        
+        ps+=" WHERE idUser = " + p.id;
+        
         try {
-            preparedStatement = (PreparedStatement) con.prepareStatement("UPDATE User SET name='" + name + ",email='" + email + "',expires='" + expires + "' WHERE idUser = " + id);
+            //preparedStatement = (PreparedStatement) con.prepareStatement("UPDATE User SET name='" + name + ",email='" + email + "',expires='" + expires + "' WHERE idUser = " + id);
+            preparedStatement = (PreparedStatement) con.prepareStatement(ps);
             preparedStatement.executeUpdate();
-            return true;
+            return p;
         } catch (Exception e) {
             System.err.println(e);
-            return false;
+            return new Person();
         }
     }
     
