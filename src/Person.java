@@ -11,58 +11,77 @@ public class Person {
     
     protected int id;
     //protected String phone_number;
-    protected String e_mail;
-    protected Address address;
-    protected String username;
+    protected String email;
+    protected String address;
+    protected String login;
     protected String password;
     protected String name;
-    protected int type;
-    protected int doornumber;
-    
-    Person()
-    {
-        this.name = "";
+    protected String postalcode;
+    protected String city;
+    protected String phone;
+    protected String expires;
+    protected int[] type;
+
+    public Person() {
         this.id = -1;
-       // this.phone_number = "";
-        this.e_mail = "";
-        this.address = new Address();
-        this.username = "";
+        this.email = "";
+        this.address = "";
+        this.login = "";
         this.password = "";
-        this.type = -1;
-        this.doornumber = -1;
+        this.name = "";
+        this.postalcode = "";
+        this.city = "";
+        this.phone = "";
+        this.expires = "";
+        this.type = new int[3];
+        
     }
-    
-    Person(String name, int id,int type, String e_mail, Address address,int doornumber, String username, String password)
-    {
-        this.name = name;
+
+    public Person(int id, String email, String address, String login, String password, String name, String postalcode, String city, String phone, String expires, int[] type) {
         this.id = id;
-        this.doornumber = doornumber;
-       // this.phone_number = phone_number;
-        this.e_mail = e_mail;
+        this.email = email;
         this.address = address;
-        this.username = username;
+        this.login = login;
         this.password = password;
+        this.name = name;
+        this.postalcode = postalcode;
+        this.city = city;
+        this.phone = phone;
+        this.expires = expires;
         this.type = type;
     }
     
-    public void changeAddress(Address address){
-        this.setAddress(address);
-    }
-
-    public Address getAddress() {
+    
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public String getE_mail() {
-        return e_mail;
+    public String getCity() {
+        return city;
     }
 
-    public void setE_mail(String e_mail) {
-        this.e_mail = e_mail;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getExpires() {
+        return expires;
+    }
+
+    public void setExpires(String expires) {
+        this.expires = expires;
     }
 
     public int getId() {
@@ -73,13 +92,21 @@ public class Person {
         this.id = id;
     }
 
-//    public String getPhoneNumber() {
-//        return phone_number;
-//    }
-//
-//    public void setPhoneNumber(String phone_number) {
-//        this.phone_number = phone_number;
-//    }
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getPassword() {
         return password;
@@ -89,11 +116,27 @@ public class Person {
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPostalcode() {
+        return postalcode;
+    }
+
+    public void setPostalcode(String postalcode) {
+        this.postalcode = postalcode;
+    }
+
+    public int[] getType() {
+        return type;
+    }
+
+    public void setType(int[] type) {
+        this.type = type;
     }
 }
