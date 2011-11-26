@@ -62,6 +62,8 @@ public class dataManager {
         return resultSet;
     }
     
+    
+    
     //helper function to get md5 hashes
     public String getMd5(String pass)
     {
@@ -82,96 +84,100 @@ public class dataManager {
     }
     
     
-    /***************ADDRESS*******************/
-    
-    public boolean existsStreet(String street, String postalcode)
-    {
-        String tmpPostalCode = "";
-        try {
-            resultSet = st.executeQuery("select * from Address where street='" + street + "';");
-            while (resultSet.next()) {
-                tmpPostalCode = resultSet.getString("postalcode");
-                if(tmpPostalCode.equals(postalcode))
-                    return true;
-            }
-            return false;
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-        return false;
-    }
-    
-    public boolean storeAddress(String street, String city, String postalcode, String country)
-    {
-        if(existsStreet(street,postalcode))
-            return false;
-        try {
-            String insert = "INSERT INTO Address (street,city,postalcode,country) "
-                    + "VALUES('" + street + "','" + city + "','" + postalcode + "','" + country +"');";
-            System.out.println(insert);
-            st.execute(insert);
-            return true;
-            
-            
-        }catch (Exception e) {
-            System.err.println(e);
-            return false;
-        }
-    }
-    
-    public Address getAddressByStreet(String street)
-    {
-        String city;
-        int id;
-        //String street;
-        String postalcode;
-        String country;
-        Address a = null;
-        
-        
-        
-        try{
-            resultSet = st.executeQuery("select * from Address where street='"+street+"';");
-            while(resultSet.next())
-            {
-                id = resultSet.getInt("idAddress");
-                city = resultSet.getString("city");
-                postalcode = resultSet.getString("postalcode");
-                country = resultSet.getString("country");
-                //Address(String street, String city, String postal_code, String country)
-                a = new Address(id,street,city,postalcode,country);
-            }
-        }catch (Exception e) {
-            System.err.println(e);
-        }
-        return a;
-    }
-    
-    public Address getAddressById(int id)
-    {
-        String city;
-        String street;
-        String postalcode;
-        String country;
-        Address a = null;
-        
-        
-        
-        try{
-            resultSet = st.executeQuery("select * from Address where idAddress="+id+";");
-            while(resultSet.next())
-            {
-                city = resultSet.getString("city");
-                street = resultSet.getString("street");
-                postalcode = resultSet.getString("postalcode");
-                country = resultSet.getString("country");
-                a = new Address(id,street,city,postalcode,country);
-            }
-        }catch (Exception e) {
-            System.err.println(e);
-        }
-        return a;
-    }
+    /***************ADDRESS******************
+     
+     * NOT NEEDED IN THE NEW DB SCHEME
+     
+     */
+//    
+//    public boolean existsStreet(String street, String postalcode)
+//    {
+//        String tmpPostalCode = "";
+//        try {
+//            resultSet = st.executeQuery("select * from Address where street='" + street + "';");
+//            while (resultSet.next()) {
+//                tmpPostalCode = resultSet.getString("postalcode");
+//                if(tmpPostalCode.equals(postalcode))
+//                    return true;
+//            }
+//            return false;
+//        } catch (Exception e) {
+//            System.err.println(e);
+//        }
+//        return false;
+//    }
+//    
+//    public boolean storeAddress(String street, String city, String postalcode, String country)
+//    {
+//        if(existsStreet(street,postalcode))
+//            return false;
+//        try {
+//            String insert = "INSERT INTO Address (street,city,postalcode,country) "
+//                    + "VALUES('" + street + "','" + city + "','" + postalcode + "','" + country +"');";
+//            System.out.println(insert);
+//            st.execute(insert);
+//            return true;
+//            
+//            
+//        }catch (Exception e) {
+//            System.err.println(e);
+//            return false;
+//        }
+//    }
+//    
+//    public Address getAddressByStreet(String street)
+//    {
+//        String city;
+//        int id;
+//        //String street;
+//        String postalcode;
+//        String country;
+//        Address a = null;
+//        
+//        
+//        
+//        try{
+//            resultSet = st.executeQuery("select * from Address where street='"+street+"';");
+//            while(resultSet.next())
+//            {
+//                id = resultSet.getInt("idAddress");
+//                city = resultSet.getString("city");
+//                postalcode = resultSet.getString("postalcode");
+//                country = resultSet.getString("country");
+//                //Address(String street, String city, String postal_code, String country)
+//                a = new Address(id,street,city,postalcode,country);
+//            }
+//        }catch (Exception e) {
+//            System.err.println(e);
+//        }
+//        return a;
+//    }
+//    
+//    public Address getAddressById(int id)
+//    {
+//        String city;
+//        String street;
+//        String postalcode;
+//        String country;
+//        Address a = null;
+//        
+//        
+//        
+//        try{
+//            resultSet = st.executeQuery("select * from Address where idAddress="+id+";");
+//            while(resultSet.next())
+//            {
+//                city = resultSet.getString("city");
+//                street = resultSet.getString("street");
+//                postalcode = resultSet.getString("postalcode");
+//                country = resultSet.getString("country");
+//                a = new Address(id,street,city,postalcode,country);
+//            }
+//        }catch (Exception e) {
+//            System.err.println(e);
+//        }
+//        return a;
+//    }
     
     
     /***************USERS*******************/
@@ -198,17 +204,18 @@ public class dataManager {
     
     
     
-    public int checkLogin(String login, String pass)
+//    public int checkLogin(String login, String pass)
+    public Person checkLogin(Person p)
     {
-        String username;
+        String login;
         String hash;
         try {
             //Vai a base de dados confirmar o login e a password...
-            resultSet = st.executeQuery("select * from User where login='" + login + "';");
+            resultSet = st.executeQuery("select * from User where login='" + p.getLogin() + "';");
             //-1 -> existe mas a pass está mal
             while (resultSet.next()) {
                 hash = resultSet.getString("md5_pass");
-                if(hash.equals(getMd5(pass)))
+                if(hash.equals(getMd5(p.getPassword())))
                     return resultSet.getByte("type");
                 else return -1;
             }

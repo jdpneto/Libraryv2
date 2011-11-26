@@ -5,58 +5,17 @@
 
 /**
  *
- * @author jlnabais
+ * @author david
  */
-public class Person {
-    
-    protected int id;
-    protected String email;
-    protected String address;
-    protected String login;
-    protected String password;
-    protected String name;
-    protected String postalcode;
-    protected String city;
-    protected String phone;
-    protected String expires;
-    protected int[] type;
+public class PersonBuilder {
+    int id;
+    String email;
+    String address;
+    String login;
+    String password;
+    String name;
+    String postalcode;
 
-    public Person() {
-        this.id = -1;
-        this.email = "";
-        this.address = "";
-        this.login = "";
-        this.password = "";
-        this.name = "";
-        this.postalcode = "";
-        this.city = "";
-        this.phone = "";
-        this.expires = "";
-        this.type = new int[3];
-        
-    }
-    
-    public Person(String login, String password)
-    {
-        this.login = login;
-        this.password = password;
-    }
-
-    public Person(int id, String email, String address, String login, String password, String name, String postalcode, String city, String phone, String expires, int[] type) {
-        this.id = id;
-        this.email = email;
-        this.address = address;
-        this.login = login;
-        this.password = password;
-        this.name = name;
-        this.postalcode = postalcode;
-        this.city = city;
-        this.phone = phone;
-        this.expires = expires;
-        this.type = type;
-    }
-    
-    
     public String getAddress() {
         return address;
     }
@@ -144,4 +103,8 @@ public class Person {
     public void setType(int[] type) {
         this.type = type;
     }
+    String city;
+    String phone;
+    String expires;
+    int[] type;
 }

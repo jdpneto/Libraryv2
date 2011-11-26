@@ -12,13 +12,111 @@
 
 import java.util.*;
 
-public class Reader extends Person{
+public class Reader{
     
     private Person p;
     
-    public Reader()
+    public Reader(Person p)
     {
+        this.p = p;
     }
+    
+     public Person getPerson() {
+        return p;
+    }
+
+    public void setPerson(Person p) {
+        this.p = p;
+    }
+    
+    public String getAddress() {
+        return p.getAddress();//address;
+    }
+
+    public void setAddress(String address) {
+        this.p.setAddress(address);// = address;
+    }
+
+    public String getCity() {
+        return p.getCity();
+    }
+
+    public void setCity(String city) {
+        this.p.setCity(city);//city = city;
+    }
+
+    public String getEmail() {
+        return this.p.getEmail();
+    }
+
+    public void setEmail(String email) {
+        this.p.setEmail(email);// = email;
+    }
+
+    public String getExpires() {
+        return this.p.getExpires();
+    }
+
+    public void setExpires(String expires) {
+        this.p.setExpires(expires);
+    }
+
+    public int getId() {
+        return this.p.getId();
+    }
+
+    public void setId(int id) {
+        this.p.setId(id);//d = id;
+    }
+
+    public String getLogin() {
+        return p.getLogin();//login;
+    }
+
+    public void setLogin(String login) {
+        this.p.setLogin(login);//login = login;
+    }
+
+    public String getName() {
+        return p.getName();//name;
+    }
+
+    public void setName(String name) {
+        this.p.setName(name);// = name;
+    }
+
+    public String getPassword() {
+        return getPassword();
+    }
+
+    public void setPassword(String password) {
+        this.p.setPassword(password);// = password;
+    }
+
+    public String getPhone() {
+        return p.getPhone();//phone;
+    }
+
+    public void setPhone(String phone) {
+        this.p.setPhone(phone);// = phone;
+    }
+
+    public String getPostalcode() {
+        return this.getPostalcode();
+    }
+
+    public void setPostalcode(String postalcode) {
+        this.setPostalcode(postalcode);// = postalcode;
+    }
+
+    public int[] getType() {
+        return p.getType();
+    }
+
+    public void setType(int[] type) {
+        this.setType(type);//type = type;
+    }
+    
     
     
 }
