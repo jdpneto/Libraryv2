@@ -110,4 +110,12 @@ public class Librarian{
         this.setType(type);//type = type;
     }
     
+    public String getCountry() {
+        return p.getCountry();//ountry;
+    }
+
+    public void setCountry(String country) {
+        this.p.setCountry(country);// = country;
+    }
+    
 }

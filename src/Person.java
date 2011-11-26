@@ -17,6 +17,7 @@ public class Person {
     protected String name;
     protected String postalcode;
     protected String city;
+    protected String country;
     protected String phone;
     protected String expires;
     protected int[] type;
@@ -32,6 +33,7 @@ public class Person {
         this.city = "";
         this.phone = "";
         this.expires = "";
+        this.country = "";
         this.type = new int[3];
         
     }
@@ -42,7 +44,7 @@ public class Person {
         this.password = password;
     }
 
-    public Person(int id, String email, String address, String login, String password, String name, String postalcode, String city, String phone, String expires, int[] type) {
+    public Person(int id, String email, String address, String login, String password, String name, String postalcode, String city, String phone, String expires, int[] type, String country) {
         this.id = id;
         this.email = email;
         this.address = address;
@@ -54,6 +56,15 @@ public class Person {
         this.phone = phone;
         this.expires = expires;
         this.type = type;
+        this.country = country;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
     
     

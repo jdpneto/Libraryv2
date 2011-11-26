@@ -30,7 +30,24 @@ public class PersonBuilder {
     String city;
     String phone;
     String expires;
+    String country;
     int[] type;
+
+    public PersonBuilder() {
+        
+        this.id = -1;
+        this.email = "";
+        this.address = "";
+        this.login = "";
+        this.password = "";
+        this.name = "";
+        this.postalcode = "";
+        this.city = "";
+        this.phone = "";
+        this.expires = "";
+        this.type = new int[3];
+    }
+    
 
     public String getAddress() {
         return address;
@@ -119,25 +136,40 @@ public class PersonBuilder {
     public void setType(int[] type) {
         this.type = type;
     }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+    
     
      //public Person(int id, String email, String address, String login, String password, String name, String postalcode, String city, String phone, String expires, int[] type) {
    
     public Admin buildAdmin()
     {
-        Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type);
+        Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type,country);
         Admin a = new Admin(p);
         return a;
     }
     public Librarian buildLibrarian()
     {
-        Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type);
+        Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type,country);
         Librarian l = new Librarian (p);
         return l;
     }
     public Reader buildReader()
     {
-        Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type);
+        Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type,country);
         Reader r = new Reader (p);
         return r;
+    }
+    
+    public Person buildPerson()
+    {
+        Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type,country);
+        return p;
     }
 }

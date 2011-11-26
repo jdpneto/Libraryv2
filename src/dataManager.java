@@ -205,10 +205,14 @@ public class dataManager {
     
     
 //    public int checkLogin(String login, String pass)
+    
+    //if returned object equals the sent one, then
+    //it is an invalid login
     public Person checkLogin(Person p)
     {
-        String login;
+        //String login;
         String hash;
+        PersonBuilder pb;
         try {
             //Vai a base de dados confirmar o login e a password...
             resultSet = st.executeQuery("select * from User where login='" + p.getLogin() + "';");
@@ -216,16 +220,35 @@ public class dataManager {
             while (resultSet.next()) {
                 hash = resultSet.getString("md5_pass");
                 if(hash.equals(getMd5(p.getPassword())))
-                    return resultSet.getByte("type");
-                else return -1;
+                {
+                    int[] type = new int[3];
+                    type[0] = resultSet.getInt("adminaccess");
+                    type[1] = resultSet.getInt("readeraccess");
+                    type[2] = resultSet.getInt("librarianaccess");
+                    pb = new PersonBuilder();
+                            pb.setId(resultSet.getInt("idUser"));
+                            pb.setAddress(resultSet.getString("address"));
+                            pb.setName(resultSet.getString("name"));
+                            pb.setLogin(resultSet.getString("login"));
+                            pb.setEmail(resultSet.getString("email"));
+                            pb.setPassword(hash);
+                            pb.setExpires(resultSet.getString("expires"));
+                            pb.setPostalcode(resultSet.getString("postalcode"));
+                            pb.setCity(resultSet.getString("city"));
+                            pb.setCountry(resultSet.getString("country"));
+                            pb.setPhone(resultSet.getString("phonenumber"));
+                            
+                    return pb.buildPerson();//resultSet.getByte("type");
+                }
+                else return p;
             }
         }
         catch (Exception e) {
             System.err.println(e);
-            return -2;
+            return p;
         }
         //nao existe utilizador
-        return -2;
+        return p;
     }
     
     public boolean exists(String username)
