@@ -10,7 +10,7 @@
 
 //pois é
 //poist é v2
-
+//TODO: MUDAR AS QUERIES DE SQL DOS USERS PARA O NOVO FORMATO
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
@@ -73,6 +73,12 @@ public class dataManager {
             Logger.getLogger(dataManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "empty";
+    }
+    
+    //just because I sometipes use toMd5
+    public String toMd5(String pass)
+    {
+        return getMd5(pass);
     }
     
     
