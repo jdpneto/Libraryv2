@@ -208,6 +208,7 @@ public class dataManager {
     
     //if returned object equals the sent one, then
     //it is an invalid login
+    //Every method but this one will recieve an already hashed password
     public Person checkLogin(Person p)
     {
         //String login;
@@ -231,6 +232,8 @@ public class dataManager {
                             pb.setName(resultSet.getString("name"));
                             pb.setLogin(resultSet.getString("login"));
                             pb.setEmail(resultSet.getString("email"));
+                            //não acho que passes devam ser trocadas para trás e para a frente
+                            //o método já verificou a pass, não será preciso
                             pb.setPassword(hash);
                             pb.setExpires(resultSet.getString("expires"));
                             pb.setPostalcode(resultSet.getString("postalcode"));
@@ -271,7 +274,7 @@ public class dataManager {
     
     
     
-    public Admin getAdminByUsername(Admin a)
+    public Admin getAdmin(Admin a)
     {
         PersonBuilder pb;
         try {
@@ -311,7 +314,7 @@ public class dataManager {
     
     
     
-    public Reader getReaderByUsername(Reader r)
+    public Reader getReader(Reader r)
     {
         PersonBuilder pb;
         try {
@@ -349,7 +352,7 @@ public class dataManager {
     }
     
     
-    public Librarian getLibrarianByUsername(Librarian l)
+    public Librarian getLibrarian(Librarian l)
     {
         PersonBuilder pb;
         try {
@@ -388,68 +391,106 @@ public class dataManager {
     
     public Librarian storeLibrarian(Librarian l)
     {
-        if(exists(username))
-            return false;
+        if(existsPerson(l.getLogin()))
+            return l;
         try {
-            String insert = "INSERT INTO User (name,login,email,md5_pass,doornumber,addr,type,expires) "
-                    + "VALUES('" + name + "','" + username + "','" + email + "','" + getMd5(password) +"','"+doornumber+ "'," + address.getId() + ", " + 1 + ",'UNLIMITED');";
+            int[] type = l.getType();
+            String insert = "INSERT INTO User (name,login,email,md5_pass,expires,address,postalcode,city,country,adminaccess,readeraccess,librarianaccess,phonenumber) "
+                    + "VALUES('" 
+                    + l.getName() + "','" 
+                    + l.getLogin() + "','" 
+                    + l.getEmail() + "','" 
+                    + l.getPassword() +"','"
+                    + l.getExpires() + "','" 
+                    + l.getAddress() + "', '" 
+                    + l.getPostalcode() + "', '"
+                    + l.getCity() + "', '"
+                    + l.getCountry() + "', "
+                    + type[0] + ", "
+                    + type[1] + ", "
+                    + type[2] + ", '"
+                    + l.getPhone() + "');";
             System.out.println(insert);
             st.execute(insert);
-            return true;
+            return getLibrarian(l);
             
             
         }catch (Exception e) {
             System.err.println(e);
-            return false;
-        }
-        
-        
-    }
-    
-    public boolean storeReader(String name,int limit, Date expires, String email, Address address,int doornumber, String username, String password)
-    {
-        if(exists(username))
-            return false;
-        try {
-            String insert = "INSERT INTO User (name,login,email,md5_pass,doornumber,addr,type,expires) "
-                    + "VALUES('" + name + "','" + username + "','" + email + "','" + getMd5(password) +"','"+doornumber+ "'," + address.getId() + ", " + 2 + ",'"+datetoString(expires)+"');";
-            System.out.println(insert);
-            st.execute(insert);
-            return true;
-            
-            
-        }catch (Exception e) {
-            System.err.println(e);
-            return false;
-        }
-        
-    }
-    public boolean storeAdmin(String name, String email, Address address,int doornumber, String username, String password)
-    {
-        if(exists(username))
-            return false;
-        try {
-            String insert = "INSERT INTO User (name,login,email,md5_pass,doornumber,addr,type,expires) "
-                    + "VALUES('" + name + "','" + username + "','" + email + "','" + getMd5(password) +"','"+doornumber+ "'," + address.getId() + ", " + 0 + ",'UNLIMITED');";
-            System.out.println(insert);
-            st.execute(insert);
-            return true;
-            
-            
-        }catch (Exception e) {
-            System.err.println(e);
-            return false;
+            return l;
         }
     }
     
-    public ArrayList<String> getReaders()
+    public Reader storeReader(Reader r)
     {
-        ArrayList<String> a = new ArrayList<String>();
+        if(existsPerson(r.getLogin()))
+            return r;
         try {
-            resultSet = st.executeQuery("select * from User");
+            int[] type = r.getType();
+            String insert = "INSERT INTO User (name,login,email,md5_pass,expires,address,postalcode,city,country,adminaccess,readeraccess,librarianaccess,phonenumber) "
+                    + "VALUES('" 
+                    + r.getName() + "','" 
+                    + r.getLogin() + "','" 
+                    + r.getEmail() + "','" 
+                    + r.getPassword() +"','"
+                    + r.getExpires() + "','" 
+                    + r.getAddress() + "', '" 
+                    + r.getPostalcode() + "', '"
+                    + r.getCity() + "', '"
+                    + r.getCountry() + "', "
+                    + type[0] + ", "
+                    + type[1] + ", "
+                    + type[2] + ", '"
+                    + r.getPhone() + "');";
+            System.out.println(insert);
+            st.execute(insert);
+            return getReader(r);
+            
+            
+        }catch (Exception e) {
+            System.err.println(e);
+            return r;
+        }
+        
+    }
+    public Admin storeAdmin(Admin a)
+    {
+        if(existsPerson(a.getLogin()))
+            return a;
+        try {
+            int[] type = a.getType();
+            String insert = "INSERT INTO User (name,login,email,md5_pass,expires,address,postalcode,city,country,adminaccess,readeraccess,librarianaccess,phonenumber) "
+                    + "VALUES('" 
+                    + a.getName() + "','" 
+                    + a.getLogin() + "','" 
+                    + a.getEmail() + "','" 
+                    + a.getPassword() +"','"
+                    + a.getExpires() + "','" 
+                    + a.getAddress() + "', '" 
+                    + a.getPostalcode() + "', '"
+                    + a.getCity() + "', '"
+                    + a.getCountry() + "', "
+                    + type[0] + ", "
+                    + type[1] + ", "
+                    + type[2] + ", '"
+                    + a.getPhone() + "');";
+            System.out.println(insert);
+            st.execute(insert);
+            return getAdmin(a);
+            
+            
+        }catch (Exception e) {
+            System.err.println(e);
+            return a;
+        }
+    }
+    
+    public ArrayList<String> getReaders(ArrayList<String> a)
+    {
+        try {
+            resultSet = st.executeQuery("select * from User where readeraccess = 1");
             while (resultSet.next()) {
-                if(resultSet.getInt("type")==2)
-                    a.add(resultSet.getString("login"));
+                a.add(resultSet.getString("login"));
             }
             return a;
         } catch (Exception e) {
@@ -459,14 +500,12 @@ public class dataManager {
         
     }
     
-    public ArrayList<String> getAdmins()
+    public ArrayList<String> getAdmins(ArrayList<String> a)
     {
-        ArrayList<String> a = new ArrayList<String>();
         try {
-            resultSet = st.executeQuery("select * from User");
+            resultSet = st.executeQuery("select * from User where adminaccess = 1");
             while (resultSet.next()) {
-                if(resultSet.getInt("type")==0)
-                    a.add(resultSet.getString("login"));
+                a.add(resultSet.getString("login"));
             }
             return a;
         } catch (Exception e) {
@@ -476,14 +515,12 @@ public class dataManager {
         
     }
     
-    public ArrayList<String> getLibrarians()
+    public ArrayList<String> getLibrarians(ArrayList<String> a)
     {
-        ArrayList<String> a = new ArrayList<String>();
         try {
-            resultSet = st.executeQuery("select * from User");
+            resultSet = st.executeQuery("select * from User where librarianaccess = 1");
             while (resultSet.next()) {
-                if(resultSet.getInt("type")==1)
-                    a.add(resultSet.getString("login"));
+                a.add(resultSet.getString("login"));
             }
             return a;
         } catch (Exception e) {
@@ -492,13 +529,13 @@ public class dataManager {
         return a;
     }
     
-    public boolean removeUser(int id) throws SQLException {
-        preparedStatement = (PreparedStatement) con.prepareStatement("DELETE FROM User WHERE idUser = " + id);
+    public Person removeUser(Person p) throws SQLException {
+        preparedStatement = (PreparedStatement) con.prepareStatement("DELETE FROM User WHERE idUser = " + p.getId());
         preparedStatement.executeUpdate();
         if (preparedStatement != null) {
-            return true;
+            return new Person();
         } else {
-            return false;
+            return p;
         }
     }
     

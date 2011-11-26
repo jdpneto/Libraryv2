@@ -151,12 +151,14 @@ public class PersonBuilder {
     public Admin buildAdmin()
     {
         Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type,country);
+        p.setExpires("UNLIMITED");
         Admin a = new Admin(p);
         return a;
     }
     public Librarian buildLibrarian()
     {
         Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type,country);
+        p.setExpires("UNLIMITED");
         Librarian l = new Librarian (p);
         return l;
     }
