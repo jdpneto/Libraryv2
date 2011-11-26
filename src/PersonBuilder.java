@@ -6,6 +6,18 @@
 /**
  *
  * @author david
+ * 
+ * 
+ * 
+ * ACHO QUE ISTO ESTÁ MAL E PRECISAMOS DE HIERARQUIA
+ * Pelo menos acho que é assim que está no livro.
+ * 
+ * Esta implementação não é como a da wikipedia mas sim como a do livro
+ * (acho que o barros quer esta)
+ * 
+ * 
+ * 
+ * 
  */
 public class PersonBuilder {
     int id;
@@ -15,6 +27,10 @@ public class PersonBuilder {
     String password;
     String name;
     String postalcode;
+    String city;
+    String phone;
+    String expires;
+    int[] type;
 
     public String getAddress() {
         return address;
@@ -103,8 +119,25 @@ public class PersonBuilder {
     public void setType(int[] type) {
         this.type = type;
     }
-    String city;
-    String phone;
-    String expires;
-    int[] type;
+    
+     //public Person(int id, String email, String address, String login, String password, String name, String postalcode, String city, String phone, String expires, int[] type) {
+   
+    public Admin buildAdmin()
+    {
+        Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type);
+        Admin a = new Admin(p);
+        return a;
+    }
+    public Librarian buildLibrarian()
+    {
+        Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type);
+        Librarian l = new Librarian (p);
+        return l;
+    }
+    public Reader buildReader()
+    {
+        Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type);
+        Reader r = new Reader (p);
+        return r;
+    }
 }
