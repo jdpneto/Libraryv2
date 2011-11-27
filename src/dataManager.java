@@ -10,7 +10,6 @@
 
 //pois é
 //poist é v2
-//TODO: MUDAR AS QUERIES DE SQL DOS USERS PARA O NOVO FORMATO
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
@@ -574,6 +573,7 @@ public class dataManager {
         }
     }
     
+    //TODO: Perguntar ao prof se a implementacao que pensámos do iterator serve
     public Person editUser(Person p)
     {
         //POSSÌVEL IMPLEMENTACAO DE UM ITERATOR QUE CIRCULA PELOS VÁRIOS CAMPOS

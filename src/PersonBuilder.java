@@ -148,6 +148,7 @@ public class PersonBuilder {
     
      //public Person(int id, String email, String address, String login, String password, String name, String postalcode, String city, String phone, String expires, int[] type) {
    
+    //TODO: Falar com o prof sobre estes métodos
     public Admin buildAdmin()
     {
         Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type,country);

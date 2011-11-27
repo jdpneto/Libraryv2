@@ -114,7 +114,8 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
-// TODO add your handling code here:
+//TODO:Métodos para ligar uma ou outra (factory)?
+    //TODO: Falar com o prof sobre o singleton que está no eclipse
     int option = dat.checkLogin(login_field.getText(),password_field.getText());
     if(option == 0){
         new AdminForm(dat).setVisible(true);
@@ -142,11 +143,11 @@ private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:even
 }//GEN-LAST:event_okActionPerformed
 
 private void login_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_fieldActionPerformed
-// TODO add your handling code here:
+
 }//GEN-LAST:event_login_fieldActionPerformed
 
 private void password_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password_fieldActionPerformed
-// TODO add your handling code here:
+
 }//GEN-LAST:event_password_fieldActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
