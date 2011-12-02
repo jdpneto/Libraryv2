@@ -10,6 +10,7 @@
 public class Person {
     
     protected int id;
+    protected int limit;
     protected String email;
     protected String address;
     protected String login;
@@ -24,6 +25,7 @@ public class Person {
 
     public Person() {
         this.id = -1;
+        this.limit = -1;
         this.email = "";
         this.address = "";
         this.login = "";
@@ -37,6 +39,7 @@ public class Person {
         this.type = new int[3];
         
     }
+
     
     public Person(String login, String password)
     {
@@ -154,5 +157,13 @@ public class Person {
 
     public void setType(int[] type) {
         this.type = type;
+    }
+    
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
 }

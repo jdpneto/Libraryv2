@@ -573,10 +573,9 @@ public class dataManager {
         }
     }
     
-    //TODO: Perguntar ao prof se a implementacao que pensámos do iterator serve
     public Person editUser(Person p)
     {
-        //POSSÌVEL IMPLEMENTACAO DE UM ITERATOR QUE CIRCULA PELOS VÁRIOS CAMPOS
+        //TODO: POSSIVEL IMPLEMENTACAO DE UM ITERATOR QUE CIRCULA PELOS VÁRIOS CAMPOS
         //Nao se pode editar id e login
         Person p2 = getPerson(p);
         String ps = "UPDATE User SET";

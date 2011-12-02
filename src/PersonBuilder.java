@@ -12,11 +12,6 @@
  * ACHO QUE ISTO ESTÁ MAL E PRECISAMOS DE HIERARQUIA
  * Pelo menos acho que é assim que está no livro.
  * 
- * Esta implementação não é como a da wikipedia mas sim como a do livro
- * (acho que o barros quer esta)
- * 
- * 
- * 
  * 
  */
 public class PersonBuilder {
@@ -32,6 +27,9 @@ public class PersonBuilder {
     String expires;
     String country;
     int[] type;
+    int limit;
+
+
 
     public PersonBuilder() {
         
@@ -45,9 +43,17 @@ public class PersonBuilder {
         this.city = "";
         this.phone = "";
         this.expires = "";
+        this.limit = -1;
         this.type = new int[3];
     }
     
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
 
     public String getAddress() {
         return address;
@@ -146,13 +152,11 @@ public class PersonBuilder {
     }
     
     
-     //public Person(int id, String email, String address, String login, String password, String name, String postalcode, String city, String phone, String expires, int[] type) {
-   
-    //TODO: Falar com o prof sobre estes métodos
     public Admin buildAdmin()
     {
         Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type,country);
         p.setExpires("UNLIMITED");
+        p.setLimit(0);
         Admin a = new Admin(p);
         return a;
     }
@@ -160,6 +164,7 @@ public class PersonBuilder {
     {
         Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type,country);
         p.setExpires("UNLIMITED");
+        p.setLimit(Integer.MAX_VALUE);
         Librarian l = new Librarian (p);
         return l;
     }

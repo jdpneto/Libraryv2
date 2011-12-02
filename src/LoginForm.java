@@ -116,7 +116,7 @@ public class LoginForm extends javax.swing.JFrame {
 private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
 //TODO:Métodos para ligar uma ou outra (factory)?
     //TODO: Falar com o prof sobre o singleton que está no eclipse
-    int option = dat.checkLogin(login_field.getText(),password_field.getText());
+    //int option = dat.checkLogin(login_field.getText(),password_field.getText());
     if(option == 0){
         new AdminForm(dat).setVisible(true);
         dispose();
