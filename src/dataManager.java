@@ -272,8 +272,9 @@ public class dataManager {
     
     
     
-    public Person getPerson(Person p)
+    public Person getPerson()
     {
+        Person p = new Person();
         PersonBuilder pb;
         try {
             //Vai a base de dados confirmar o login e a password...
@@ -308,9 +309,10 @@ public class dataManager {
         //nao existe utilizador
         return p;
     }
-    public Admin getAdmin(Admin a)
+    public Admin getAdmin()
     {
         PersonBuilder pb;
+        Admin a = new Admin();
         try {
             //Vai a base de dados confirmar o login e a password...
             resultSet = st.executeQuery("select * from User where login='" + a.getLogin() + "';");
@@ -348,8 +350,9 @@ public class dataManager {
     
     
     
-    public Reader getReader(Reader r)
+    public Reader getReader()
     {
+        Reader r = new Reader();
         PersonBuilder pb;
         try {
             //Vai a base de dados confirmar o login e a password...
@@ -386,8 +389,9 @@ public class dataManager {
     }
     
     
-    public Librarian getLibrarian(Librarian l)
+    public Librarian getLibrarian()
     {
+        Librarian l = new Librarian();
         PersonBuilder pb;
         try {
             //Vai a base de dados confirmar o login e a password...
@@ -519,8 +523,10 @@ public class dataManager {
         }
     }
     
-    public ArrayList<String> getReaders(ArrayList<String> a)
+    public ArrayList<String> getReaders()
     {
+        ArrayList <String> a = new ArrayList<String>();
+        
         try {
             resultSet = st.executeQuery("select * from User where readeraccess = 1");
             while (resultSet.next()) {
@@ -534,8 +540,9 @@ public class dataManager {
         
     }
     
-    public ArrayList<String> getAdmins(ArrayList<String> a)
+    public ArrayList<String> getAdmins()
     {
+        ArrayList <String> a = new ArrayList<String>();
         try {
             resultSet = st.executeQuery("select * from User where adminaccess = 1");
             while (resultSet.next()) {
@@ -549,8 +556,9 @@ public class dataManager {
         
     }
     
-    public ArrayList<String> getLibrarians(ArrayList<String> a)
+    public ArrayList<String> getLibrarians()
     {
+        ArrayList <String> a = new ArrayList<String>();
         try {
             resultSet = st.executeQuery("select * from User where librarianaccess = 1");
             while (resultSet.next()) {
@@ -629,9 +637,10 @@ public class dataManager {
         return false;
     }
     
-    public Book getBookByISBN(Book b)
+    public Book getBookByISBN()
     {
         
+        Book b = new Book();
         try{
             resultSet = st.executeQuery("select * from User where ISBN='"+b.getIsbn()+"';");
             while(resultSet.next())
@@ -659,9 +668,9 @@ public class dataManager {
         return b;
     }
     
-    public Book getBookByTitle(Book b)
+    public Book getBookByTitle()
     {
-        
+        Book b = new Book();
         try{
             resultSet = st.executeQuery("select * from User where author='"+b.getAuthor()+"';");
             while(resultSet.next())

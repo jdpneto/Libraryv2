@@ -9,9 +9,14 @@
  */
 public class Librarian{
     private Person p;
+    
     public Librarian(Person p){
         this.p = p;
         
+    }
+    
+    public Librarian(){
+        this.p = new Person();
     }
     
      public Person getPerson() {

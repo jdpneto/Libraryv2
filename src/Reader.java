@@ -21,6 +21,10 @@ public class Reader{
         this.p = p;
     }
     
+    public Reader(){
+        this.p = new Person();
+    }
+    
      public Person getPerson() {
         return p;
     }

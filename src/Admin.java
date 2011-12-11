@@ -16,6 +16,10 @@ public class Admin{
     public Admin(Person p) {
         this.p = p;
     }
+    
+    public Admin(){
+        this.p = new Person();
+    }
 
     public Person getPerson() {
         return p;
