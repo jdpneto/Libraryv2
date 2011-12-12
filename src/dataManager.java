@@ -272,13 +272,13 @@ public class dataManager {
     
     
     
-    public Person getPerson()
+    public Person getPerson(String login)
     {
         Person p = new Person();
         PersonBuilder pb;
         try {
             //Vai a base de dados confirmar o login e a password...
-            resultSet = st.executeQuery("select * from User where login='" + p.getLogin() + "';");
+            resultSet = st.executeQuery("select * from User where login='" + login + "';");
             //-1 -> existe mas a pass está mal
             while (resultSet.next()) {
                     int[] type = new int[3];
@@ -309,13 +309,13 @@ public class dataManager {
         //nao existe utilizador
         return p;
     }
-    public Admin getAdmin()
+    public Admin getAdmin(String login)
     {
         PersonBuilder pb;
         Admin a = new Admin();
         try {
             //Vai a base de dados confirmar o login e a password...
-            resultSet = st.executeQuery("select * from User where login='" + a.getLogin() + "';");
+            resultSet = st.executeQuery("select * from User where login='" + login + "';");
             //-1 -> existe mas a pass está mal
             while (resultSet.next()) {
                     int[] type = new int[3];
@@ -350,13 +350,13 @@ public class dataManager {
     
     
     
-    public Reader getReader()
+    public Reader getReader(String login)
     {
         Reader r = new Reader();
         PersonBuilder pb;
         try {
             //Vai a base de dados confirmar o login e a password...
-            resultSet = st.executeQuery("select * from User where login='" + r.getLogin() + "';");
+            resultSet = st.executeQuery("select * from User where login='" + login + "';");
             //-1 -> existe mas a pass está mal
             while (resultSet.next()) {
                     int[] type = new int[3];
@@ -389,13 +389,13 @@ public class dataManager {
     }
     
     
-    public Librarian getLibrarian()
+    public Librarian getLibrarian(String login)
     {
         Librarian l = new Librarian();
         PersonBuilder pb;
         try {
             //Vai a base de dados confirmar o login e a password...
-            resultSet = st.executeQuery("select * from User where login='" + l.getLogin() + "';");
+            resultSet = st.executeQuery("select * from User where login='" + login + "';");
             //-1 -> existe mas a pass está mal
             while (resultSet.next()) {
                     int[] type = new int[3];
@@ -450,7 +450,7 @@ public class dataManager {
                     + l.getPhone() + "');";
             System.out.println(insert);
             st.execute(insert);
-            return getLibrarian(l);
+            return getLibrarian(l.getLogin());
             
             
         }catch (Exception e) {
@@ -482,7 +482,7 @@ public class dataManager {
                     + r.getPhone() + "');";
             System.out.println(insert);
             st.execute(insert);
-            return getReader(r);
+            return getReader(r.getLogin());
             
             
         }catch (Exception e) {
@@ -514,7 +514,7 @@ public class dataManager {
                     + a.getPhone() + "');";
             System.out.println(insert);
             st.execute(insert);
-            return getAdmin(a);
+            return getAdmin(a.getLogin());
             
             
         }catch (Exception e) {
@@ -585,7 +585,7 @@ public class dataManager {
     {
         //TODO: POSSIVEL IMPLEMENTACAO DE UM ITERATOR QUE CIRCULA PELOS VÁRIOS CAMPOS
         //Nao se pode editar id e login
-        Person p2 = getPerson(p);
+        Person p2 = getPerson(p.getLogin());
         String ps = "UPDATE User SET";
         if(!p.getAddress().equals(p2.getAddress()))
             ps+=" address = '" + p.getAddress() + "'";
@@ -637,12 +637,12 @@ public class dataManager {
         return false;
     }
     
-    public Book getBookByISBN()
+    public Book getBookByISBN(String ISBN)
     {
         
         Book b = new Book();
         try{
-            resultSet = st.executeQuery("select * from User where ISBN='"+b.getIsbn()+"';");
+            resultSet = st.executeQuery("select * from User where ISBN='"+ISBN+"';");
             while(resultSet.next())
             {
                 b.setAuthor(resultSet.getString("author"));
@@ -668,7 +668,7 @@ public class dataManager {
         return b;
     }
     
-    public Book getBookByTitle()
+    public Book getBookByTitle(String title)
     {
         Book b = new Book();
         try{
