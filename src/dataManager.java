@@ -501,7 +501,6 @@ public class dataManager {
                     + a.getLogin() + "','" 
                     + a.getEmail() + "','" 
                     + a.getPassword() +"','"
-                    + a.getExpires() + "','" 
                     + a.getAddress() + "', '" 
                     + a.getPostalcode() + "', '"
                     + a.getCity() + "', '"
@@ -593,8 +592,6 @@ public class dataManager {
             ps+=" country = '" + p.getCountry()+"'";
         if(!p.getEmail().equals(p2.getEmail()))
             ps+=" email = '" + p.getEmail()+"'";
-        if(!p.getExpires().equals(p2.getExpires()))
-            ps+=" expires = '" + p.getExpires()+"'";
         if(!p.getName().equals(p2.getName()))
             ps+=" name = '" + p.getName()+"'";
         if(!p.getPassword().equals(p2.getPassword()))
