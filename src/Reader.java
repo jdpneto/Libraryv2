@@ -15,10 +15,14 @@ import java.util.*;
 public class Reader{
     
     private Person p;
+    String expires;
+    int limit;
     
-    public Reader(Person p)
+    public Reader(Person p, int limit, String expires)
     {
         this.p = p;
+        this.limit = limit;
+        this.expires = expires;
     }
     
     public Reader(){
@@ -58,11 +62,11 @@ public class Reader{
     }
 
     public String getExpires() {
-        return this.p.getExpires();
+        return this.expires;
     }
 
     public void setExpires(String expires) {
-        this.p.setExpires(expires);
+        this.expires = expires;
     }
 
     public int getId() {

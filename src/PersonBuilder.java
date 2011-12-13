@@ -32,7 +32,6 @@ public class PersonBuilder {
 
 
     public PersonBuilder() {
-        
         this.id = -1;
         this.email = "";
         this.address = "";
@@ -42,18 +41,9 @@ public class PersonBuilder {
         this.postalcode = "";
         this.city = "";
         this.phone = "";
-        this.expires = "";
-        this.limit = -1;
         this.type = new int[3];
     }
     
-    public int getLimit() {
-        return limit;
-    }
-
-    public void setLimit(int limit) {
-        this.limit = limit;
-    }
 
     public String getAddress() {
         return address;
@@ -79,13 +69,6 @@ public class PersonBuilder {
         this.email = email;
     }
 
-    public String getExpires() {
-        return expires;
-    }
-
-    public void setExpires(String expires) {
-        this.expires = expires;
-    }
 
     public int getId() {
         return id;
@@ -150,34 +133,10 @@ public class PersonBuilder {
     public void setCountry(String country) {
         this.country = country;
     }
-    
-    
-    public Admin buildAdmin()
-    {
-        Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type,country);
-        p.setExpires("UNLIMITED");
-        p.setLimit(0);
-        Admin a = new Admin(p);
-        return a;
-    }
-    public Librarian buildLibrarian()
-    {
-        Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type,country);
-        p.setExpires("UNLIMITED");
-        p.setLimit(Integer.MAX_VALUE);
-        Librarian l = new Librarian (p);
-        return l;
-    }
-    public Reader buildReader()
-    {
-        Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type,country);
-        Reader r = new Reader (p);
-        return r;
-    }
-    
+
     public Person buildPerson()
     {
-        Person p =  new Person(id,email,address,login,password,name,postalcode,city,phone,expires,type,country);
+        Person p =  new Person( this.id, this.email, this.address, this.login, this.password, this.name, this.postalcode, this.city, this.phone, this.type, this.country);
         return p;
     }
 }

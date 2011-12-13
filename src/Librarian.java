@@ -9,8 +9,9 @@
  */
 public class Librarian{
     private Person p;
+    String expires;
     
-    public Librarian(Person p){
+    public Librarian(Person p, String expires){
         this.p = p;
         
     }
@@ -52,11 +53,11 @@ public class Librarian{
     }
 
     public String getExpires() {
-        return this.p.getExpires();
+        return this.expires;
     }
 
     public void setExpires(String expires) {
-        this.p.setExpires(expires);
+        this.expires = expires;
     }
 
     public int getId() {

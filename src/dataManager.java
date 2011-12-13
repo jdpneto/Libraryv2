@@ -234,7 +234,6 @@ public class dataManager {
                             //não acho que passes devam ser trocadas para trás e para a frente
                             //o método já verificou a pass, não será preciso
                             pb.setPassword(hash);
-                            pb.setExpires(resultSet.getString("expires"));
                             pb.setPostalcode(resultSet.getString("postalcode"));
                             pb.setCity(resultSet.getString("city"));
                             pb.setCountry(resultSet.getString("country"));
@@ -292,7 +291,6 @@ public class dataManager {
                             pb.setLogin(resultSet.getString("login"));
                             pb.setEmail(resultSet.getString("email"));
                             pb.setPassword(resultSet.getString("md5_pass"));
-                            pb.setExpires(resultSet.getString("expires"));
                             pb.setPostalcode(resultSet.getString("postalcode"));
                             pb.setCity(resultSet.getString("city"));
                             pb.setCountry(resultSet.getString("country"));
@@ -311,7 +309,7 @@ public class dataManager {
     }
     public Admin getAdmin(String login)
     {
-        PersonBuilder pb;
+        AdminBuilder pb;
         Admin a = new Admin();
         try {
             //Vai a base de dados confirmar o login e a password...
@@ -322,20 +320,19 @@ public class dataManager {
                     type[0] = resultSet.getInt("adminaccess");
                     type[1] = resultSet.getInt("readeraccess");
                     type[2] = resultSet.getInt("librarianaccess");
-                    pb = new PersonBuilder();
+                    pb = new AdminBuilder();
                             pb.setId(resultSet.getInt("idUser"));
                             pb.setAddress(resultSet.getString("address"));
                             pb.setName(resultSet.getString("name"));
                             pb.setLogin(resultSet.getString("login"));
                             pb.setEmail(resultSet.getString("email"));
                             pb.setPassword(resultSet.getString("md5_pass"));
-                            pb.setExpires(resultSet.getString("expires"));
                             pb.setPostalcode(resultSet.getString("postalcode"));
                             pb.setCity(resultSet.getString("city"));
                             pb.setCountry(resultSet.getString("country"));
                             pb.setPhone(resultSet.getString("phonenumber"));
                     
-                    return pb.buildAdmin();//resultSet.getByte("type");
+                    return pb.Build();//resultSet.getByte("type");
                 
             }
         }
@@ -353,7 +350,7 @@ public class dataManager {
     public Reader getReader(String login)
     {
         Reader r = new Reader();
-        PersonBuilder pb;
+        ReaderBuilder pb;
         try {
             //Vai a base de dados confirmar o login e a password...
             resultSet = st.executeQuery("select * from User where login='" + login + "';");
@@ -363,7 +360,7 @@ public class dataManager {
                     type[0] = resultSet.getInt("adminaccess");
                     type[1] = resultSet.getInt("readeraccess");
                     type[2] = resultSet.getInt("librarianaccess");
-                    pb = new PersonBuilder();
+                    pb = new ReaderBuilder();
                             pb.setId(resultSet.getInt("idUser"));
                             pb.setAddress(resultSet.getString("address"));
                             pb.setName(resultSet.getString("name"));
@@ -371,12 +368,13 @@ public class dataManager {
                             pb.setEmail(resultSet.getString("email"));
                             pb.setPassword(resultSet.getString("md5_pass"));
                             pb.setExpires(resultSet.getString("expires"));
+                            pb.setLimit(resultSet.getInt("limit"));
                             pb.setPostalcode(resultSet.getString("postalcode"));
                             pb.setCity(resultSet.getString("city"));
                             pb.setCountry(resultSet.getString("country"));
                             pb.setPhone(resultSet.getString("phonenumber"));
                     
-                    return pb.buildReader();//resultSet.getByte("type");
+                    return pb.Build();//resultSet.getByte("type");
                 
             }
         }
@@ -392,7 +390,7 @@ public class dataManager {
     public Librarian getLibrarian(String login)
     {
         Librarian l = new Librarian();
-        PersonBuilder pb;
+        LibrarianBuilder pb;
         try {
             //Vai a base de dados confirmar o login e a password...
             resultSet = st.executeQuery("select * from User where login='" + login + "';");
@@ -402,7 +400,7 @@ public class dataManager {
                     type[0] = resultSet.getInt("adminaccess");
                     type[1] = resultSet.getInt("readeraccess");
                     type[2] = resultSet.getInt("librarianaccess");
-                    pb = new PersonBuilder();
+                    pb = new LibrarianBuilder();
                             pb.setId(resultSet.getInt("idUser"));
                             pb.setAddress(resultSet.getString("address"));
                             pb.setName(resultSet.getString("name"));
@@ -415,7 +413,7 @@ public class dataManager {
                             pb.setCountry(resultSet.getString("country"));
                             pb.setPhone(resultSet.getString("phonenumber"));
                     
-                    return pb.buildLibrarian();//resultSet.getByte("type");
+                    return pb.Build();//resultSet.getByte("type");
                 
             }
         }

@@ -10,7 +10,6 @@
 public class Person {
     
     protected int id;
-    protected int limit;
     protected String email;
     protected String address;
     protected String login;
@@ -20,12 +19,10 @@ public class Person {
     protected String city;
     protected String country;
     protected String phone;
-    protected String expires;
     protected int[] type;
 
     public Person() {
         this.id = -1;
-        this.limit = -1;
         this.email = "";
         this.address = "";
         this.login = "";
@@ -34,7 +31,6 @@ public class Person {
         this.postalcode = "";
         this.city = "";
         this.phone = "";
-        this.expires = "";
         this.country = "";
         this.type = new int[3];
         
@@ -47,7 +43,7 @@ public class Person {
         this.password = password;
     }
 
-    public Person(int id, String email, String address, String login, String password, String name, String postalcode, String city, String phone, String expires, int[] type, String country) {
+    public Person(int id, String email, String address, String login, String password, String name, String postalcode, String city, String phone, int[] type, String country) {
         this.id = id;
         this.email = email;
         this.address = address;
@@ -57,7 +53,6 @@ public class Person {
         this.postalcode = postalcode;
         this.city = city;
         this.phone = phone;
-        this.expires = expires;
         this.type = type;
         this.country = country;
     }
@@ -95,13 +90,6 @@ public class Person {
         this.email = email;
     }
 
-    public String getExpires() {
-        return expires;
-    }
-
-    public void setExpires(String expires) {
-        this.expires = expires;
-    }
 
     public int getId() {
         return id;
@@ -159,11 +147,4 @@ public class Person {
         this.type = type;
     }
     
-    public int getLimit() {
-        return limit;
-    }
-
-    public void setLimit(int limit) {
-        this.limit = limit;
-    }
 }

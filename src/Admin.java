@@ -53,14 +53,6 @@ public class Admin{
         this.p.setEmail(email);// = email;
     }
 
-    public String getExpires() {
-        return this.p.getExpires();
-    }
-
-    public void setExpires(String expires) {
-        this.p.setExpires(expires);
-    }
-
     public int getId() {
         return this.p.getId();
     }
