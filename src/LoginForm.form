@@ -25,18 +25,20 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="error_msg" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="login_field" alignment="0" max="32767" attributes="1"/>
-                          <Component id="ok" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="password_field" alignment="0" min="-2" pref="188" max="-2" attributes="1"/>
                       </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="type_box" min="-2" pref="100" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="ok" alignment="0" max="32767" attributes="1"/>
+                      <Component id="error_msg" alignment="0" max="32767" attributes="1"/>
                   </Group>
               </Group>
               <EmptySpace pref="33" max="32767" attributes="0"/>

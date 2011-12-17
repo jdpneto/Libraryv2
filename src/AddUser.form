@@ -25,57 +25,46 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="293" max="-2" attributes="0"/>
               <Component id="add_user" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="330" max="32767" attributes="0"/>
+              <EmptySpace pref="418" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="password_field" pref="281" max="32767" attributes="1"/>
-                          <Component id="expires_field" pref="281" max="32767" attributes="1"/>
-                          <Component id="limit_field" pref="281" max="32767" attributes="1"/>
-                          <Component id="country_field" pref="281" max="32767" attributes="1"/>
-                          <Component id="door_number_field" alignment="1" pref="281" max="32767" attributes="1"/>
-                          <Component id="postal_code_field" alignment="1" pref="281" max="32767" attributes="1"/>
-                          <Component id="street_field" alignment="0" pref="281" max="32767" attributes="1"/>
-                          <Component id="city_field" alignment="1" pref="281" max="32767" attributes="1"/>
-                          <Component id="login_field" alignment="0" pref="281" max="32767" attributes="1"/>
-                          <Component id="error_msg" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="email_field" alignment="0" max="32767" attributes="1"/>
-                          <Component id="phone_field" alignment="0" max="32767" attributes="1"/>
-                          <Component id="name_field" alignment="0" min="-2" pref="281" max="-2" attributes="1"/>
-                      </Group>
-                  </Group>
+                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="name_field" pref="364" max="32767" attributes="1"/>
+                  <Component id="phone_field" pref="364" max="32767" attributes="1"/>
+                  <Component id="email_field" pref="364" max="32767" attributes="1"/>
+                  <Component id="password_field" pref="364" max="32767" attributes="1"/>
+                  <Component id="expires_field" pref="364" max="32767" attributes="1"/>
+                  <Component id="limit_field" pref="364" max="32767" attributes="1"/>
+                  <Component id="country_field" pref="364" max="32767" attributes="1"/>
+                  <Component id="door_number_field" alignment="1" pref="364" max="32767" attributes="1"/>
+                  <Component id="postal_code_field" alignment="1" pref="364" max="32767" attributes="1"/>
+                  <Component id="street_field" alignment="0" pref="364" max="32767" attributes="1"/>
+                  <Component id="city_field" alignment="1" pref="364" max="32767" attributes="1"/>
+                  <Component id="login_field" alignment="0" pref="364" max="32767" attributes="1"/>
+                  <Component id="error_msg" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
               <Component id="submit_button" min="-2" pref="145" max="-2" attributes="0"/>
-              <EmptySpace pref="219" max="32767" attributes="0"/>
+              <EmptySpace pref="312" max="32767" attributes="0"/>
               <Component id="back_button" min="-2" pref="160" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
           </Group>

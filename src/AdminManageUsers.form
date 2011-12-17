@@ -35,12 +35,10 @@
                               <Component id="jScrollPane1" min="-2" pref="444" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="admins_panel" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="edit_user" alignment="1" pref="132" max="32767" attributes="1"/>
-                                      <Component id="add_user" alignment="1" pref="132" max="32767" attributes="1"/>
-                                      <Component id="delete_user" alignment="0" pref="132" max="32767" attributes="1"/>
-                                  </Group>
+                                  <Component id="admins_panel" pref="132" max="32767" attributes="0"/>
+                                  <Component id="edit_user" alignment="1" pref="132" max="32767" attributes="1"/>
+                                  <Component id="add_user" alignment="1" pref="132" max="32767" attributes="1"/>
+                                  <Component id="delete_user" alignment="0" pref="132" max="32767" attributes="1"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
