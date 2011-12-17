@@ -14,31 +14,31 @@ public class Reservation {
     private Date start_date;
     private Date end_date;
     private int id;
-    private ArrayList<Book> books;
+    private String book;
     private int user_id;
 
     public Reservation() {
         this.start_date = null;
         this.end_date = null;
-        this.books = new ArrayList<Book>();
+        this.book = "";
         this.id = -1;
         this.user_id = -1;
     }
 
-    public Reservation(Date start_date, Date end_date, ArrayList<Book> books, int id,int user_id) {
+    public Reservation(Date start_date, Date end_date, String books, int id,int user_id) {
         this.start_date = start_date;
         this.end_date = end_date;
-        this.books = books;
+        this.book = book;
         this.id = id;
         this.user_id = user_id;
     }
 
-    public ArrayList<Book> getBooks() {
-        return books;
+    public String getBook() {
+        return book;
     }
 
-    public void setBooks(ArrayList<Book> books) {
-        this.books = books;
+    public void setBook(String book) {
+        this.book = book;
     }
 
     public Date getEndDate() {
