@@ -384,6 +384,44 @@ public class dataManager {
         //nao existe utilizador
         return r;
     }
+        public Reader getReaderById(int id)
+    {
+        Reader r = new Reader();
+        ReaderBuilder pb;
+        try {
+            //Vai a base de dados confirmar o login e a password...
+            resultSet = st.executeQuery("select * from User where idUser='" + id + "';");
+            
+            while (resultSet.next()) {
+                    int[] type = new int[3];
+                    type[0] = resultSet.getInt("adminaccess");
+                    type[1] = resultSet.getInt("readeraccess");
+                    type[2] = resultSet.getInt("librarianaccess");
+                    pb = new ReaderBuilder();
+                            pb.setId(resultSet.getInt("idUser"));
+                            pb.setAddress(resultSet.getString("address"));
+                            pb.setName(resultSet.getString("name"));
+                            pb.setLogin(resultSet.getString("login"));
+                            pb.setEmail(resultSet.getString("email"));
+                            pb.setPassword(resultSet.getString("md5_pass"));
+                            pb.setExpires(resultSet.getString("expires"));
+                            pb.setLimit(resultSet.getInt("limit"));
+                            pb.setPostalcode(resultSet.getString("postalcode"));
+                            pb.setCity(resultSet.getString("city"));
+                            pb.setCountry(resultSet.getString("country"));
+                            pb.setPhone(resultSet.getString("phonenumber"));
+                    
+                    return pb.Build();//resultSet.getByte("type");
+                
+            }
+        }
+        catch (Exception e) {
+            System.err.println(e);
+            return r;
+        }
+        //nao existe utilizador
+        return r;
+    }
     
     
     public Librarian getLibrarian(String login)
@@ -714,5 +752,82 @@ public class dataManager {
         }
         
     }
+    
+    /************************COMMENTS**************************/
+    
+    
+    /*
+     * 
+     * idReview INT
+     * user_id INT
+     * book_ISBN VARCHAR(45)
+     * messagebody VARCHAR(1024)
+     * rating INT
+     * 
+     * 
+     */
+    
+    private boolean existsComment(int idReview)
+    {
+        try {
+            resultSet = st.executeQuery("select * from Review where idReview='" + idReview + "';");
+            while (resultSet.next()) {
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return false;
+    }
+    
+    public Comment storeComment(Comment c)
+    {
+        if(existsComment(c.getId()))
+            return new Comment();
+        try
+        {
+            String insert = "INSERT INTO Review (user_id,book_ISBN,messagebody,rating) "
+                    + "VALUES(" + c.getCommenter().getId() + ",'"
+                    + c.getBook() + "','"
+                    + c.getBody() + "',"
+                    + c.getRating() +");";
+            System.out.println(insert);
+            st.execute(insert);
+            return c;
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return new Comment();
+        
+    }
+    public ArrayList<Comment> getCommentsByBook(String ISBN)
+    {
+        ArrayList<Comment> comments = new ArrayList<Comment>();
+        try
+        {
+            resultSet = st.executeQuery("select * from Review where book_ISBN='"+ISBN+"';");
+            Comment tmp;
+            while(resultSet.next())
+            {
+                tmp = new Comment();
+                tmp.setId(resultSet.getInt("idReview"));
+                tmp.setBook(resultSet.getString("ISBN"));
+                tmp.setCommenter(getReaderById(resultSet.getInt("user_id")));
+                tmp.setRating(resultSet.getInt("rating"));
+                comments.add(tmp);
+            }
+            return comments;
+           
+        } catch(Exception e)
+        {
+            System.err.println(e);
+        }
+        return comments;
+    }
+    
+    /************************RESERVATIONS**************************/
+    
+    
 
 }

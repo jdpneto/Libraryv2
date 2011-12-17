@@ -8,20 +8,42 @@
  * @author jlnabais
  */
 public class Comment {
+    private int id;
     private Reader commenter;
     private int rating;
     private String body;
+    private String book;
 
     public Comment() {
+        this.id = -1;
         this.commenter = new Reader();
         this.rating = -999999999;
-        this.body = body;
+        this.body = "";
+        this.book = "";
     }
 
-    public Comment(Reader commenter, int rating, String body) {
+    public Comment(int id, Reader commenter, int rating, String body, String book) {
+        this.id = id;
         this.commenter = commenter;
         this.rating = rating;
         this.body = body;
+        this.book = book;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getBook() {
+        return book;
+    }
+
+    public void setBook(String book) {
+        this.book = book;
     }
 
     public String getBody() {
