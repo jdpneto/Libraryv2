@@ -220,7 +220,8 @@ private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     int numberOfCopies  = Integer.parseInt(copies_field.getText());
 
     //store all information
-    dat.storeBook(ISBN,author,title,year,category,numberOfCopies);
+    Book tmp = new Book(ISBN,title,author,year,category,numberOfCopies);
+    dat.storeBook(tmp);
 }//GEN-LAST:event_submit_buttonActionPerformed
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed

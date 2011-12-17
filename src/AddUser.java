@@ -326,15 +326,22 @@ private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     String city         = city_field.getText();
     String postal_code  = postal_code_field.getText();
     String country      = country_field.getText();
-    Address address     = new Address();
     int door_number     = Integer.parseInt(door_number_field.getText());
     String username     = login_field.getText();
     String password     = password_field.getText();
+    String phone        = phone_field.getText();
 
     //store all information
-    dat.storeAddress(street,city,postal_code,country);
-    address = dat.getAddressByStreet(street);
-    dat.storeReader(name,limit,date,email,address,door_number,username,password);
+    //dat.storeAddress(street,city,postal_code,country);
+    //address = dat.getAddressByStreet(street);
+    //public Person(int id, String email, String address, String login, String password, String name, String postalcode, String city, String phone, int[] type, String country) {
+    int[] type = new int[3];
+    type[0] = 0;
+    type[1] = 1;
+    type[2] = 0;
+    Person p = new Person(-1,email,street,username,password,name,postal_code,city,phone,type,country);
+    Reader r = new Reader(p, limit,dat.datetoString(date));
+    dat.storeReader(r);
 }//GEN-LAST:event_submit_buttonActionPerformed
 
 private void street_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_street_fieldActionPerformed

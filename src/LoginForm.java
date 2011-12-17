@@ -140,10 +140,10 @@ private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:even
         if (option == 0 && p.type[0] == 1) {
             new AdminForm(dat).setVisible(true);
             dispose();
-        } else if (option == 1 && p.type[1] == 1) {
+        } else if (option == 1 && p.type[2] == 1) {
             new LibrarianForm(dat).setVisible(true);
             dispose();
-        } else if (option == 2 && p.type[2] == 1) {
+        } else if (option == 2 && p.type[1] == 1) {
             new UserForm(dat).setVisible(true);
             dispose();
         } else if(option == -1){
