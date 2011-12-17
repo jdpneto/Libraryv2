@@ -83,99 +83,99 @@ public class dataManager {
     
     
     /***************ADDRESS******************
-     
+     * 
      * NOT NEEDED IN THE NEW DB SCHEME
-     
+     * 
      */
-//    
-//    public boolean existsStreet(String street, String postalcode)
-//    {
-//        String tmpPostalCode = "";
-//        try {
-//            resultSet = st.executeQuery("select * from Address where street='" + street + "';");
-//            while (resultSet.next()) {
-//                tmpPostalCode = resultSet.getString("postalcode");
-//                if(tmpPostalCode.equals(postalcode))
-//                    return true;
-//            }
-//            return false;
-//        } catch (Exception e) {
-//            System.err.println(e);
-//        }
-//        return false;
-//    }
-//    
-//    public boolean storeAddress(String street, String city, String postalcode, String country)
-//    {
-//        if(existsStreet(street,postalcode))
-//            return false;
-//        try {
-//            String insert = "INSERT INTO Address (street,city,postalcode,country) "
-//                    + "VALUES('" + street + "','" + city + "','" + postalcode + "','" + country +"');";
-//            System.out.println(insert);
-//            st.execute(insert);
-//            return true;
-//            
-//            
-//        }catch (Exception e) {
-//            System.err.println(e);
-//            return false;
-//        }
-//    }
-//    
-//    public Address getAddressByStreet(String street)
-//    {
-//        String city;
-//        int id;
-//        //String street;
-//        String postalcode;
-//        String country;
-//        Address a = null;
-//        
-//        
-//        
-//        try{
-//            resultSet = st.executeQuery("select * from Address where street='"+street+"';");
-//            while(resultSet.next())
-//            {
-//                id = resultSet.getInt("idAddress");
-//                city = resultSet.getString("city");
-//                postalcode = resultSet.getString("postalcode");
-//                country = resultSet.getString("country");
-//                //Address(String street, String city, String postal_code, String country)
-//                a = new Address(id,street,city,postalcode,country);
-//            }
-//        }catch (Exception e) {
-//            System.err.println(e);
-//        }
-//        return a;
-//    }
-//    
-//    public Address getAddressById(int id)
-//    {
-//        String city;
-//        String street;
-//        String postalcode;
-//        String country;
-//        Address a = null;
-//        
-//        
-//        
-//        try{
-//            resultSet = st.executeQuery("select * from Address where idAddress="+id+";");
-//            while(resultSet.next())
-//            {
-//                city = resultSet.getString("city");
-//                street = resultSet.getString("street");
-//                postalcode = resultSet.getString("postalcode");
-//                country = resultSet.getString("country");
-//                a = new Address(id,street,city,postalcode,country);
-//            }
-//        }catch (Exception e) {
-//            System.err.println(e);
-//        }
-//        return a;
-//    }
+    //
+    //    public boolean existsStreet(String street, String postalcode)
+    //    {
+    //        String tmpPostalCode = "";
+    //        try {
+    //            resultSet = st.executeQuery("select * from Address where street='" + street + "';");
+    //            while (resultSet.next()) {
+    //                tmpPostalCode = resultSet.getString("postalcode");
+    //                if(tmpPostalCode.equals(postalcode))
+    //                    return true;
+    //            }
+    //            return false;
+    //        } catch (Exception e) {
+    //            System.err.println(e);
+    //        }
+    //        return false;
+    //    }
+    //
+    //    public boolean storeAddress(String street, String city, String postalcode, String country)
+    //    {
+    //        if(existsStreet(street,postalcode))
+    //            return false;
+    //        try {
+    //            String insert = "INSERT INTO Address (street,city,postalcode,country) "
+    //                    + "VALUES('" + street + "','" + city + "','" + postalcode + "','" + country +"');";
+    //            System.out.println(insert);
+    //            st.execute(insert);
+    //            return true;
+    //
+    //
+    //        }catch (Exception e) {
+    //            System.err.println(e);
+    //            return false;
+    //        }
+    //    }
+    //
+    //    public Address getAddressByStreet(String street)
+    //    {
+    //        String city;
+    //        int id;
+    //        //String street;
+    //        String postalcode;
+    //        String country;
+    //        Address a = null;
+    //
+    //
+    //
+    //        try{
+    //            resultSet = st.executeQuery("select * from Address where street='"+street+"';");
+    //            while(resultSet.next())
+    //            {
+    //                id = resultSet.getInt("idAddress");
+    //                city = resultSet.getString("city");
+    //                postalcode = resultSet.getString("postalcode");
+    //                country = resultSet.getString("country");
+    //                //Address(String street, String city, String postal_code, String country)
+    //                a = new Address(id,street,city,postalcode,country);
+    //            }
+    //        }catch (Exception e) {
+    //            System.err.println(e);
+    //        }
+    //        return a;
+    //    }
+    //
+    //    public Address getAddressById(int id)
+    //    {
+    //        String city;
+    //        String street;
+    //        String postalcode;
+    //        String country;
+    //        Address a = null;
+    //
+    //
+    //
+    //        try{
+    //            resultSet = st.executeQuery("select * from Address where idAddress="+id+";");
+    //            while(resultSet.next())
+    //            {
+    //                city = resultSet.getString("city");
+    //                street = resultSet.getString("street");
+    //                postalcode = resultSet.getString("postalcode");
+    //                country = resultSet.getString("country");
+    //                a = new Address(id,street,city,postalcode,country);
+    //            }
+    //        }catch (Exception e) {
+    //            System.err.println(e);
+    //        }
+    //        return a;
+    //    }
     
     
     /***************USERS*******************/
@@ -202,7 +202,7 @@ public class dataManager {
     
     
     
-//    public int checkLogin(String login, String pass)
+    //    public int checkLogin(String login, String pass)
     
     //if returned object equals the sent one, then
     //it is an invalid login
@@ -225,19 +225,19 @@ public class dataManager {
                     type[1] = resultSet.getInt("readeraccess");
                     type[2] = resultSet.getInt("librarianaccess");
                     pb = new PersonBuilder();
-                            pb.setId(resultSet.getInt("idUser"));
-                            pb.setAddress(resultSet.getString("address"));
-                            pb.setName(resultSet.getString("name"));
-                            pb.setLogin(resultSet.getString("login"));
-                            pb.setEmail(resultSet.getString("email"));
-                            //não acho que passes devam ser trocadas para trás e para a frente
-                            //o método já verificou a pass, não será preciso
-                            pb.setPassword(hash);
-                            pb.setPostalcode(resultSet.getString("postalcode"));
-                            pb.setCity(resultSet.getString("city"));
-                            pb.setCountry(resultSet.getString("country"));
-                            pb.setPhone(resultSet.getString("phonenumber"));
-                            
+                    pb.setId(resultSet.getInt("idUser"));
+                    pb.setAddress(resultSet.getString("address"));
+                    pb.setName(resultSet.getString("name"));
+                    pb.setLogin(resultSet.getString("login"));
+                    pb.setEmail(resultSet.getString("email"));
+                    //não acho que passes devam ser trocadas para trás e para a frente
+                    //o método já verificou a pass, não será preciso
+                    pb.setPassword(hash);
+                    pb.setPostalcode(resultSet.getString("postalcode"));
+                    pb.setCity(resultSet.getString("city"));
+                    pb.setCountry(resultSet.getString("country"));
+                    pb.setPhone(resultSet.getString("phonenumber"));
+                    
                     return pb.buildPerson();//resultSet.getByte("type");
                 }
                 else return p;
@@ -279,23 +279,23 @@ public class dataManager {
             resultSet = st.executeQuery("select * from User where login='" + login + "';");
             //-1 -> existe mas a pass está mal
             while (resultSet.next()) {
-                    int[] type = new int[3];
-                    type[0] = resultSet.getInt("adminaccess");
-                    type[1] = resultSet.getInt("readeraccess");
-                    type[2] = resultSet.getInt("librarianaccess");
-                    pb = new PersonBuilder();
-                            pb.setId(resultSet.getInt("idUser"));
-                            pb.setAddress(resultSet.getString("address"));
-                            pb.setName(resultSet.getString("name"));
-                            pb.setLogin(resultSet.getString("login"));
-                            pb.setEmail(resultSet.getString("email"));
-                            pb.setPassword(resultSet.getString("md5_pass"));
-                            pb.setPostalcode(resultSet.getString("postalcode"));
-                            pb.setCity(resultSet.getString("city"));
-                            pb.setCountry(resultSet.getString("country"));
-                            pb.setPhone(resultSet.getString("phonenumber"));
-                    
-                    return pb.buildPerson();//resultSet.getByte("type");
+                int[] type = new int[3];
+                type[0] = resultSet.getInt("adminaccess");
+                type[1] = resultSet.getInt("readeraccess");
+                type[2] = resultSet.getInt("librarianaccess");
+                pb = new PersonBuilder();
+                pb.setId(resultSet.getInt("idUser"));
+                pb.setAddress(resultSet.getString("address"));
+                pb.setName(resultSet.getString("name"));
+                pb.setLogin(resultSet.getString("login"));
+                pb.setEmail(resultSet.getString("email"));
+                pb.setPassword(resultSet.getString("md5_pass"));
+                pb.setPostalcode(resultSet.getString("postalcode"));
+                pb.setCity(resultSet.getString("city"));
+                pb.setCountry(resultSet.getString("country"));
+                pb.setPhone(resultSet.getString("phonenumber"));
+                
+                return pb.buildPerson();//resultSet.getByte("type");
                 
             }
         }
@@ -315,23 +315,23 @@ public class dataManager {
             resultSet = st.executeQuery("select * from User where login='" + login + "';");
             //-1 -> existe mas a pass está mal
             while (resultSet.next()) {
-                    int[] type = new int[3];
-                    type[0] = resultSet.getInt("adminaccess");
-                    type[1] = resultSet.getInt("readeraccess");
-                    type[2] = resultSet.getInt("librarianaccess");
-                    pb = new AdminBuilder();
-                            pb.setId(resultSet.getInt("idUser"));
-                            pb.setAddress(resultSet.getString("address"));
-                            pb.setName(resultSet.getString("name"));
-                            pb.setLogin(resultSet.getString("login"));
-                            pb.setEmail(resultSet.getString("email"));
-                            pb.setPassword(resultSet.getString("md5_pass"));
-                            pb.setPostalcode(resultSet.getString("postalcode"));
-                            pb.setCity(resultSet.getString("city"));
-                            pb.setCountry(resultSet.getString("country"));
-                            pb.setPhone(resultSet.getString("phonenumber"));
-                    
-                    return pb.Build();//resultSet.getByte("type");
+                int[] type = new int[3];
+                type[0] = resultSet.getInt("adminaccess");
+                type[1] = resultSet.getInt("readeraccess");
+                type[2] = resultSet.getInt("librarianaccess");
+                pb = new AdminBuilder();
+                pb.setId(resultSet.getInt("idUser"));
+                pb.setAddress(resultSet.getString("address"));
+                pb.setName(resultSet.getString("name"));
+                pb.setLogin(resultSet.getString("login"));
+                pb.setEmail(resultSet.getString("email"));
+                pb.setPassword(resultSet.getString("md5_pass"));
+                pb.setPostalcode(resultSet.getString("postalcode"));
+                pb.setCity(resultSet.getString("city"));
+                pb.setCountry(resultSet.getString("country"));
+                pb.setPhone(resultSet.getString("phonenumber"));
+                
+                return pb.Build();//resultSet.getByte("type");
                 
             }
         }
@@ -355,25 +355,25 @@ public class dataManager {
             resultSet = st.executeQuery("select * from User where login='" + login + "';");
             //-1 -> existe mas a pass está mal
             while (resultSet.next()) {
-                    int[] type = new int[3];
-                    type[0] = resultSet.getInt("adminaccess");
-                    type[1] = resultSet.getInt("readeraccess");
-                    type[2] = resultSet.getInt("librarianaccess");
-                    pb = new ReaderBuilder();
-                            pb.setId(resultSet.getInt("idUser"));
-                            pb.setAddress(resultSet.getString("address"));
-                            pb.setName(resultSet.getString("name"));
-                            pb.setLogin(resultSet.getString("login"));
-                            pb.setEmail(resultSet.getString("email"));
-                            pb.setPassword(resultSet.getString("md5_pass"));
-                            pb.setExpires(resultSet.getString("expires"));
-                            pb.setLimit(resultSet.getInt("limit"));
-                            pb.setPostalcode(resultSet.getString("postalcode"));
-                            pb.setCity(resultSet.getString("city"));
-                            pb.setCountry(resultSet.getString("country"));
-                            pb.setPhone(resultSet.getString("phonenumber"));
-                    
-                    return pb.Build();//resultSet.getByte("type");
+                int[] type = new int[3];
+                type[0] = resultSet.getInt("adminaccess");
+                type[1] = resultSet.getInt("readeraccess");
+                type[2] = resultSet.getInt("librarianaccess");
+                pb = new ReaderBuilder();
+                pb.setId(resultSet.getInt("idUser"));
+                pb.setAddress(resultSet.getString("address"));
+                pb.setName(resultSet.getString("name"));
+                pb.setLogin(resultSet.getString("login"));
+                pb.setEmail(resultSet.getString("email"));
+                pb.setPassword(resultSet.getString("md5_pass"));
+                pb.setExpires(resultSet.getString("expires"));
+                pb.setLimit(resultSet.getInt("limit"));
+                pb.setPostalcode(resultSet.getString("postalcode"));
+                pb.setCity(resultSet.getString("city"));
+                pb.setCountry(resultSet.getString("country"));
+                pb.setPhone(resultSet.getString("phonenumber"));
+                
+                return pb.Build();//resultSet.getByte("type");
                 
             }
         }
@@ -384,7 +384,7 @@ public class dataManager {
         //nao existe utilizador
         return r;
     }
-        public Reader getReaderById(int id)
+    public Reader getReaderById(int id)
     {
         Reader r = new Reader();
         ReaderBuilder pb;
@@ -393,25 +393,25 @@ public class dataManager {
             resultSet = st.executeQuery("select * from User where idUser='" + id + "';");
             
             while (resultSet.next()) {
-                    int[] type = new int[3];
-                    type[0] = resultSet.getInt("adminaccess");
-                    type[1] = resultSet.getInt("readeraccess");
-                    type[2] = resultSet.getInt("librarianaccess");
-                    pb = new ReaderBuilder();
-                            pb.setId(resultSet.getInt("idUser"));
-                            pb.setAddress(resultSet.getString("address"));
-                            pb.setName(resultSet.getString("name"));
-                            pb.setLogin(resultSet.getString("login"));
-                            pb.setEmail(resultSet.getString("email"));
-                            pb.setPassword(resultSet.getString("md5_pass"));
-                            pb.setExpires(resultSet.getString("expires"));
-                            pb.setLimit(resultSet.getInt("limit"));
-                            pb.setPostalcode(resultSet.getString("postalcode"));
-                            pb.setCity(resultSet.getString("city"));
-                            pb.setCountry(resultSet.getString("country"));
-                            pb.setPhone(resultSet.getString("phonenumber"));
-                    
-                    return pb.Build();//resultSet.getByte("type");
+                int[] type = new int[3];
+                type[0] = resultSet.getInt("adminaccess");
+                type[1] = resultSet.getInt("readeraccess");
+                type[2] = resultSet.getInt("librarianaccess");
+                pb = new ReaderBuilder();
+                pb.setId(resultSet.getInt("idUser"));
+                pb.setAddress(resultSet.getString("address"));
+                pb.setName(resultSet.getString("name"));
+                pb.setLogin(resultSet.getString("login"));
+                pb.setEmail(resultSet.getString("email"));
+                pb.setPassword(resultSet.getString("md5_pass"));
+                pb.setExpires(resultSet.getString("expires"));
+                pb.setLimit(resultSet.getInt("limit"));
+                pb.setPostalcode(resultSet.getString("postalcode"));
+                pb.setCity(resultSet.getString("city"));
+                pb.setCountry(resultSet.getString("country"));
+                pb.setPhone(resultSet.getString("phonenumber"));
+                
+                return pb.Build();//resultSet.getByte("type");
                 
             }
         }
@@ -433,24 +433,24 @@ public class dataManager {
             resultSet = st.executeQuery("select * from User where login='" + login + "';");
             //-1 -> existe mas a pass está mal
             while (resultSet.next()) {
-                    int[] type = new int[3];
-                    type[0] = resultSet.getInt("adminaccess");
-                    type[1] = resultSet.getInt("readeraccess");
-                    type[2] = resultSet.getInt("librarianaccess");
-                    pb = new LibrarianBuilder();
-                            pb.setId(resultSet.getInt("idUser"));
-                            pb.setAddress(resultSet.getString("address"));
-                            pb.setName(resultSet.getString("name"));
-                            pb.setLogin(resultSet.getString("login"));
-                            pb.setEmail(resultSet.getString("email"));
-                            pb.setPassword(resultSet.getString("md5_pass"));
-                            pb.setExpires(resultSet.getString("expires"));
-                            pb.setPostalcode(resultSet.getString("postalcode"));
-                            pb.setCity(resultSet.getString("city"));
-                            pb.setCountry(resultSet.getString("country"));
-                            pb.setPhone(resultSet.getString("phonenumber"));
-                    
-                    return pb.Build();//resultSet.getByte("type");
+                int[] type = new int[3];
+                type[0] = resultSet.getInt("adminaccess");
+                type[1] = resultSet.getInt("readeraccess");
+                type[2] = resultSet.getInt("librarianaccess");
+                pb = new LibrarianBuilder();
+                pb.setId(resultSet.getInt("idUser"));
+                pb.setAddress(resultSet.getString("address"));
+                pb.setName(resultSet.getString("name"));
+                pb.setLogin(resultSet.getString("login"));
+                pb.setEmail(resultSet.getString("email"));
+                pb.setPassword(resultSet.getString("md5_pass"));
+                pb.setExpires(resultSet.getString("expires"));
+                pb.setPostalcode(resultSet.getString("postalcode"));
+                pb.setCity(resultSet.getString("city"));
+                pb.setCountry(resultSet.getString("country"));
+                pb.setPhone(resultSet.getString("phonenumber"));
+                
+                return pb.Build();//resultSet.getByte("type");
                 
             }
         }
@@ -469,13 +469,13 @@ public class dataManager {
         try {
             int[] type = l.getType();
             String insert = "INSERT INTO User (name,login,email,md5_pass,expires,address,postalcode,city,country,adminaccess,readeraccess,librarianaccess,phonenumber) "
-                    + "VALUES('" 
-                    + l.getName() + "','" 
-                    + l.getLogin() + "','" 
-                    + l.getEmail() + "','" 
+                    + "VALUES('"
+                    + l.getName() + "','"
+                    + l.getLogin() + "','"
+                    + l.getEmail() + "','"
                     + l.getPassword() +"','"
-                    + l.getExpires() + "','" 
-                    + l.getAddress() + "', '" 
+                    + l.getExpires() + "','"
+                    + l.getAddress() + "', '"
                     + l.getPostalcode() + "', '"
                     + l.getCity() + "', '"
                     + l.getCountry() + "', "
@@ -501,13 +501,13 @@ public class dataManager {
         try {
             int[] type = r.getType();
             String insert = "INSERT INTO User (name,login,email,md5_pass,expires,address,postalcode,city,country,adminaccess,readeraccess,librarianaccess,phonenumber) "
-                    + "VALUES('" 
-                    + r.getName() + "','" 
-                    + r.getLogin() + "','" 
-                    + r.getEmail() + "','" 
+                    + "VALUES('"
+                    + r.getName() + "','"
+                    + r.getLogin() + "','"
+                    + r.getEmail() + "','"
                     + r.getPassword() +"','"
-                    + r.getExpires() + "','" 
-                    + r.getAddress() + "', '" 
+                    + r.getExpires() + "','"
+                    + r.getAddress() + "', '"
                     + r.getPostalcode() + "', '"
                     + r.getCity() + "', '"
                     + r.getCountry() + "', "
@@ -533,12 +533,12 @@ public class dataManager {
         try {
             int[] type = a.getType();
             String insert = "INSERT INTO User (name,login,email,md5_pass,expires,address,postalcode,city,country,adminaccess,readeraccess,librarianaccess,phonenumber) "
-                    + "VALUES('" 
-                    + a.getName() + "','" 
-                    + a.getLogin() + "','" 
-                    + a.getEmail() + "','" 
+                    + "VALUES('"
+                    + a.getName() + "','"
+                    + a.getLogin() + "','"
+                    + a.getEmail() + "','"
                     + a.getPassword() +"','"
-                    + a.getAddress() + "', '" 
+                    + a.getAddress() + "', '"
                     + a.getPostalcode() + "', '"
                     + a.getCity() + "', '"
                     + a.getCountry() + "', "
@@ -678,7 +678,7 @@ public class dataManager {
             while(resultSet.next())
             {
                 b.setAuthor(resultSet.getString("author"));
-              
+                
                 b.setName(resultSet.getString("title"));
                 b.setYear(resultSet.getInt("year"));
                 b.setCategory(resultSet.getString("category"));
@@ -757,14 +757,14 @@ public class dataManager {
     
     
     /*
-     * 
+     *
      * idReview INT
      * user_id INT
      * book_ISBN VARCHAR(45)
      * messagebody VARCHAR(1024)
      * rating INT
-     * 
-     * 
+     *
+     *
      */
     
     private boolean existsComment(int idReview)
@@ -818,7 +818,7 @@ public class dataManager {
                 comments.add(tmp);
             }
             return comments;
-           
+            
         } catch(Exception e)
         {
             System.err.println(e);
@@ -828,6 +828,42 @@ public class dataManager {
     
     /************************RESERVATIONS**************************/
     
+    private boolean existsReservation(int idReservation)
+    {
+        try {
+            resultSet = st.executeQuery("select * from Reservation where idReservation='" + idReservation + "';");
+            while (resultSet.next()) {
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return false;
+    }
     
+    public Reservation storeReservation(Reservation r)
+    {
+        if(existsReservation(r.getId()))
+            return new Reservation();
+        for(int i = 0; i< r.getBooks().size(); i++)
+        {
+            try
+            {
+                String insert = "INSERT INTO Reservation (startdate,enddate,user,book) "
+                        + "VALUES(" + c.getCommenter().getId() + ",'"
+                        + c.getBook() + "','"
+                        + c.getBody() + "',"
+                        + c.getRating() +");";
+                System.out.println(insert);
+                st.execute(insert);
+                return c;
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        }
+        //return new Comment();
+        
+    }
 
 }
