@@ -42,7 +42,7 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         error_msg = new javax.swing.JLabel();
         String [] types = { "Admin", "Librarian", "Reader"};
-        type_box = new javax.swing.JComboBox(types);
+        type_box = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,7 +74,7 @@ public class LoginForm extends javax.swing.JFrame {
         error_msg.setForeground(new java.awt.Color(220, 0, 0));
         error_msg.setText("Error");
 
-        type_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        type_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Admin", "Librarian", "Reader"}));
         type_box.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 type_boxActionPerformed(evt);
@@ -85,8 +85,8 @@ public class LoginForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .add(78, 78, 78)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(error_msg)
                     .add(jLabel3)
@@ -98,8 +98,8 @@ public class LoginForm extends javax.swing.JFrame {
                             .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel1)
                             .add(org.jdesktop.layout.GroupLayout.LEADING, password_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 188, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .add(27, 27, 27)
-                        .add(type_box, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .add(44, 44, 44))
+                        .add(type_box, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
