@@ -139,4 +139,10 @@ public class PersonBuilder {
         Person p =  new Person( this.id, this.email, this.address, this.login, this.password, this.name, this.postalcode, this.city, this.phone, this.type, this.country);
         return p;
     }
+
+    @Override
+    public String toString() {
+        return "PersonBuilder{" + "id=" + id + ", email=" + email + ", address=" + address + ", login=" + login + ", password=" + password + ", name=" + name + ", postalcode=" + postalcode + ", city=" + city + ", phone=" + phone + ", expires=" + expires + ", country=" + country + ", adminAccess=" + type[0] + ", ReaderAccess=" + type[1] + ", LibrarianAccess=" + type[2] + ", limit=" + limit + '}';
+    }
+    
 }

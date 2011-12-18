@@ -219,6 +219,7 @@ public class dataManager {
             while (resultSet.next()) {
                 p.setId(-2);
                 hash = resultSet.getString("md5_pass");
+                
                 if(hash.equals(getMd5(p.getPassword())))
                 {
                     int[] type = new int[3];
@@ -227,6 +228,7 @@ public class dataManager {
                     type[2] = resultSet.getInt("librarianaccess");
                     pb = new PersonBuilder();
                             pb.setId(resultSet.getInt("idUser"));
+                            
                             pb.setAddress(resultSet.getString("address"));
                             pb.setName(resultSet.getString("name"));
                             pb.setLogin(resultSet.getString("login"));
@@ -238,7 +240,8 @@ public class dataManager {
                             pb.setCity(resultSet.getString("city"));
                             pb.setCountry(resultSet.getString("country"));
                             pb.setPhone(resultSet.getString("phonenumber"));
-                            
+                            pb.setType(type);
+                            //System.out.println("Person: "+ pb.toString());
                     return pb.buildPerson();//resultSet.getByte("type");
                 }
                 else return p;
@@ -314,12 +317,14 @@ public class dataManager {
         try {
             //Vai a base de dados confirmar o login e a password...
             resultSet = st.executeQuery("select * from User where login='" + login + "';");
+            System.out.println("query: "+"select * from User where login='" + login + "';");
             //-1 -> existe mas a pass está mal
             while (resultSet.next()) {
                     int[] type = new int[3];
                     type[0] = resultSet.getInt("adminaccess");
                     type[1] = resultSet.getInt("readeraccess");
                     type[2] = resultSet.getInt("librarianaccess");
+                    System.out.println("adminaccess: "+type[0]);
                     pb = new AdminBuilder();
                             pb.setId(resultSet.getInt("idUser"));
                             pb.setAddress(resultSet.getString("address"));
@@ -533,12 +538,12 @@ public class dataManager {
             return a;
         try {
             int[] type = a.getType();
-            String insert = "INSERT INTO User (name,login,email,md5_pass,expires,address,postalcode,city,country,adminaccess,readeraccess,librarianaccess,phonenumber) "
+            String insert = "INSERT INTO User (name,login,email,md5_pass,address,postalcode,city,country,adminaccess,readeraccess,librarianaccess,phonenumber) "
                     + "VALUES('" 
                     + a.getName() + "','" 
                     + a.getLogin() + "','" 
                     + a.getEmail() + "','" 
-                    + a.getPassword() +"','"
+                    + toMd5(a.getPassword()) +"','"
                     + a.getAddress() + "', '" 
                     + a.getPostalcode() + "', '"
                     + a.getCity() + "', '"

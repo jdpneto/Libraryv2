@@ -146,5 +146,10 @@ public class Person {
     public void setType(int[] type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" + "id=" + id + ", email=" + email + ", address=" + address + ", login=" + login + ", password=" + password + ", name=" + name + ", postalcode=" + postalcode + ", city=" + city + ", country=" + country + ", phone=" + phone + ", type=" + type + '}';
+    }
     
 }
