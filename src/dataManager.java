@@ -298,6 +298,7 @@ public class dataManager {
                             pb.setCity(resultSet.getString("city"));
                             pb.setCountry(resultSet.getString("country"));
                             pb.setPhone(resultSet.getString("phonenumber"));
+                            pb.setType(type);
                     
                     return pb.buildPerson();//resultSet.getByte("type");
                 
@@ -336,6 +337,7 @@ public class dataManager {
                             pb.setCity(resultSet.getString("city"));
                             pb.setCountry(resultSet.getString("country"));
                             pb.setPhone(resultSet.getString("phonenumber"));
+                            pb.setType(type);
                     
                     return pb.Build();//resultSet.getByte("type");
                 
@@ -378,6 +380,7 @@ public class dataManager {
                             pb.setCity(resultSet.getString("city"));
                             pb.setCountry(resultSet.getString("country"));
                             pb.setPhone(resultSet.getString("phonenumber"));
+                            pb.setType(type);
                     
                     return pb.Build();//resultSet.getByte("type");
                 
@@ -416,6 +419,7 @@ public class dataManager {
                             pb.setCity(resultSet.getString("city"));
                             pb.setCountry(resultSet.getString("country"));
                             pb.setPhone(resultSet.getString("phonenumber"));
+                            pb.setType(type);
                     
                     return pb.Build();//resultSet.getByte("type");
                 
@@ -455,6 +459,7 @@ public class dataManager {
                             pb.setCity(resultSet.getString("city"));
                             pb.setCountry(resultSet.getString("country"));
                             pb.setPhone(resultSet.getString("phonenumber"));
+                            pb.setType(type);
                     
                     return pb.Build();//resultSet.getByte("type");
                 
