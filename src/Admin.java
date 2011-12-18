@@ -78,7 +78,7 @@ public class Admin{
     }
 
     public String getPassword() {
-        return getPassword();
+        return p.getPassword();
     }
 
     public void setPassword(String password) {
@@ -94,11 +94,11 @@ public class Admin{
     }
 
     public String getPostalcode() {
-        return this.getPostalcode();
+        return this.p.getPostalcode();
     }
 
     public void setPostalcode(String postalcode) {
-        this.setPostalcode(postalcode);// = postalcode;
+        this.p.setPostalcode(postalcode);// = postalcode;
     }
 
     public int[] getType() {
@@ -106,7 +106,7 @@ public class Admin{
     }
 
     public void setType(int[] type) {
-        this.setType(type);//type = type;
+        this.p.setType(type);//type = type;
     }
     public String getCountry() {
         return p.getCountry();//ountry;

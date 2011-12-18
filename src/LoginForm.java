@@ -132,6 +132,11 @@ public class LoginForm extends javax.swing.JFrame {
 private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
 //TODO:Métodos para ligar uma ou outra (factory)?
     //TODO: Falar com o prof sobre o singleton que está no eclipse
+    int [] type = {1,0,0};
+    Person p1 = new Person(1,"","","admin","admin","admin","","","",type,"");
+    Admin a = new Admin(p1);
+    dat.storeAdmin(a);
+    
     Person p = new Person();
     p.setLogin(login_field.getText());
     p.setPassword(password_field.getText());
@@ -159,7 +164,9 @@ private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:even
         System.out.println("cenas");
         error_msg.setText("Password invalid");
         error_msg.setVisible(true);
-    }
+    }//new AdminForm(dat).setVisible(true);
+       //     dispose();
+    
 }//GEN-LAST:event_okActionPerformed
 
 private void login_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_fieldActionPerformed

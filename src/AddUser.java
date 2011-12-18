@@ -184,10 +184,6 @@ public class AddUser extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(293, 293, 293)
-                .add(add_user)
-                .addContainerGap(418, Short.MAX_VALUE))
-            .add(layout.createSequentialGroup()
                 .add(76, 76, 76)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jLabel6)
@@ -224,6 +220,10 @@ public class AddUser extends javax.swing.JFrame {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 312, Short.MAX_VALUE)
                 .add(back_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 160, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(44, 44, 44))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(361, Short.MAX_VALUE)
+                .add(add_user)
+                .add(350, 350, 350))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)

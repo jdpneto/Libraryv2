@@ -94,7 +94,7 @@ public class Reader{
     }
 
     public String getPassword() {
-        return getPassword();
+        return p.getPassword();
     }
 
     public void setPassword(String password) {
@@ -110,11 +110,11 @@ public class Reader{
     }
 
     public String getPostalcode() {
-        return this.getPostalcode();
+        return this.p.getPostalcode();
     }
 
     public void setPostalcode(String postalcode) {
-        this.setPostalcode(postalcode);// = postalcode;
+        this.p.setPostalcode(postalcode);// = postalcode;
     }
 
     public int[] getType() {
@@ -122,7 +122,7 @@ public class Reader{
     }
 
     public void setType(int[] type) {
-        this.setType(type);//type = type;
+        this.p.setType(type);//type = type;
     }
     
     public String getCountry() {
@@ -131,6 +131,14 @@ public class Reader{
 
     public void setCountry(String country) {
         this.p.setCountry(country);// = country;
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
     
     
