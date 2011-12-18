@@ -10,13 +10,14 @@
  * @author jlnabais
  */
 
-import java.util.*;
 
-public class Reader{
+public class Reader {
     
     private Person p;
     String expires;
     int limit;
+    
+    
     
     public Reader(Person p, int limit, String expires)
     {
