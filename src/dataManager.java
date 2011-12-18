@@ -754,6 +754,31 @@ public class dataManager {
         
     }
     
+    public ArrayList<Book> getAllBooks()
+    {
+        ArrayList<Book> ret = new ArrayList<Book>();
+        
+        try{
+            resultSet = st.executeQuery("select * from Book;");
+            while(resultSet.next())
+            {
+                Book b = new Book();
+                b.setIsbn(resultSet.getString("ISBN"));
+                b.setName(resultSet.getString("title"));
+                b.setYear(resultSet.getInt("year"));
+                b.setCategory(resultSet.getString("category"));
+                b.setNumberOfCopies(resultSet.getInt("numberofcopies"));
+                ret.add(b);
+                
+            }
+            return ret;
+            
+            
+            
+        }catch(Exception e){System.err.println(e);}
+        return ret;
+    }
+    
     /************************COMMENTS**************************/
     
     
