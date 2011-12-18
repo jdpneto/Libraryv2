@@ -131,7 +131,13 @@ public class LoginForm extends javax.swing.JFrame {
 
 private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
 //TODO:Métodos para ligar uma ou outra (factory)?
-    //TODO: Falar com o prof sobre o singleton que está no eclipse    
+    //TODO: Falar com o prof sobre o singleton que está no eclipse
+   // int[] type = new int[3];
+   // type[0]=1;
+   // Person p1 = new Person(-1,"lala@lala.com", "", "admin", "admin", "admin", "", "", "", type, "");
+   // Admin a = new Admin(p1);
+   // dat.storeAdmin(a);
+    
     Person p = new Person();
     p.setLogin(login_field.getText());
     p.setPassword(password_field.getText());
