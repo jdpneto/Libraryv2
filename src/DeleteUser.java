@@ -1,3 +1,9 @@
+
+import java.sql.SQLException;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -19,6 +25,7 @@ public class DeleteUser extends javax.swing.JFrame {
     public DeleteUser(dataManager dat) {
         this.dat = dat;
         initComponents();
+        list_panel.setListData(dat.getReaders());
     }
 
     /** This method is called from within the constructor to
@@ -121,11 +128,36 @@ private void user_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_user_fieldActionPerformed
 
 private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
-// TODO add your handling code here:
+        try {
+            String login = user_field.getText();
+            int [] type = {0,1,0};
+            Vector <String> vector = dat.searchUser(login,type);
+            if(vector.size() == 0){
+                String [] temp = {"A procura não encontrou resultados"};
+                list_panel.setListData(temp);
+            }
+            else{
+                list_panel.setListData(vector);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DeleteUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
 }//GEN-LAST:event_search_buttonActionPerformed
 
 private void delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_buttonActionPerformed
-// TODO add your handling code here:
+    Object [] selected = list_panel.getSelectedValues();
+    if(selected.length == 1 && selected[0].equals("A procura não encontrou resultados"));
+        //do nothing
+    else {
+        for(int i=0;i<selected.length;i++){
+                try {
+                    dat.removeUser(""+dat.getReader((String)selected[i]).getId());
+                } catch (SQLException ex) {
+                    Logger.getLogger(DeleteUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+        list_panel.setListData(dat.getReaders());
+    }
 }//GEN-LAST:event_delete_buttonActionPerformed
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed

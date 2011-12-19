@@ -336,6 +336,8 @@ private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     Person p = new Person(-1,email,street,username,password,name,postal_code,city,phone,type,country);
     Reader r = new Reader(p, limit,dat.datetoString(date));
     dat.storeReader(r);
+    new AdminManageUsers(dat).setVisible(true);
+    dispose();
 }//GEN-LAST:event_submit_buttonActionPerformed
 
 private void street_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_street_fieldActionPerformed

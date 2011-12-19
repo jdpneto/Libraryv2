@@ -1,3 +1,9 @@
+
+import java.sql.SQLException;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -13,12 +19,14 @@
  * @author jlnabais
  */
 public class DeleteLibrarian extends javax.swing.JFrame {
-    
+
     dataManager dat;
+
     /** Creates new form DeleteUser */
     public DeleteLibrarian(dataManager dat) {
         this.dat = dat;
         initComponents();
+        list_panel.setListData(dat.getLibrarians());
     }
 
     /** This method is called from within the constructor to
@@ -34,7 +42,7 @@ public class DeleteLibrarian extends javax.swing.JFrame {
         librarian_field = new javax.swing.JTextField();
         search_button = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        list_panel = new javax.swing.JList();
         delete_button = new javax.swing.JButton();
         back_button = new javax.swing.JButton();
 
@@ -55,7 +63,7 @@ public class DeleteLibrarian extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(list_panel);
 
         delete_button.setText("Delete Librarian");
         delete_button.addActionListener(new java.awt.event.ActionListener() {
@@ -121,11 +129,35 @@ private void librarian_fieldActionPerformed(java.awt.event.ActionEvent evt) {//G
 }//GEN-LAST:event_librarian_fieldActionPerformed
 
 private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
-// TODO add your handling code here:
+        try {
+            String login = librarian_field.getText();
+             int [] type = {0,0,1};
+            Vector<String> vector = dat.searchUser(login,type);
+            if (vector.isEmpty()) {
+                String[] temp = {"A procura não encontrou resultados"};
+                list_panel.setListData(temp);
+            } else {
+                list_panel.setListData(vector);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DeleteLibrarian.class.getName()).log(Level.SEVERE, null, ex);
+        }
 }//GEN-LAST:event_search_buttonActionPerformed
 
 private void delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_buttonActionPerformed
-// TODO add your handling code here:
+    Object [] selected = list_panel.getSelectedValues();
+    if(selected.length == 1 && selected[0].equals("A procura não encontrou resultados"));
+        //do nothing
+    else {
+        for(int i=0;i<selected.length;i++){
+                try {
+                    dat.removeUser(""+dat.getLibrarian((String)selected[i]).getId());
+                } catch (SQLException ex) {
+                    Logger.getLogger(DeleteUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+        list_panel.setListData(dat.getLibrarians());
+    }
 }//GEN-LAST:event_delete_buttonActionPerformed
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
@@ -133,14 +165,13 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     new AdminManageLibrarians(dat).setVisible(true);
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back_button;
     private javax.swing.JButton delete_button;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField librarian_field;
+    private javax.swing.JList list_panel;
     private javax.swing.JButton search_button;
     // End of variables declaration//GEN-END:variables
 }

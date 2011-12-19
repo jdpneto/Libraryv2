@@ -25,17 +25,17 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="292" max="-2" attributes="0"/>
               <Component id="add_user" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="304" max="32767" attributes="0"/>
+              <EmptySpace pref="308" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
                       <Component id="submit_button" min="-2" pref="145" max="-2" attributes="0"/>
-                      <EmptySpace pref="211" max="32767" attributes="0"/>
+                      <EmptySpace pref="221" max="32767" attributes="0"/>
                       <Component id="back_button" min="-2" pref="160" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -57,15 +57,13 @@
                           <Component id="postal_code_field" alignment="1" max="32767" attributes="1"/>
                           <Component id="street_field" alignment="0" max="32767" attributes="1"/>
                           <Component id="password_field" alignment="0" max="32767" attributes="1"/>
-                          <Component id="id_field" alignment="0" max="32767" attributes="1"/>
+                          <Component id="expires_field" alignment="0" max="32767" attributes="1"/>
                           <Component id="login_field" alignment="0" max="32767" attributes="1"/>
                           <Component id="email_field" alignment="0" max="32767" attributes="1"/>
                           <Component id="phone_field" alignment="0" max="32767" attributes="1"/>
                           <Component id="name_field" alignment="0" pref="281" max="32767" attributes="1"/>
                           <Component id="city_field" alignment="1" max="32767" attributes="1"/>
                       </Group>
-                      <EmptySpace pref="37" max="32767" attributes="0"/>
-                      <Component id="generate_button" min="-2" pref="160" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
@@ -94,9 +92,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="id_field" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="expires_field" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="generate_button" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -133,7 +130,7 @@
                   <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="country_field" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="113" max="32767" attributes="0"/>
+              <EmptySpace pref="115" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="submit_button" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="back_button" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -166,7 +163,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ID:"/>
+        <Property name="text" type="java.lang.String" value="Expires:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -199,9 +196,9 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="login_fieldActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="id_field">
+    <Component class="javax.swing.JTextField" name="expires_field">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="id_fieldActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="expires_fieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="password_field">
@@ -244,14 +241,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="City:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="generate_button">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Generate"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generate_buttonActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="postal_code_field">
       <Events>

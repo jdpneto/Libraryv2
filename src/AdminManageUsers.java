@@ -134,7 +134,7 @@ public class AdminManageUsers extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-// TODO add your handling code here:
+
 }//GEN-LAST:event_searchActionPerformed
 
 private void add_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_userActionPerformed

@@ -1,3 +1,6 @@
+
+import java.util.Date;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -41,7 +44,7 @@ public class AddLibrarian extends javax.swing.JFrame {
         phone_field = new javax.swing.JTextField();
         email_field = new javax.swing.JTextField();
         login_field = new javax.swing.JTextField();
-        id_field = new javax.swing.JTextField();
+        expires_field = new javax.swing.JTextField();
         password_field = new javax.swing.JTextField();
         submit_button = new javax.swing.JButton();
         back_button = new javax.swing.JButton();
@@ -49,7 +52,6 @@ public class AddLibrarian extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         city_field = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        generate_button = new javax.swing.JButton();
         postal_code_field = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         door_number_field = new javax.swing.JTextField();
@@ -67,7 +69,7 @@ public class AddLibrarian extends javax.swing.JFrame {
 
         jLabel3.setText("Email:");
 
-        jLabel4.setText("ID:");
+        jLabel4.setText("Expires:");
 
         jLabel5.setText("Login:");
 
@@ -97,9 +99,9 @@ public class AddLibrarian extends javax.swing.JFrame {
             }
         });
 
-        id_field.addActionListener(new java.awt.event.ActionListener() {
+        expires_field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                id_fieldActionPerformed(evt);
+                expires_fieldActionPerformed(evt);
             }
         });
 
@@ -139,13 +141,6 @@ public class AddLibrarian extends javax.swing.JFrame {
 
         jLabel8.setText("City:");
 
-        generate_button.setText("Generate");
-        generate_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generate_buttonActionPerformed(evt);
-            }
-        });
-
         postal_code_field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 postal_code_fieldActionPerformed(evt);
@@ -177,15 +172,15 @@ public class AddLibrarian extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .add(292, 292, 292)
                 .add(add_user)
-                .addContainerGap(304, Short.MAX_VALUE))
+                .addContainerGap(308, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(130, 130, 130)
                         .add(submit_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 145, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 211, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 221, Short.MAX_VALUE)
                         .add(back_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 160, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(layout.createSequentialGroup()
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(43, 43, 43)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jLabel2)
@@ -206,14 +201,12 @@ public class AddLibrarian extends javax.swing.JFrame {
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, postal_code_field)
                             .add(street_field)
                             .add(password_field)
-                            .add(id_field)
+                            .add(expires_field)
                             .add(login_field)
                             .add(email_field)
                             .add(phone_field)
                             .add(name_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, city_field))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 37, Short.MAX_VALUE)
-                        .add(generate_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 160, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, city_field))))
                 .add(34, 34, 34))
         );
         layout.setVerticalGroup(
@@ -235,9 +228,8 @@ public class AddLibrarian extends javax.swing.JFrame {
                     .add(email_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(id_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel4)
-                    .add(generate_button))
+                    .add(expires_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel4))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(login_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -266,7 +258,7 @@ public class AddLibrarian extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel11)
                     .add(country_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 113, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 115, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(submit_button)
                     .add(back_button))
@@ -292,16 +284,42 @@ private void login_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 // TODO add your handling code here:
 }//GEN-LAST:event_login_fieldActionPerformed
 
-private void id_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_fieldActionPerformed
+private void expires_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expires_fieldActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_id_fieldActionPerformed
+}//GEN-LAST:event_expires_fieldActionPerformed
 
 private void password_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password_fieldActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_password_fieldActionPerformed
 
 private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_buttonActionPerformed
-// TODO add your handling code here:
+    
+    //get all the information
+    String name         = name_field.getText();
+    String email        = email_field.getText();
+    String street       = street_field.getText();
+    String city         = city_field.getText();
+    String postal_code  = postal_code_field.getText();
+    String country      = country_field.getText();
+    int door_number     = Integer.parseInt(door_number_field.getText());
+    String username     = login_field.getText();
+    String password     = password_field.getText();
+    String phone        = phone_field.getText();
+    Date date           = dat.stringToDate(expires_field.getText());
+
+    //store all information
+    //dat.storeAddress(street,city,postal_code,country);
+    //address = dat.getAddressByStreet(street);
+    //public Person(int id, String email, String address, String login, String password, String name, String postalcode, String city, String phone, int[] type, String country) {
+    int[] type = new int[3];
+    type[0] = 0;
+    type[1] = 0;
+    type[2] = 1;
+    Person p = new Person(-1,email,street,username,password,name,postal_code,city,phone,type,country);
+    Librarian l = new Librarian(p, dat.datetoString(date));
+    dat.storeLibrarian(l);
+    new AdminManageLibrarians(dat).setVisible(true);
+    dispose();
 }//GEN-LAST:event_submit_buttonActionPerformed
 
 private void street_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_street_fieldActionPerformed
@@ -311,10 +329,6 @@ private void street_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 private void city_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_city_fieldActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_city_fieldActionPerformed
-
-private void generate_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generate_buttonActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_generate_buttonActionPerformed
 
 private void postal_code_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postal_code_fieldActionPerformed
 // TODO add your handling code here:
@@ -341,8 +355,7 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JTextField country_field;
     private javax.swing.JTextField door_number_field;
     private javax.swing.JTextField email_field;
-    private javax.swing.JButton generate_button;
-    private javax.swing.JTextField id_field;
+    private javax.swing.JTextField expires_field;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
