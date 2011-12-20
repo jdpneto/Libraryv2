@@ -690,12 +690,26 @@ public class dataManager {
         }
         return false;
     }
+    
+    public Vector <String> getBookListByTitle(String title) {
+        Vector <String> v = new Vector <String>();
+        try {
+            resultSet = st.executeQuery("select * from Book where title LIKE '%" + title + "%';");
+            while (resultSet.next()) {
+                v.add(resultSet.getString("title"));
+            }
+        } catch (Exception e) {
+            System.err.println(e);
+            return v;
+        }
+        return v;
+    }
 
     public Book getBookByISBN(String ISBN) {
 
         Book b = new Book();
         try {
-            resultSet = st.executeQuery("select * from User where ISBN='" + ISBN + "';");
+            resultSet = st.executeQuery("select * from Book where ISBN='" + ISBN + "';");
             while (resultSet.next()) {
                 b.setAuthor(resultSet.getString("author"));
 
@@ -723,7 +737,7 @@ public class dataManager {
     public Book getBookByTitle(String title) {
         Book b = new Book();
         try {
-            resultSet = st.executeQuery("select * from User where title='" + title + "';");
+            resultSet = st.executeQuery("select * from Book where title='" + title + "';");
             while (resultSet.next()) {
                 b.setIsbn(resultSet.getString("ISBN"));
                 b.setName(resultSet.getString("title"));
@@ -741,7 +755,7 @@ public class dataManager {
 
 
         } catch (Exception e) {
-            System.err.println(e);
+            System.err.println("1:"+e);
             return b;
         }
         return b;
@@ -770,6 +784,18 @@ public class dataManager {
         }
 
     }
+    
+    public boolean removeBook(String isbn) throws SQLException {
+        preparedStatement = (PreparedStatement) con.prepareStatement("DELETE FROM Book WHERE ISBN = '" + isbn + "';");
+        preparedStatement.executeUpdate();
+        if (preparedStatement != null) {
+            //return new Person();
+            return true;
+        } else {
+            // return p;
+            return false;
+        }
+    }
 
     public ArrayList<Book> getAllBooks() {
         ArrayList<Book> ret = new ArrayList<Book>();
@@ -790,6 +816,21 @@ public class dataManager {
 
 
 
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return ret;
+    }
+    
+        public Vector<String> getAllBookTitles() {
+        Vector<String> ret = new Vector<String>();
+
+        try {
+            resultSet = st.executeQuery("select * from Book;");
+            while (resultSet.next()) {
+                ret.add(resultSet.getString("title"));
+            }
+            return ret;
         } catch (Exception e) {
             System.err.println(e);
         }

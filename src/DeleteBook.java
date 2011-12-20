@@ -1,3 +1,9 @@
+
+import java.sql.SQLException;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -15,10 +21,12 @@
 public class DeleteBook extends javax.swing.JFrame {
 
     dataManager dat;
+
     /** Creates new form DeleteBook */
     public DeleteBook(dataManager dat) {
         this.dat = dat;
         initComponents();
+        list_panel.setListData(dat.getAllBookTitles());
     }
 
     /** This method is called from within the constructor to
@@ -34,7 +42,7 @@ public class DeleteBook extends javax.swing.JFrame {
         book_field = new javax.swing.JTextField();
         search_button = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        list_panel = new javax.swing.JList();
         delete_button = new javax.swing.JButton();
         back_button = new javax.swing.JButton();
 
@@ -55,7 +63,7 @@ public class DeleteBook extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(list_panel);
 
         delete_button.setText("Delete Book");
         delete_button.addActionListener(new java.awt.event.ActionListener() {
@@ -121,11 +129,30 @@ private void book_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_book_fieldActionPerformed
 
 private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
-// TODO add your handling code here:
+    String input = book_field.getText();
+    Vector<String> vector = dat.getBookListByTitle(input);
+    if (vector.isEmpty()) {
+        String[] temp = {"A procura não encontrou resultados"};
+        list_panel.setListData(temp);
+    } else {
+        list_panel.setListData(vector);
+    }
 }//GEN-LAST:event_search_buttonActionPerformed
 
 private void delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_buttonActionPerformed
-// TODO add your handling code here:
+    Object [] selected = list_panel.getSelectedValues();
+    if(selected.length == 1 && selected[0].equals("A procura não encontrou resultados"));
+        //do nothing
+    else {
+        for(int i=0;i<selected.length;i++){
+                try {
+                    dat.removeBook(""+dat.getBookByTitle((String)selected[i]).getIsbn());
+                } catch (SQLException ex) {
+                    Logger.getLogger(DeleteUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+        list_panel.setListData(dat.getAllBookTitles());
+    }
 }//GEN-LAST:event_delete_buttonActionPerformed
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
@@ -133,14 +160,13 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     new ManageBooks(dat).setVisible(true);
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back_button;
     private javax.swing.JTextField book_field;
     private javax.swing.JButton delete_button;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList list_panel;
     private javax.swing.JButton search_button;
     // End of variables declaration//GEN-END:variables
 }

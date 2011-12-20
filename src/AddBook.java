@@ -116,16 +116,12 @@ public class AddBook extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(292, 292, 292)
-                .add(add_user)
-                .addContainerGap(357, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(130, 130, 130)
                         .add(submit_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 145, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 240, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 246, Short.MAX_VALUE)
                         .add(back_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 160, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(43, 43, 43)
@@ -145,6 +141,10 @@ public class AddBook extends javax.swing.JFrame {
                             .add(author_field)
                             .add(title_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))))
                 .add(34, 34, 34))
+            .add(layout.createSequentialGroup()
+                .add(314, 314, 314)
+                .add(add_user)
+                .addContainerGap(335, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -222,6 +222,8 @@ private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     //store all information
     Book tmp = new Book(ISBN,title,author,year,category,numberOfCopies);
     dat.storeBook(tmp);
+    new ManageBooks(dat).setVisible(true);
+    dispose();
 }//GEN-LAST:event_submit_buttonActionPerformed
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
