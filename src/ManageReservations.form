@@ -27,19 +27,21 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="search_reservations" min="-2" pref="441" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="search" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jScrollPane1" pref="535" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="add_reservation" alignment="0" pref="161" max="32767" attributes="1"/>
+                                  <Component id="librarians_panel" alignment="1" pref="161" max="32767" attributes="1"/>
+                                  <Component id="edit_reservation" alignment="0" pref="161" max="32767" attributes="1"/>
+                                  <Component id="delete_reservation" alignment="1" pref="161" max="32767" attributes="1"/>
+                              </Group>
                           </Group>
-                          <Component id="jScrollPane1" alignment="1" pref="535" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="add_reservation" alignment="0" pref="161" max="32767" attributes="1"/>
-                          <Component id="librarians_panel" alignment="1" pref="161" max="32767" attributes="1"/>
-                          <Component id="delete_reservation" alignment="1" max="32767" attributes="1"/>
-                          <Component id="edit_reservation" pref="161" max="32767" attributes="1"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="search_reservations" min="-2" pref="441" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="search" min="-2" pref="85" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -67,12 +69,12 @@
                       <Component id="add_reservation" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="edit_reservation" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="delete_reservation" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="230" max="32767" attributes="0"/>
+                      <EmptySpace pref="224" max="32767" attributes="0"/>
                       <Component id="librarians_panel" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" alignment="0" pref="352" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="368" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -84,7 +86,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Manage Books"/>
+        <Property name="text" type="java.lang.String" value="Manage Reservations"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="search">

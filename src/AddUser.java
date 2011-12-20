@@ -18,9 +18,11 @@ import java.util.Date;
 public class AddUser extends javax.swing.JFrame {
 
     dataManager dat;
+    int type;
     /** Creates new form AddUser */
-    public AddUser(dataManager dat) {
+    public AddUser(dataManager dat, int type) {
         this.dat = dat;
+        this.type = type;
         initComponents();
     }
 
@@ -336,7 +338,10 @@ private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     Person p = new Person(-1,email,street,username,password,name,postal_code,city,phone,type,country);
     Reader r = new Reader(p, limit,dat.datetoString(date));
     dat.storeReader(r);
-    new AdminManageUsers(dat).setVisible(true);
+    if(this.type == 1)
+        new AdminManageUsers(dat).setVisible(true);
+    else if(this.type == 2)
+        new LibrarianForm(dat).setVisible(true);
     dispose();
 }//GEN-LAST:event_submit_buttonActionPerformed
 
@@ -370,7 +375,10 @@ private void limit_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
 // TODO add your handling code here:
-    new AdminManageUsers(dat).setVisible(true);
+    if(this.type == 1)
+        new AdminManageUsers(dat).setVisible(true);
+    else if(this.type == 2)
+        new LibrarianForm(dat).setVisible(true);
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
 

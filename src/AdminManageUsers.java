@@ -139,7 +139,7 @@ private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 
 private void add_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_userActionPerformed
 // TODO add your handling code here:
-    new AddUser(dat).setVisible(true);
+    new AddUser(dat,1).setVisible(true);
     dispose();
 }//GEN-LAST:event_add_userActionPerformed
 
