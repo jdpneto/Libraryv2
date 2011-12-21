@@ -22,6 +22,7 @@ public class AddLibrarian extends javax.swing.JFrame {
     public AddLibrarian(dataManager dat) {
         this.dat = dat;
         initComponents();
+        expires_field.setEnabled(false);
     }
 
     /** This method is called from within the constructor to
@@ -58,6 +59,7 @@ public class AddLibrarian extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         country_field = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        dPicker = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -165,6 +167,13 @@ public class AddLibrarian extends javax.swing.JFrame {
 
         jLabel11.setText("Country:");
 
+        dPicker.setText("Pick Date");
+        dPicker.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                dPickerMouseReleased(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -172,7 +181,7 @@ public class AddLibrarian extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .add(292, 292, 292)
                 .add(add_user)
-                .addContainerGap(308, Short.MAX_VALUE))
+                .addContainerGap(314, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
@@ -201,12 +210,15 @@ public class AddLibrarian extends javax.swing.JFrame {
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, postal_code_field)
                             .add(street_field)
                             .add(password_field)
-                            .add(expires_field)
                             .add(login_field)
                             .add(email_field)
                             .add(phone_field)
                             .add(name_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, city_field))))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, city_field)
+                            .add(layout.createSequentialGroup()
+                                .add(expires_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 150, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(dPicker)))))
                 .add(34, 34, 34))
         );
         layout.setVerticalGroup(
@@ -229,7 +241,8 @@ public class AddLibrarian extends javax.swing.JFrame {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(expires_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel4))
+                    .add(jLabel4)
+                    .add(dPicker))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(login_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -258,7 +271,7 @@ public class AddLibrarian extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel11)
                     .add(country_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 115, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 112, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(submit_button)
                     .add(back_button))
@@ -348,11 +361,16 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
 
+    private void dPickerMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dPickerMouseReleased
+        expires_field.setText(new DatePicker(this).setPickedDate());
+    }//GEN-LAST:event_dPickerMouseReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel add_user;
     private javax.swing.JButton back_button;
     private javax.swing.JTextField city_field;
     private javax.swing.JTextField country_field;
+    private javax.swing.JButton dPicker;
     private javax.swing.JTextField door_number_field;
     private javax.swing.JTextField email_field;
     private javax.swing.JTextField expires_field;

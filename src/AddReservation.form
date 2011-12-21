@@ -25,7 +25,7 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="292" max="-2" attributes="0"/>
               <Component id="add_user" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="315" max="32767" attributes="0"/>
+              <EmptySpace pref="324" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
@@ -46,11 +46,16 @@
                       </Group>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="start_field" alignment="0" max="32767" attributes="1"/>
                           <Component id="end_field" alignment="0" max="32767" attributes="1"/>
                           <Component id="copies_field" alignment="0" max="32767" attributes="1"/>
                           <Component id="title_field" alignment="0" max="32767" attributes="1"/>
                           <Component id="id_field" alignment="0" pref="281" max="32767" attributes="1"/>
+                          <Component id="start_field" alignment="0" max="32767" attributes="1"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="picker_end" min="-2" max="-2" attributes="0"/>
+                          <Component id="picker_start" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -82,13 +87,15 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="start_field" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="picker_start" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="end_field" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="picker_end" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="114" max="32767" attributes="0"/>
+              <EmptySpace pref="109" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="submit_button" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="back_button" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -168,6 +175,23 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="back_buttonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="picker_start">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pick Date"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="picker_startMouseReleased"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="picker_startActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="picker_end">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pick Date"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="picker_endMouseReleased"/>
       </Events>
     </Component>
   </SubComponents>

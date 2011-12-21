@@ -40,19 +40,23 @@
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="name_field" pref="364" max="32767" attributes="1"/>
-                  <Component id="phone_field" pref="364" max="32767" attributes="1"/>
-                  <Component id="email_field" pref="364" max="32767" attributes="1"/>
-                  <Component id="password_field" pref="364" max="32767" attributes="1"/>
-                  <Component id="expires_field" pref="364" max="32767" attributes="1"/>
-                  <Component id="limit_field" pref="364" max="32767" attributes="1"/>
-                  <Component id="country_field" pref="364" max="32767" attributes="1"/>
-                  <Component id="door_number_field" alignment="1" pref="364" max="32767" attributes="1"/>
-                  <Component id="postal_code_field" alignment="1" pref="364" max="32767" attributes="1"/>
-                  <Component id="street_field" alignment="0" pref="364" max="32767" attributes="1"/>
-                  <Component id="city_field" alignment="1" pref="364" max="32767" attributes="1"/>
-                  <Component id="login_field" alignment="0" pref="364" max="32767" attributes="1"/>
+                  <Component id="name_field" pref="374" max="32767" attributes="1"/>
+                  <Component id="phone_field" pref="374" max="32767" attributes="1"/>
+                  <Component id="email_field" pref="374" max="32767" attributes="1"/>
+                  <Component id="password_field" pref="374" max="32767" attributes="1"/>
+                  <Component id="limit_field" pref="374" max="32767" attributes="1"/>
+                  <Component id="country_field" pref="374" max="32767" attributes="1"/>
+                  <Component id="door_number_field" alignment="1" pref="374" max="32767" attributes="1"/>
+                  <Component id="postal_code_field" alignment="1" pref="374" max="32767" attributes="1"/>
+                  <Component id="street_field" alignment="0" pref="374" max="32767" attributes="1"/>
+                  <Component id="city_field" alignment="1" pref="374" max="32767" attributes="1"/>
+                  <Component id="login_field" alignment="0" pref="374" max="32767" attributes="1"/>
                   <Component id="error_msg" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="expires_field" min="-2" pref="164" max="-2" attributes="1"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="dpicker" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
           </Group>
@@ -64,7 +68,7 @@
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="361" max="32767" attributes="0"/>
+              <EmptySpace pref="366" max="32767" attributes="0"/>
               <Component id="add_user" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="350" max="-2" attributes="0"/>
           </Group>
@@ -134,6 +138,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="expires_field" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="dpicker" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="error_msg" min="-2" max="-2" attributes="0"/>
@@ -142,7 +147,7 @@
                   <Component id="submit_button" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="back_button" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -298,6 +303,15 @@
     <Component class="javax.swing.JPasswordField" name="password_field">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="password_fieldActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="dpicker">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pick Date"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="dpickerMouseReleased"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dpickerActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
