@@ -13,23 +13,24 @@ import java.util.*;
 public class Reservation {
     private Date start_date;
     private Date end_date;
-    private int id;
+    private int number_of_copies;
     private String book;
     private int user_id;
+    private int id;
 
     public Reservation() {
         this.start_date = null;
         this.end_date = null;
         this.book = "";
-        this.id = -1;
+        this.number_of_copies = -1;
         this.user_id = -1;
     }
 
-    public Reservation(Date start_date, Date end_date, String books, int id,int user_id) {
+    public Reservation(Date start_date, Date end_date, String book, int user_id ,int number_of_copies) {
         this.start_date = start_date;
         this.end_date = end_date;
         this.book = book;
-        this.id = id;
+        this.number_of_copies = number_of_copies;
         this.user_id = user_id;
     }
 
@@ -57,12 +58,12 @@ public class Reservation {
         this.start_date = start_date;
     }
 
-    public int getId() {
-        return id;
+    public int getNumber_of_copies() {
+        return number_of_copies;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setnumber_of_copies(int number_of_copies) {
+        this.number_of_copies = number_of_copies;
     }
 
     public Date getEnd_date() {
@@ -87,6 +88,14 @@ public class Reservation {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
 }

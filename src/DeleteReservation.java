@@ -1,3 +1,9 @@
+
+import java.sql.SQLException;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -15,10 +21,12 @@
 public class DeleteReservation extends javax.swing.JFrame {
 
     dataManager dat;
+
     /** Creates new form DeleteUser */
     public DeleteReservation(dataManager dat) {
         this.dat = dat;
         initComponents();
+        list_panel.setListData(dat.getReservationsList());
     }
 
     /** This method is called from within the constructor to
@@ -121,11 +129,31 @@ private void reservation_fieldActionPerformed(java.awt.event.ActionEvent evt) {/
 }//GEN-LAST:event_reservation_fieldActionPerformed
 
 private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
-// TODO add your handling code here:
+
+    String login = reservation_field.getText();
+    Vector<String> vector = dat.getReservationsByUserLogin(login);
+    if (vector.size() == 0) {
+        String[] temp = {"A procura não encontrou resultados"};
+        list_panel.setListData(temp);
+    } else {
+        list_panel.setListData(vector);
+    }
 }//GEN-LAST:event_search_buttonActionPerformed
 
 private void delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_buttonActionPerformed
-// TODO add your handling code here:
+    Object[] selected = list_panel.getSelectedValues();
+    if (selected.length == 1 && selected[0].equals("A procura não encontrou resultados")); //do nothing
+    else {
+        for (int i = 0; i < selected.length; i++) {
+            try {
+                String temp = ((String) selected[i]).split(" ")[0];
+                dat.removeReservation(temp);
+            } catch (SQLException ex) {
+                Logger.getLogger(DeleteUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        list_panel.setListData(dat.getReaders());
+    }
 }//GEN-LAST:event_delete_buttonActionPerformed
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
@@ -133,7 +161,6 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     new ManageReservations(dat).setVisible(true);
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back_button;
     private javax.swing.JButton delete_button;

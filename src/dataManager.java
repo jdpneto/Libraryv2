@@ -583,16 +583,19 @@ public class dataManager {
         return a;
     }
 
-    public Vector <String> searchUser(String login,int [] type) throws SQLException {
-        Vector <String> vector = new Vector <String>();
+    public Vector<String> searchUser(String login, int[] type) throws SQLException {
+        Vector<String> vector = new Vector<String>();
         //Person p;
         String p, permissions = "";
-        if(type[0] == 1)
+        if (type[0] == 1) {
             permissions = permissions.concat(" AND adminaccess = 1");
-        if(type[1] == 1)
+        }
+        if (type[1] == 1) {
             permissions = permissions.concat(" AND readeraccess = 1");
-        if(type[2] == 1)
+        }
+        if (type[2] == 1) {
             permissions = permissions.concat(" AND librarianaccess = 1");
+        }
         try {
             resultSet = st.executeQuery("SELECT * FROM User WHERE login LIKE '%" + login + "%' " + permissions + ";");
             while (resultSet.next()) {
@@ -690,9 +693,9 @@ public class dataManager {
         }
         return false;
     }
-    
-    public Vector <String> getBookListByTitle(String title) {
-        Vector <String> v = new Vector <String>();
+
+    public Vector<String> getBookListByTitle(String title) {
+        Vector<String> v = new Vector<String>();
         try {
             resultSet = st.executeQuery("select * from Book where title LIKE '%" + title + "%';");
             while (resultSet.next()) {
@@ -755,7 +758,7 @@ public class dataManager {
 
 
         } catch (Exception e) {
-            System.err.println("1:"+e);
+            System.err.println("1:" + e);
             return b;
         }
         return b;
@@ -784,7 +787,7 @@ public class dataManager {
         }
 
     }
-    
+
     public boolean removeBook(String isbn) throws SQLException {
         preparedStatement = (PreparedStatement) con.prepareStatement("DELETE FROM Book WHERE ISBN = '" + isbn + "';");
         preparedStatement.executeUpdate();
@@ -821,8 +824,8 @@ public class dataManager {
         }
         return ret;
     }
-    
-        public Vector<String> getAllBookTitles() {
+
+    public Vector<String> getAllBookTitles() {
         Vector<String> ret = new Vector<String>();
 
         try {
@@ -916,10 +919,30 @@ public class dataManager {
         return false;
     }
 
-    public Reservation storeReservation(Reservation r) {
-        if (existsReservation(r.getId())) {
+    public Reservation getReservation(String idReservation) {
+        try {
+            resultSet = st.executeQuery("select * from Reservation where idReservation='" + idReservation + "';");
+            Reservation tmp;
+            while (resultSet.next()) {
+                tmp = new Reservation();
+                tmp.setId(resultSet.getInt("idReservation"));
+                tmp.setStartDate(stringToDate(resultSet.getString("startdate")));
+                tmp.setEndDate(stringToDate(resultSet.getString("enddate")));
+                tmp.setUser_id(resultSet.getInt("user"));
+                tmp.setBook(resultSet.getString("book"));
+                return tmp;
+            }
             return new Reservation();
+        } catch (Exception e) {
+            System.err.println(e);
         }
+        return new Reservation();
+    }
+
+    public Reservation storeReservation(Reservation r) {
+        /*if (existsReservation(r.getId())) {
+        return new Reservation();
+        }*/
         try {
             String insert = "INSERT INTO Reservation (startdate,enddate,user,book) "
                     + "VALUES('" + datetoString(r.getStartDate()) + "','"
@@ -935,20 +958,64 @@ public class dataManager {
         return new Reservation();
     }
 
-    public ArrayList<Reservation> getReservationsByUserLogin(String login) {
-        ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+    public boolean removeReservation(String id) throws SQLException {
+        preparedStatement = (PreparedStatement) con.prepareStatement("DELETE FROM Reservation WHERE idReservation = '" + id + "';");
+        preparedStatement.executeUpdate();
+        if (preparedStatement != null) {
+            //return new Person();
+            return true;
+        } else {
+            // return p;
+            return false;
+        }
+    }
+
+    public Vector<String> getReservationsList() {
+        Vector<String> reservations = new Vector<String>();
         try {
-            Person tmp_person = getPerson(login);
-            int id = tmp_person.getId();
-            resultSet = st.executeQuery("select * from Reservation where user ='" + id + "';");
+            resultSet = st.executeQuery("select * from Reservation ;");
             Reservation tmp;
+            int i=0;
             while (resultSet.next()) {
                 tmp = new Reservation();
                 tmp.setId(resultSet.getInt("idReservation"));
                 tmp.setStartDate(stringToDate(resultSet.getString("startdate")));
                 tmp.setEndDate(stringToDate(resultSet.getString("enddate")));
-                tmp.setUser_id(id);
-                reservations.add(tmp);
+                tmp.setUser_id(resultSet.getInt("user"));
+                tmp.setBook(resultSet.getString("book"));
+                reservations.add(tmp.getId() + " : " + getReaderById(tmp.getUser_id()).getLogin() + " >>> " + tmp.getBook());
+                System.out.println(reservations.get(i));
+                i++;
+            }
+            return reservations;
+
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return reservations;
+    }
+
+    public Vector<String> getReservationsByUserLogin(String login) {
+        Vector<String> reservations = new Vector<String>();
+        Vector<Person> results = new Vector<Person>();
+        try {
+            int[] type = {0, 1, 0};
+            Vector<String> vector = searchUser(login, type);
+            for (int i = 0; i < vector.size(); i++) {
+                results.add(getPerson(vector.get(i)));                
+                int id = results.get(i).getId();
+                System.out.println(id+" : "+results.get(i).getLogin());
+                resultSet = st.executeQuery("select * from Reservation where user =" + id + ";");
+                Reservation tmp;
+                while (resultSet.next()) {
+                    tmp = new Reservation();
+                    tmp.setId(resultSet.getInt("idReservation"));
+                    tmp.setStartDate(stringToDate(resultSet.getString("startdate")));
+                    tmp.setEndDate(stringToDate(resultSet.getString("enddate")));
+                    tmp.setUser_id(id);
+                    tmp.setBook(resultSet.getString("book"));
+                    reservations.add(tmp.getId() + " >>> " + tmp.getBook());
+                }
             }
             return reservations;
 

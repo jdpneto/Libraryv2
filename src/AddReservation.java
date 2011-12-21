@@ -1,3 +1,6 @@
+
+import java.util.Date;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -15,6 +18,7 @@
 public class AddReservation extends javax.swing.JFrame {
 
     dataManager dat;
+
     /** Creates new form AddReservation */
     public AddReservation(dataManager dat) {
         this.dat = dat;
@@ -190,7 +194,18 @@ private void start_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 }//GEN-LAST:event_start_fieldActionPerformed
 
 private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_buttonActionPerformed
-// TODO add your handling code here:
+    //get all the information
+    int id              = Integer.parseInt(id_field.getText());
+    String title        = title_field.getText();
+    int numberOfCopies  = Integer.parseInt(copies_field.getText());
+    Date startDate      = dat.stringToDate(start_field.getText());
+    Date endDate        = dat.stringToDate(end_field.getText());
+
+    //store all information
+    Reservation tmp = new Reservation(startDate, endDate, title, id, numberOfCopies);
+    dat.storeReservation(tmp);
+    new ManageReservations(dat).setVisible(true);
+    dispose();
 }//GEN-LAST:event_submit_buttonActionPerformed
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
@@ -198,7 +213,6 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     new ManageReservations(dat).setVisible(true);
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel add_user;
     private javax.swing.JButton back_button;
