@@ -19,6 +19,7 @@ public class AdminManageLibrarians extends javax.swing.JFrame {
     public AdminManageLibrarians(dataManager dat) {
         this.dat = dat;
         initComponents();
+        list_panel.setListData(dat.getLibrarians());
     }
 
     /** This method is called from within the constructor to

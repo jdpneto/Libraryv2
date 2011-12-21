@@ -19,6 +19,7 @@ public class AdminManageUsers extends javax.swing.JFrame {
     public AdminManageUsers(dataManager dat) {
         this.dat = dat;
         initComponents();
+        list_panel.setListData(dat.getReaders());
     }
 
     /** This method is called from within the constructor to
