@@ -38,5 +38,11 @@ public class ConcreteSubject implements Subject {
         //throw new UnsupportedOperationException("Not supported yet.");
         this.statsState = state;
     }
+
+    @Override
+    public void Notify() {
+        for (Observer o: this.observers)
+            o.update(this);
+    }
     
 }

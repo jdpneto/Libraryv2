@@ -24,7 +24,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class dataManager {
+public class dataManager implements Subject{
 
     private Connection con;
     private Statement st;
@@ -1045,5 +1045,31 @@ public class dataManager {
             System.err.println(e);
         }
         return reservations;
+    }
+
+    @Override
+    public void attach(Observer o) {
+        //TODO: Implementar as cenas do subject
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void detach(Observer o) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public String getState() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setState(String state) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void Notify() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

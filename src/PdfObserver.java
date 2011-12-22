@@ -11,7 +11,7 @@ public class PdfObserver implements Observer {
 
     String ObserverState;
     @Override
-    public void notify(Subject o) {
+    public void update(Subject o) {
         //throw new UnsupportedOperationException("Not supported yet.");
         ObserverState = o.getState();
     }

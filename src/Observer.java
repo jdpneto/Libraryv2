@@ -8,6 +8,6 @@
  * @author david
  */
 public interface Observer {
-    public void notify(Subject o);
+    public void update(Subject o);
 
 }

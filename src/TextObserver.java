@@ -10,7 +10,7 @@
 public class TextObserver implements Observer {
     String ObserverState;
     @Override
-    public void notify(Subject o) {
+    public void update(Subject o) {
         this.ObserverState=o.getState();
         //throw new UnsupportedOperationException("Not supported yet.");
     }
