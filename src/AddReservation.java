@@ -23,6 +23,7 @@ public class AddReservation extends javax.swing.JFrame {
     public AddReservation(dataManager dat) {
         this.dat = dat;
         initComponents();
+        error.setVisible(false);
         start_field.setEnabled(false);
         end_field.setEnabled(false);
     }
@@ -51,12 +52,13 @@ public class AddReservation extends javax.swing.JFrame {
         back_button = new javax.swing.JButton();
         picker_start = new javax.swing.JButton();
         picker_end = new javax.swing.JButton();
+        error = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         add_user.setText("Add Reservation");
 
-        jLabel2.setText("ID:");
+        jLabel2.setText("User Name");
 
         jLabel1.setText("Title:");
 
@@ -129,6 +131,9 @@ public class AddReservation extends javax.swing.JFrame {
             }
         });
 
+        error.setForeground(new java.awt.Color(255, 0, 0));
+        error.setText("Book or user does not exist;");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,6 +169,10 @@ public class AddReservation extends javax.swing.JFrame {
                             .add(picker_end)
                             .add(picker_start))))
                 .add(34, 34, 34))
+            .add(layout.createSequentialGroup()
+                .add(251, 251, 251)
+                .add(error)
+                .addContainerGap(290, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -192,7 +201,9 @@ public class AddReservation extends javax.swing.JFrame {
                     .add(end_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel5)
                     .add(picker_end))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 109, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 50, Short.MAX_VALUE)
+                .add(error)
+                .add(43, 43, 43)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(submit_button)
                     .add(back_button))
@@ -201,10 +212,6 @@ public class AddReservation extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-private void id_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_fieldActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_id_fieldActionPerformed
 
 private void title_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_title_fieldActionPerformed
 // TODO add your handling code here:
@@ -224,17 +231,25 @@ private void start_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 
 private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_buttonActionPerformed
     //get all the information
-    int id              = Integer.parseInt(id_field.getText());
-    String title        = title_field.getText();
+    int id              = dat.getReader(id_field.getText()).getId();
+    String title        = dat.getBookByTitle(title_field.getText()).getIsbn();
     int numberOfCopies  = Integer.parseInt(copies_field.getText());
     Date startDate      = dat.stringToDate(start_field.getText());
     Date endDate        = dat.stringToDate(end_field.getText());
 
     //store all information
     Reservation tmp = new Reservation(startDate, endDate, title, id, numberOfCopies);
-    dat.storeReservation(tmp);
-    new ManageReservations(dat).setVisible(true);
-    dispose();
+    if(!title.equals(""))
+    {
+        dat.storeReservation(tmp);
+        new ManageReservations(dat).setVisible(true);
+        dispose();
+    }
+    else
+    {
+        error.setVisible(true);
+    }
+    
 }//GEN-LAST:event_submit_buttonActionPerformed
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
@@ -257,11 +272,16 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         end_field.setText(new DatePicker(this).setPickedDate());
     }//GEN-LAST:event_picker_endMouseReleased
 
+    private void id_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_fieldActionPerformed
+
+// TODO add your handling code here:}//GEN-LAST:event_id_fieldActionPerformed
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel add_user;
     private javax.swing.JButton back_button;
     private javax.swing.JTextField copies_field;
     private javax.swing.JTextField end_field;
+    private javax.swing.JLabel error;
     private javax.swing.JTextField id_field;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
