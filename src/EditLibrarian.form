@@ -25,48 +25,55 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="292" max="-2" attributes="0"/>
               <Component id="add_user" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="305" max="32767" attributes="0"/>
+              <EmptySpace pref="344" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
                       <Component id="submit_button" min="-2" pref="145" max="-2" attributes="0"/>
-                      <EmptySpace pref="211" max="32767" attributes="0"/>
+                      <EmptySpace pref="284" max="32767" attributes="0"/>
                       <Component id="back_button" min="-2" pref="160" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="country_field" max="32767" attributes="1"/>
-                          <Component id="door_number_field" alignment="1" max="32767" attributes="1"/>
-                          <Component id="postal_code_field" alignment="1" max="32767" attributes="1"/>
-                          <Component id="street_field" alignment="0" max="32767" attributes="1"/>
-                          <Component id="password_field" alignment="0" max="32767" attributes="1"/>
-                          <Component id="id_field" alignment="0" max="32767" attributes="1"/>
-                          <Component id="login_field" alignment="0" max="32767" attributes="1"/>
-                          <Component id="email_field" alignment="0" max="32767" attributes="1"/>
-                          <Component id="phone_field" alignment="0" max="32767" attributes="1"/>
-                          <Component id="name_field" alignment="0" pref="281" max="32767" attributes="1"/>
-                          <Component id="city_field" alignment="1" max="32767" attributes="1"/>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="country_field" max="32767" attributes="1"/>
+                                  <Component id="postal_code_field" max="32767" attributes="1"/>
+                                  <Component id="city_field" max="32767" attributes="1"/>
+                                  <Component id="street_field" max="32767" attributes="1"/>
+                                  <Component id="id_field" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="email_field" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="phone_field" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="name_field" alignment="0" pref="281" max="32767" attributes="1"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                              <Component id="error" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="date_field" min="-2" pref="166" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="dPicker" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
+                      <EmptySpace pref="85" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -94,16 +101,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="id_field" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="login_field" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="password_field" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="error" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -112,25 +110,26 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="city_field" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="city_field" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="postal_code_field" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="door_number_field" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="postal_code_field" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="country_field" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="116" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="date_field" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="dPicker" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="submit_button" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="back_button" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -166,16 +165,6 @@
         <Property name="text" type="java.lang.String" value="ID:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Login:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel6">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Password:"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="name_field">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="name_fieldActionPerformed"/>
@@ -191,11 +180,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="email_fieldActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="login_field">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="login_fieldActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JTextField" name="id_field">
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
@@ -204,16 +188,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="id_fieldActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="password_field">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="password_fieldActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="submit_button">
       <Properties>
         <Property name="text" type="java.lang.String" value="Submit"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="submit_buttonMouseReleased"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submit_buttonActionPerformed"/>
       </Events>
     </Component>
@@ -255,16 +235,6 @@
         <Property name="text" type="java.lang.String" value="Postal Code:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="door_number_field">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="door_number_fieldActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel10">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Door Number:"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="country_field">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="country_fieldActionPerformed"/>
@@ -273,6 +243,29 @@
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
         <Property name="text" type="java.lang.String" value="Country:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Expires:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="date_field">
+    </Component>
+    <Component class="javax.swing.JButton" name="dPicker">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pick Date"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="dPickerMouseReleased"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="error">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="0" red="cc" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Erro a gravar Librarian"/>
       </Properties>
     </Component>
   </SubComponents>

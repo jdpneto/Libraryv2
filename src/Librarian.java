@@ -13,6 +13,7 @@ public class Librarian{
     
     public Librarian(Person p, String expires){
         this.p = p;
+        this.expires=expires;
         
     }
     

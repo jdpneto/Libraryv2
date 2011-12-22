@@ -142,7 +142,7 @@ private void add_librarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 
 private void edit_librarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_librarianActionPerformed
 // TODO add your handling code here:
-    new EditLibrarian(dat).setVisible(true);
+    new EditLibrarianPicker(dat).setVisible(true);
     dispose();
 }//GEN-LAST:event_edit_librarianActionPerformed
 

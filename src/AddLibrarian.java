@@ -318,6 +318,7 @@ private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     String username     = login_field.getText();
     String password     = password_field.getText();
     String phone        = phone_field.getText();
+    System.out.println(expires_field.getText());
     Date date           = dat.stringToDate(expires_field.getText());
 
     //store all information
@@ -329,7 +330,7 @@ private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     type[1] = 0;
     type[2] = 1;
     Person p = new Person(-1,email,street,username,password,name,postal_code,city,phone,type,country);
-    Librarian l = new Librarian(p, dat.datetoString(date));
+    Librarian l = new Librarian(p, expires_field.getText());
     dat.storeLibrarian(l);
     new AdminManageLibrarians(dat).setVisible(true);
     dispose();

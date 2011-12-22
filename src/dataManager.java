@@ -25,12 +25,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class dataManager implements Subject{
-
+    
     private Connection con;
     private Statement st;
     private ResultSet resultSet;
     private PreparedStatement preparedStatement;
-
+    
     public dataManager() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -40,27 +40,27 @@ public class dataManager implements Subject{
             preparedStatement = null;
         } catch (Exception e) {
             System.err.println(e);
-
+            
         }
-
+        
     }
     //Obter a variável 'con'
-
+    
     public Connection getCon() {
         return con;
     }
-
+    
     //Obter a variável 'st'
     //teste final
     public Statement getSt() {
         return st;
     }
-
+    
     //Obter a variável 'resultSet'
     public ResultSet getResultSet() {
         return resultSet;
     }
-
+    
     //helper function to get md5 hashes
     public String getMd5(String pass) {
         try {
@@ -72,106 +72,106 @@ public class dataManager implements Subject{
         }
         return "empty";
     }
-
+    
     //just because I sometipes use toMd5
     public String toMd5(String pass) {
         return getMd5(pass);
     }
-
+    
     /***************ADDRESS******************
-    
+     * 
      * NOT NEEDED IN THE NEW DB SCHEME
-    
+     * 
      */
-//    
-//    public boolean existsStreet(String street, String postalcode)
-//    {
-//        String tmpPostalCode = "";
-//        try {
-//            resultSet = st.executeQuery("select * from Address where street='" + street + "';");
-//            while (resultSet.next()) {
-//                tmpPostalCode = resultSet.getString("postalcode");
-//                if(tmpPostalCode.equals(postalcode))
-//                    return true;
-//            }
-//            return false;
-//        } catch (Exception e) {
-//            System.err.println(e);
-//        }
-//        return false;
-//    }
-//    
-//    public boolean storeAddress(String street, String city, String postalcode, String country)
-//    {
-//        if(existsStreet(street,postalcode))
-//            return false;
-//        try {
-//            String insert = "INSERT INTO Address (street,city,postalcode,country) "
-//                    + "VALUES('" + street + "','" + city + "','" + postalcode + "','" + country +"');";
-//            System.out.println(insert);
-//            st.execute(insert);
-//            return true;
-//            
-//            
-//        }catch (Exception e) {
-//            System.err.println(e);
-//            return false;
-//        }
-//    }
-//    
-//    public Address getAddressByStreet(String street)
-//    {
-//        String city;
-//        int id;
-//        //String street;
-//        String postalcode;
-//        String country;
-//        Address a = null;
-//        
-//        
-//        
-//        try{
-//            resultSet = st.executeQuery("select * from Address where street='"+street+"';");
-//            while(resultSet.next())
-//            {
-//                id = resultSet.getInt("idAddress");
-//                city = resultSet.getString("city");
-//                postalcode = resultSet.getString("postalcode");
-//                country = resultSet.getString("country");
-//                //Address(String street, String city, String postal_code, String country)
-//                a = new Address(id,street,city,postalcode,country);
-//            }
-//        }catch (Exception e) {
-//            System.err.println(e);
-//        }
-//        return a;
-//    }
-//    
-//    public Address getAddressById(int id)
-//    {
-//        String city;
-//        String street;
-//        String postalcode;
-//        String country;
-//        Address a = null;
-//        
-//        
-//        
-//        try{
-//            resultSet = st.executeQuery("select * from Address where idAddress="+id+";");
-//            while(resultSet.next())
-//            {
-//                city = resultSet.getString("city");
-//                street = resultSet.getString("street");
-//                postalcode = resultSet.getString("postalcode");
-//                country = resultSet.getString("country");
-//                a = new Address(id,street,city,postalcode,country);
-//            }
-//        }catch (Exception e) {
-//            System.err.println(e);
-//        }
-//        return a;
-//    }
+    //
+    //    public boolean existsStreet(String street, String postalcode)
+    //    {
+    //        String tmpPostalCode = "";
+    //        try {
+    //            resultSet = st.executeQuery("select * from Address where street='" + street + "';");
+    //            while (resultSet.next()) {
+    //                tmpPostalCode = resultSet.getString("postalcode");
+    //                if(tmpPostalCode.equals(postalcode))
+    //                    return true;
+    //            }
+    //            return false;
+    //        } catch (Exception e) {
+    //            System.err.println(e);
+    //        }
+    //        return false;
+    //    }
+    //
+    //    public boolean storeAddress(String street, String city, String postalcode, String country)
+    //    {
+    //        if(existsStreet(street,postalcode))
+    //            return false;
+    //        try {
+    //            String insert = "INSERT INTO Address (street,city,postalcode,country) "
+    //                    + "VALUES('" + street + "','" + city + "','" + postalcode + "','" + country +"');";
+    //            System.out.println(insert);
+    //            st.execute(insert);
+    //            return true;
+    //
+    //
+    //        }catch (Exception e) {
+    //            System.err.println(e);
+    //            return false;
+    //        }
+    //    }
+    //
+    //    public Address getAddressByStreet(String street)
+    //    {
+    //        String city;
+    //        int id;
+    //        //String street;
+    //        String postalcode;
+    //        String country;
+    //        Address a = null;
+    //
+    //
+    //
+    //        try{
+    //            resultSet = st.executeQuery("select * from Address where street='"+street+"';");
+    //            while(resultSet.next())
+    //            {
+    //                id = resultSet.getInt("idAddress");
+    //                city = resultSet.getString("city");
+    //                postalcode = resultSet.getString("postalcode");
+    //                country = resultSet.getString("country");
+    //                //Address(String street, String city, String postal_code, String country)
+    //                a = new Address(id,street,city,postalcode,country);
+    //            }
+    //        }catch (Exception e) {
+    //            System.err.println(e);
+    //        }
+    //        return a;
+    //    }
+    //
+    //    public Address getAddressById(int id)
+    //    {
+    //        String city;
+    //        String street;
+    //        String postalcode;
+    //        String country;
+    //        Address a = null;
+    //
+    //
+    //
+    //        try{
+    //            resultSet = st.executeQuery("select * from Address where idAddress="+id+";");
+    //            while(resultSet.next())
+    //            {
+    //                city = resultSet.getString("city");
+    //                street = resultSet.getString("street");
+    //                postalcode = resultSet.getString("postalcode");
+    //                country = resultSet.getString("country");
+    //                a = new Address(id,street,city,postalcode,country);
+    //            }
+    //        }catch (Exception e) {
+    //            System.err.println(e);
+    //        }
+    //        return a;
+    //    }
     /***************USERS*******************/
     public Date stringToDate(String d) {
         Date da = null;
@@ -181,17 +181,17 @@ public class dataManager implements Subject{
             System.err.println(ex);
         }
         return da;
-
-
+        
+        
     }
-
+    
     public String datetoString(Date d) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String date = dateFormat.format(d);
         return date;
     }
-
-//    public int checkLogin(String login, String pass)
+    
+    //    public int checkLogin(String login, String pass)
     //if returned object equals the sent one, then
     //it is an invalid login
     //Every method but this one will recieve an already hashed password
@@ -206,7 +206,7 @@ public class dataManager implements Subject{
             while (resultSet.next()) {
                 p.setId(-2);
                 hash = resultSet.getString("md5_pass");
-
+                
                 if (hash.equals(getMd5(p.getPassword()))) {
                     int[] type = new int[3];
                     type[0] = resultSet.getInt("adminaccess");
@@ -214,7 +214,7 @@ public class dataManager implements Subject{
                     type[2] = resultSet.getInt("librarianaccess");
                     pb = new PersonBuilder();
                     pb.setId(resultSet.getInt("idUser"));
-
+                    
                     pb.setAddress(resultSet.getString("address"));
                     pb.setName(resultSet.getString("name"));
                     pb.setLogin(resultSet.getString("login"));
@@ -240,7 +240,7 @@ public class dataManager implements Subject{
         //nao existe utilizador
         return p;
     }
-
+    
     //person storage helper
     private boolean existsPerson(String login) {
         try {
@@ -254,7 +254,7 @@ public class dataManager implements Subject{
         }
         return false;
     }
-
+    
     public Person getPerson(String login) {
         Person p = new Person();
         PersonBuilder pb;
@@ -279,9 +279,9 @@ public class dataManager implements Subject{
                 pb.setCountry(resultSet.getString("country"));
                 pb.setPhone(resultSet.getString("phonenumber"));
                 pb.setType(type);
-
+                
                 return pb.buildPerson();//resultSet.getByte("type");
-
+                
             }
         } catch (Exception e) {
             System.err.println(e);
@@ -290,7 +290,7 @@ public class dataManager implements Subject{
         //nao existe utilizador
         return p;
     }
-
+    
     public Admin getAdmin(String login) {
         AdminBuilder pb;
         Admin a = new Admin();
@@ -317,9 +317,9 @@ public class dataManager implements Subject{
                 pb.setCountry(resultSet.getString("country"));
                 pb.setPhone(resultSet.getString("phonenumber"));
                 pb.setType(type);
-
+                
                 return pb.Build();//resultSet.getByte("type");
-
+                
             }
         } catch (Exception e) {
             System.err.println(e);
@@ -328,7 +328,7 @@ public class dataManager implements Subject{
         //nao existe utilizador
         return a;
     }
-
+    
     public Reader getReader(String login) {
         Reader r = new Reader();
         ReaderBuilder pb;
@@ -355,9 +355,9 @@ public class dataManager implements Subject{
                 pb.setCountry(resultSet.getString("country"));
                 pb.setPhone(resultSet.getString("phonenumber"));
                 pb.setType(type);
-
+                
                 return pb.Build();//resultSet.getByte("type");
-
+                
             }
         } catch (Exception e) {
             System.err.println(e);
@@ -366,14 +366,14 @@ public class dataManager implements Subject{
         //nao existe utilizador
         return r;
     }
-
+    
     public Reader getReaderById(int id) {
         Reader r = new Reader();
         ReaderBuilder pb;
         try {
             //Vai a base de dados confirmar o login e a password...
             resultSet = st.executeQuery("select * from User where idUser='" + id + "';");
-
+            
             while (resultSet.next()) {
                 int[] type = new int[3];
                 type[0] = resultSet.getInt("adminaccess");
@@ -393,9 +393,9 @@ public class dataManager implements Subject{
                 pb.setCountry(resultSet.getString("country"));
                 pb.setPhone(resultSet.getString("phonenumber"));
                 pb.setType(type);
-
+                
                 return pb.Build();//resultSet.getByte("type");
-
+                
             }
         } catch (Exception e) {
             System.err.println(e);
@@ -404,7 +404,7 @@ public class dataManager implements Subject{
         //nao existe utilizador
         return r;
     }
-
+    
     public Librarian getLibrarian(String login) {
         Librarian l = new Librarian();
         LibrarianBuilder pb;
@@ -430,9 +430,9 @@ public class dataManager implements Subject{
                 pb.setCountry(resultSet.getString("country"));
                 pb.setPhone(resultSet.getString("phonenumber"));
                 pb.setType(type);
-
+                
                 return pb.Build();//resultSet.getByte("type");
-
+                
             }
         } catch (Exception e) {
             System.err.println(e);
@@ -441,7 +441,7 @@ public class dataManager implements Subject{
         //nao existe utilizador
         return l;
     }
-
+    
     public Librarian storeLibrarian(Librarian l) {
         if (existsPerson(l.getLogin())) {
             return l;
@@ -466,14 +466,50 @@ public class dataManager implements Subject{
             System.out.println(insert);
             st.execute(insert);
             return getLibrarian(l.getLogin());
-
-
+            
+            
         } catch (Exception e) {
             System.err.println(e);
             return l;
         }
     }
-
+    public Librarian getLibrarianById(int id) {
+        Librarian l = new Librarian();
+        LibrarianBuilder pb;
+        try {
+            //Vai a base de dados confirmar o login e a password...
+            resultSet = st.executeQuery("select * from User where idUser='" + id + "';");
+            //-1 -> existe mas a pass está mal
+            while (resultSet.next()) {
+                int[] type = new int[3];
+                type[0] = resultSet.getInt("adminaccess");
+                type[1] = resultSet.getInt("readeraccess");
+                type[2] = resultSet.getInt("librarianaccess");
+                pb = new LibrarianBuilder();
+                pb.setId(resultSet.getInt("idUser"));
+                pb.setAddress(resultSet.getString("address"));
+                pb.setName(resultSet.getString("name"));
+                pb.setLogin(resultSet.getString("login"));
+                pb.setEmail(resultSet.getString("email"));
+                pb.setPassword(resultSet.getString("md5_pass"));
+                pb.setExpires(resultSet.getString("expires"));
+                pb.setPostalcode(resultSet.getString("postalcode"));
+                pb.setCity(resultSet.getString("city"));
+                pb.setCountry(resultSet.getString("country"));
+                pb.setPhone(resultSet.getString("phonenumber"));
+                pb.setType(type);
+                
+                return pb.Build();//resultSet.getByte("type");
+                
+            }
+        } catch (Exception e) {
+            System.err.println(e);
+            return l;
+        }
+        //nao existe utilizador
+        return l;
+    }
+    
     public Reader storeReader(Reader r) {
         if (existsPerson(r.getLogin())) {
             return r;
@@ -498,15 +534,15 @@ public class dataManager implements Subject{
             System.out.println(insert);
             st.execute(insert);
             return getReader(r.getLogin());
-
-
+            
+            
         } catch (Exception e) {
             System.err.println(e);
             return r;
         }
-
+        
     }
-
+    
     public Admin storeAdmin(Admin a) {
         if (existsPerson(a.getLogin())) {
             return a;
@@ -530,17 +566,17 @@ public class dataManager implements Subject{
             System.out.println(insert);
             st.execute(insert);
             return getAdmin(a.getLogin());
-
-
+            
+            
         } catch (Exception e) {
             System.err.println(e);
             return a;
         }
     }
-
+    
     public Vector<String> getReaders() {
         Vector<String> a = new Vector<String>();
-
+        
         try {
             resultSet = st.executeQuery("select * from User where readeraccess = 1");
             while (resultSet.next()) {
@@ -551,9 +587,9 @@ public class dataManager implements Subject{
             System.err.println(e);
         }
         return a;
-
+        
     }
-
+    
     public Vector<String> getAdmins() {
         Vector<String> a = new Vector<String>();
         try {
@@ -566,9 +602,9 @@ public class dataManager implements Subject{
             System.err.println(e);
         }
         return a;
-
+        
     }
-
+    
     public Vector<String> getLibrarians() {
         Vector<String> a = new Vector<String>();
         try {
@@ -582,7 +618,7 @@ public class dataManager implements Subject{
         }
         return a;
     }
-
+    
     public Vector<String> searchUser(String login, int[] type) throws SQLException {
         Vector<String> vector = new Vector<String>();
         //Person p;
@@ -601,22 +637,22 @@ public class dataManager implements Subject{
             while (resultSet.next()) {
                 vector.add(resultSet.getString("login"));
                 /*p = new Person();
-                p.setId(resultSet.getInt("idUser"));
-                p.setName(resultSet.getString("name"));
-                p.setLogin(resultSet.getString("login"));
-                //p.setPassword(resultSet.getString("password"));
-                p.setEmail(resultSet.getString("email"));
-                p.setAddress(resultSet.getString("address"));
-                p.setPostalcode(resultSet.getString("postalcode"));
-                p.setCity(resultSet.getString("city"));
-                p.setCountry(resultSet.getString("country"));
-                p.setPhone(resultSet.getString("phonenumber"));
-                int [] type = new int [3];
-                type[0] = resultSet.getInt("adminaccess");
-                type[1] = resultSet.getInt("readeraccess");
-                type[2] = resultSet.getInt("librarianaccess");
-                p.setType(type);
-                vector.add(p);*/
+                 * p.setId(resultSet.getInt("idUser"));
+                 * p.setName(resultSet.getString("name"));
+                 * p.setLogin(resultSet.getString("login"));
+                 * //p.setPassword(resultSet.getString("password"));
+                 * p.setEmail(resultSet.getString("email"));
+                 * p.setAddress(resultSet.getString("address"));
+                 * p.setPostalcode(resultSet.getString("postalcode"));
+                 * p.setCity(resultSet.getString("city"));
+                 * p.setCountry(resultSet.getString("country"));
+                 * p.setPhone(resultSet.getString("phonenumber"));
+                 * int [] type = new int [3];
+                 * type[0] = resultSet.getInt("adminaccess");
+                 * type[1] = resultSet.getInt("readeraccess");
+                 * type[2] = resultSet.getInt("librarianaccess");
+                 * p.setType(type);
+                 * vector.add(p);*/
             }
             return vector;
         } catch (Exception e) {
@@ -624,7 +660,7 @@ public class dataManager implements Subject{
         }
         return vector;
     }
-
+    
     public boolean removeUser(String id) throws SQLException {
         preparedStatement = (PreparedStatement) con.prepareStatement("DELETE FROM User WHERE idUser = " + id);
         preparedStatement.executeUpdate();
@@ -636,41 +672,31 @@ public class dataManager implements Subject{
             return false;
         }
     }
-
-    public Person editUser(Person p) {
+    
+    public Person editUser(Person p, String expires, int limit) {
         //TODO: POSSIVEL IMPLEMENTACAO DE UM ITERATOR QUE CIRCULA PELOS VÁRIOS CAMPOS
         //Nao se pode editar id e login
         Person p2 = getPerson(p.getLogin());
-        String ps = "UPDATE User SET";
-        if (!p.getAddress().equals(p2.getAddress())) {
-            ps += " address = '" + p.getAddress() + "'";
+        String ps = "UPDATE User SET address = '" + p.getAddress() + "',"
+                + " city = '" + p.getCity() + "',"
+                + " country = '" + p.getCountry() + "',"
+                + " email = '" + p.getEmail() + "',"
+                + " name = '" + p.getName() + "',"
+                + " md5_pass = '" + p.getPassword() + "',"
+                + " phonenumber = '" + p.getPhone() + "',"
+                + " postalcode = '" + p.getPostalcode() + "'";
+        if(expires != null){
+            ps += ", expires = '" + expires + "'";
         }
-        if (!p.getCity().equals(p2.getCity())) {
-            ps += " city = '" + p.getCity() + "'";
+        if(limit != -1){
+            ps+= ", limit = "+limit;
         }
-        if (!p.getCountry().equals(p2.getCountry())) {
-            ps += " country = '" + p.getCountry() + "'";
-        }
-        if (!p.getEmail().equals(p2.getEmail())) {
-            ps += " email = '" + p.getEmail() + "'";
-        }
-        if (!p.getName().equals(p2.getName())) {
-            ps += " name = '" + p.getName() + "'";
-        }
-        if (!p.getPassword().equals(p2.getPassword())) {
-            ps += " expires = '" + p.getPassword() + "'";
-        }
-        if (!p.getPhone().equals(p2.getPhone())) {
-            ps += " phonenumber = '" + p.getPhone() + "'";
-        }
-        if (!p.getPostalcode().equals(p2.getPostalcode())) {
-            ps += " postalcode = '" + p.getPostalcode() + "'";
-        }
-
+        
         ps += " WHERE idUser = " + p.id;
-
+        
         try {
             //preparedStatement = (PreparedStatement) con.prepareStatement("UPDATE User SET name='" + name + ",email='" + email + "',expires='" + expires + "' WHERE idUser = " + id);
+            System.out.println(ps);
             preparedStatement = (PreparedStatement) con.prepareStatement(ps);
             preparedStatement.executeUpdate();
             return p;
@@ -679,7 +705,7 @@ public class dataManager implements Subject{
             return new Person();
         }
     }
-
+    
     /************************BOOKS**************************/
     private boolean existsBook(String ISBN) {
         try {
@@ -693,7 +719,7 @@ public class dataManager implements Subject{
         }
         return false;
     }
-
+    
     public Vector<String> getBookListByTitle(String title) {
         Vector<String> v = new Vector<String>();
         try {
@@ -707,15 +733,15 @@ public class dataManager implements Subject{
         }
         return v;
     }
-
+    
     public Book getBookByISBN(String ISBN) {
-
+        
         Book b = new Book();
         try {
             resultSet = st.executeQuery("select * from Book where ISBN='" + ISBN + "';");
             while (resultSet.next()) {
                 b.setAuthor(resultSet.getString("author"));
-
+                
                 b.setName(resultSet.getString("title"));
                 b.setYear(resultSet.getInt("year"));
                 b.setCategory(resultSet.getString("category"));
@@ -725,18 +751,18 @@ public class dataManager implements Subject{
                 //Reader(String name,int limit, Date expires, int id, String e_mail, Address address,int doornumber, String username, String password)
                 // Book(String isbn, String name, String author, Date year, String category, int number_of_copies, ArrayList<Comment> comments)
                 //String isbn, String name, String author, int year, String category, int number_of_copies
-
+                
                 //b = new Book(ISBN,title,author,year,cat,ncopies); //,email,addr,doornumber,login,pass);
             }
-
-
+            
+            
         } catch (Exception e) {
             System.err.println(e);
             return b;
         }
         return b;
     }
-
+    
     public Book getBookByTitle(String title) {
         Book b = new Book();
         try {
@@ -752,18 +778,18 @@ public class dataManager implements Subject{
                 //Reader(String name,int limit, Date expires, int id, String e_mail, Address address,int doornumber, String username, String password)
                 // Book(String isbn, String name, String author, Date year, String category, int number_of_copies, ArrayList<Comment> comments)
                 //String isbn, String name, String author, int year, String category, int number_of_copies
-
+                
                 //b = new Book(ISBN,title,author,year,cat,ncopies); //,email,addr,doornumber,login,pass);
             }
-
-
+            
+            
         } catch (Exception e) {
             System.err.println("1:" + e);
             return b;
         }
         return b;
     }
-
+    
     public Book storeBook(Book b) {
         if (existsBook(b.getIsbn())) {
             return new Book();
@@ -779,15 +805,15 @@ public class dataManager implements Subject{
             System.out.println(insert);
             st.execute(insert);
             return b;
-
-
+            
+            
         } catch (Exception e) {
             System.err.println(e);
             return new Book();
         }
-
+        
     }
-
+    
     public boolean removeBook(String isbn) throws SQLException {
         preparedStatement = (PreparedStatement) con.prepareStatement("DELETE FROM Book WHERE ISBN = '" + isbn + "';");
         preparedStatement.executeUpdate();
@@ -799,10 +825,10 @@ public class dataManager implements Subject{
             return false;
         }
     }
-
+    
     public ArrayList<Book> getAllBooks() {
         ArrayList<Book> ret = new ArrayList<Book>();
-
+        
         try {
             resultSet = st.executeQuery("select * from Book;");
             while (resultSet.next()) {
@@ -813,21 +839,21 @@ public class dataManager implements Subject{
                 b.setCategory(resultSet.getString("category"));
                 b.setNumberOfCopies(resultSet.getInt("numberofcopies"));
                 ret.add(b);
-
+                
             }
             return ret;
-
-
-
+            
+            
+            
         } catch (Exception e) {
             System.err.println(e);
         }
         return ret;
     }
-
+    
     public Vector<String> getAllBookTitles() {
         Vector<String> ret = new Vector<String>();
-
+        
         try {
             resultSet = st.executeQuery("select * from Book;");
             while (resultSet.next()) {
@@ -839,17 +865,17 @@ public class dataManager implements Subject{
         }
         return ret;
     }
-
+    
     /************************COMMENTS**************************/
     /*
-     * 
+     *
      * idReview INT
      * user_id INT
      * book_ISBN VARCHAR(45)
      * messagebody VARCHAR(1024)
      * rating INT
-     * 
-     * 
+     *
+     *
      */
     private boolean existsComment(int idReview) {
         try {
@@ -863,7 +889,7 @@ public class dataManager implements Subject{
         }
         return false;
     }
-
+    
     public Comment storeComment(Comment c) {
         if (existsComment(c.getId())) {
             return new Comment();
@@ -881,9 +907,9 @@ public class dataManager implements Subject{
             System.err.println(e);
         }
         return new Comment();
-
+        
     }
-
+    
     public ArrayList<Comment> getCommentsByBook(String ISBN) {
         ArrayList<Comment> comments = new ArrayList<Comment>();
         try {
@@ -898,13 +924,13 @@ public class dataManager implements Subject{
                 comments.add(tmp);
             }
             return comments;
-
+            
         } catch (Exception e) {
             System.err.println(e);
         }
         return comments;
     }
-
+    
     /************************RESERVATIONS**************************/
     private boolean existsReservation(int idReservation) {
         try {
@@ -918,7 +944,7 @@ public class dataManager implements Subject{
         }
         return false;
     }
-
+    
     public Reservation getReservation(String idReservation) {
         try {
             resultSet = st.executeQuery("select * from Reservation where idReservation='" + idReservation + "';");
@@ -938,11 +964,11 @@ public class dataManager implements Subject{
         }
         return new Reservation();
     }
-
+    
     public Reservation storeReservation(Reservation r) {
         /*if (existsReservation(r.getId())) {
-        return new Reservation();
-        }*/
+         * return new Reservation();
+         * }*/
         try {
             String insert = "INSERT INTO Reservation (startdate,enddate,user,book) "
                     + "VALUES('" + datetoString(r.getStartDate()) + "','"
@@ -957,7 +983,7 @@ public class dataManager implements Subject{
         }
         return new Reservation();
     }
-
+    
     public boolean removeReservation(String id) throws SQLException {
         preparedStatement = (PreparedStatement) con.prepareStatement("DELETE FROM Reservation WHERE idReservation = '" + id + "';");
         preparedStatement.executeUpdate();
@@ -969,7 +995,7 @@ public class dataManager implements Subject{
             return false;
         }
     }
-
+    
     public Vector<String> getReservationsList() {
         Vector<String> reservations = new Vector<String>();
         try {
@@ -988,13 +1014,13 @@ public class dataManager implements Subject{
                 i++;
             }
             return reservations;
-
+            
         } catch (Exception e) {
             System.err.println(e);
         }
         return reservations;
     }
-
+    
     public Vector<String> getReservationsByUserLogin(String login) {
         Vector<String> reservations = new Vector<String>();
         Vector<Person> results = new Vector<Person>();
@@ -1002,7 +1028,7 @@ public class dataManager implements Subject{
             int[] type = {0, 1, 0};
             Vector<String> vector = searchUser(login, type);
             for (int i = 0; i < vector.size(); i++) {
-                results.add(getPerson(vector.get(i)));                
+                results.add(getPerson(vector.get(i)));
                 int id = results.get(i).getId();
                 System.out.println(id+" : "+results.get(i).getLogin());
                 resultSet = st.executeQuery("select * from Reservation where user =" + id + ";");
@@ -1018,17 +1044,17 @@ public class dataManager implements Subject{
                 }
             }
             return reservations;
-
+            
         } catch (Exception e) {
             System.err.println(e);
         }
         return reservations;
     }
-
+    
     public ArrayList<Reservation> getReservationsByUserId(int id) {
         ArrayList<Reservation> reservations = new ArrayList<Reservation>();
         try {
-
+            
             resultSet = st.executeQuery("select * from Reservation where user ='" + id + "';");
             Reservation tmp;
             while (resultSet.next()) {
@@ -1040,34 +1066,34 @@ public class dataManager implements Subject{
                 reservations.add(tmp);
             }
             return reservations;
-
+            
         } catch (Exception e) {
             System.err.println(e);
         }
         return reservations;
     }
-
+    
     @Override
     public void attach(Observer o) {
         //TODO: Implementar as cenas do subject
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
+    
     @Override
     public void detach(Observer o) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
+    
     @Override
     public String getState() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
+    
     @Override
     public void setState(String state) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
+    
     @Override
     public void Notify() {
         throw new UnsupportedOperationException("Not supported yet.");
