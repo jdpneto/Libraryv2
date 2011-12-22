@@ -349,7 +349,7 @@ public class dataManager implements Subject{
                 pb.setEmail(resultSet.getString("email"));
                 pb.setPassword(resultSet.getString("md5_pass"));
                 pb.setExpires(resultSet.getString("expires"));
-                pb.setLimit(resultSet.getInt("limit"));
+                pb.setLimit(resultSet.getInt("booklimit"));
                 pb.setPostalcode(resultSet.getString("postalcode"));
                 pb.setCity(resultSet.getString("city"));
                 pb.setCountry(resultSet.getString("country"));
@@ -387,7 +387,7 @@ public class dataManager implements Subject{
                 pb.setEmail(resultSet.getString("email"));
                 pb.setPassword(resultSet.getString("md5_pass"));
                 pb.setExpires(resultSet.getString("expires"));
-                pb.setLimit(resultSet.getInt("limit"));
+                pb.setLimit(resultSet.getInt("booklimit"));
                 pb.setPostalcode(resultSet.getString("postalcode"));
                 pb.setCity(resultSet.getString("city"));
                 pb.setCountry(resultSet.getString("country"));
@@ -516,7 +516,7 @@ public class dataManager implements Subject{
         }
         try {
             int[] type = r.getType();
-            String insert = "INSERT INTO User (name,login,email,md5_pass,expires,address,postalcode,city,country,adminaccess,readeraccess,librarianaccess,phonenumber) "
+            String insert = "INSERT INTO User (name,login,email,md5_pass,expires,address,postalcode,city,country,adminaccess,readeraccess,librarianaccess,phonenumber,booklimit) "
                     + "VALUES('"
                     + r.getName() + "','"
                     + r.getLogin() + "','"
@@ -530,7 +530,8 @@ public class dataManager implements Subject{
                     + type[0] + ", "
                     + type[1] + ", "
                     + type[2] + ", '"
-                    + r.getPhone() + "');";
+                    + r.getPhone() + "', "
+                    + r.getLimit()+");";
             System.out.println(insert);
             st.execute(insert);
             return getReader(r.getLogin());
@@ -689,7 +690,7 @@ public class dataManager implements Subject{
             ps += ", expires = '" + expires + "'";
         }
         if(limit != -1){
-            ps+= ", limit = "+limit;
+            ps+= ", booklimit = "+limit;
         }
         
         ps += " WHERE idUser = " + p.id;

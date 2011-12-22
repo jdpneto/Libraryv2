@@ -359,7 +359,7 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         p.setPostalcode(postal_code_field.getText());
         //this.postal_code_field.setText(this.lib.getPostalcode());
         p.setCountry(country_field.getText());
-        this.country_field.setText(this.lib.getCountry());
+        //this.country_field.setText(this.lib.getCountry());
         String str = date_field.getText();
         //this.date_field.setText(this.lib.getExpires());
         p = dat.editUser(p, str, -1);
