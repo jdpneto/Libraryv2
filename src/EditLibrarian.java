@@ -1,3 +1,7 @@
+
+import java.sql.SQLException;
+import java.util.Vector;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -13,54 +17,44 @@
  * @author jlnabais
  */
 public class EditLibrarian extends javax.swing.JFrame {
-
+    
     dataManager dat;
-    Librarian lib;
+    Librarian lib = new Librarian();
     /** Creates new form EditLibrarian */
-    public EditLibrarian(dataManager dat, int lib) {
+    public EditLibrarian(dataManager dat) {
         this.dat = dat;
-        this.lib = dat.getLibrarianById(lib);
         initComponents();
         error.setVisible(false);
         
         /*
          * if (!p.getAddress().equals(p2.getAddress())) {
-            ps += " address = '" + p.getAddress() + "'";
-        }
-        if (!p.getCity().equals(p2.getCity())) {
-            ps += " city = '" + p.getCity() + "'";
-        }
-        if (!p.getCountry().equals(p2.getCountry())) {
-            ps += " country = '" + p.getCountry() + "'";
-        }
-        if (!p.getEmail().equals(p2.getEmail())) {
-            ps += " email = '" + p.getEmail() + "'";
-        }
-        if (!p.getName().equals(p2.getName())) {
-            ps += " name = '" + p.getName() + "'";
-        }
-        if (!p.getPassword().equals(p2.getPassword())) {
-            ps += " expires = '" + p.getPassword() + "'";
-        }
-        if (!p.getPhone().equals(p2.getPhone())) {
-            ps += " phonenumber = '" + p.getPhone() + "'";
-        }
-        if (!p.getPostalcode().equals(p2.getPostalcode())) {
-            ps += " postalcode = '" + p.getPostalcode() + "'";
+         * ps += " address = '" + p.getAddress() + "'";
+         * }
+         * if (!p.getCity().equals(p2.getCity())) {
+         * ps += " city = '" + p.getCity() + "'";
+         * }
+         * if (!p.getCountry().equals(p2.getCountry())) {
+         * ps += " country = '" + p.getCountry() + "'";
+         * }
+         * if (!p.getEmail().equals(p2.getEmail())) {
+         * ps += " email = '" + p.getEmail() + "'";
+         * }
+         * if (!p.getName().equals(p2.getName())) {
+         * ps += " name = '" + p.getName() + "'";
+         * }
+         * if (!p.getPassword().equals(p2.getPassword())) {
+         * ps += " expires = '" + p.getPassword() + "'";
+         * }
+         * if (!p.getPhone().equals(p2.getPhone())) {
+         * ps += " phonenumber = '" + p.getPhone() + "'";
+         * }
+         * if (!p.getPostalcode().equals(p2.getPostalcode())) {
+         * ps += " postalcode = '" + p.getPostalcode() + "'";
          */
-        this.email_field.setText(this.lib.getEmail());
-        this.name_field.setText(this.lib.getName());
-        this.phone_field.setText(this.lib.getPhone());
-        this.id_field.setText(""+this.lib.getId());
-        this.street_field.setText(this.lib.getAddress());
-        this.city_field.setText(this.lib.getCity());
-        this.postal_code_field.setText(this.lib.getPostalcode());
-        this.country_field.setText(this.lib.getCountry());
-        this.date_field.setText(this.lib.getExpires());
         
         
     }
-
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -93,6 +87,10 @@ public class EditLibrarian extends javax.swing.JFrame {
         date_field = new javax.swing.JTextField();
         dPicker = new javax.swing.JButton();
         error = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        list_field = new javax.swing.JList();
+        search_field = new javax.swing.JTextField();
+        search_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -192,24 +190,42 @@ public class EditLibrarian extends javax.swing.JFrame {
         });
 
         error.setForeground(new java.awt.Color(204, 0, 51));
-        error.setText("Erro a gravar Librarian");
+        error.setText("error saving Librarian");
+
+        list_field.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = {};
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        list_field.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                list_fieldValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(list_field);
+
+        search_button.setText("Search");
+        search_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                search_buttonMouseReleased(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(292, 292, 292)
-                .add(add_user)
-                .addContainerGap(344, Short.MAX_VALUE))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(292, 292, 292)
+                        .add(add_user))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .add(130, 130, 130)
                         .add(submit_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 145, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 284, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 267, Short.MAX_VALUE)
                         .add(back_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 160, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                    .add(layout.createSequentialGroup()
                         .addContainerGap()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jLabel2)
@@ -232,14 +248,21 @@ public class EditLibrarian extends javax.swing.JFrame {
                                     .add(id_field)
                                     .add(email_field)
                                     .add(phone_field)
-                                    .add(name_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))
-                                .add(70, 70, 70)
-                                .add(error))
+                                    .add(name_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                                    .add(jScrollPane1))
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(layout.createSequentialGroup()
+                                        .add(47, 47, 47)
+                                        .add(error))
+                                    .add(layout.createSequentialGroup()
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                            .add(search_button)
+                                            .add(search_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 228, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
                             .add(layout.createSequentialGroup()
                                 .add(date_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 166, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(18, 18, 18)
-                                .add(dPicker)))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 85, Short.MAX_VALUE)))
+                                .add(dPicker)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -247,45 +270,56 @@ public class EditLibrarian extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(add_user)
-                .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel2)
-                    .add(name_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel1)
-                    .add(phone_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel3)
-                    .add(email_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(id_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel4)
-                    .add(error))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel7)
-                    .add(street_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel8)
-                    .add(city_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel9)
-                    .add(postal_code_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel11)
-                    .add(country_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel5)
-                    .add(date_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(dPicker))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 26, Short.MAX_VALUE)
+                .add(12, 12, 12)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 207, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(layout.createSequentialGroup()
+                        .add(search_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(search_button)))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 32, Short.MAX_VALUE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel2)
+                            .add(name_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel1)
+                            .add(phone_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel3)
+                            .add(email_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(id_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jLabel4))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel7)
+                            .add(street_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel8)
+                            .add(city_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel9)
+                            .add(postal_code_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel11)
+                            .add(country_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel5)
+                            .add(date_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(dPicker))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(error)
+                        .add(258, 258, 258)))
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(submit_button)
                     .add(back_button))
@@ -294,41 +328,41 @@ public class EditLibrarian extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
 private void name_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_fieldActionPerformed
-// TODO add your handling code here:
+    // TODO add your handling code here:
 }//GEN-LAST:event_name_fieldActionPerformed
 
 private void phone_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phone_fieldActionPerformed
-// TODO add your handling code here:
+    // TODO add your handling code here:
 }//GEN-LAST:event_phone_fieldActionPerformed
 
 private void email_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_email_fieldActionPerformed
-// TODO add your handling code here:
+    // TODO add your handling code here:
 }//GEN-LAST:event_email_fieldActionPerformed
 
 private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_buttonActionPerformed
-// TODO add your handling code here:
+    // TODO add your handling code here:
 }//GEN-LAST:event_submit_buttonActionPerformed
 
 private void street_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_street_fieldActionPerformed
-// TODO add your handling code here:
+    // TODO add your handling code here:
 }//GEN-LAST:event_street_fieldActionPerformed
 
 private void city_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_city_fieldActionPerformed
-// TODO add your handling code here:
+    // TODO add your handling code here:
 }//GEN-LAST:event_city_fieldActionPerformed
 
 private void postal_code_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postal_code_fieldActionPerformed
-// TODO add your handling code here:
+    // TODO add your handling code here:
 }//GEN-LAST:event_postal_code_fieldActionPerformed
 
 private void country_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_country_fieldActionPerformed
-// TODO add your handling code here:
+    // TODO add your handling code here:
 }//GEN-LAST:event_country_fieldActionPerformed
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
-// TODO add your handling code here:
+    // TODO add your handling code here:
     new AdminManageLibrarians(dat).setVisible(true);
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
@@ -336,11 +370,11 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private void id_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_fieldActionPerformed
     }
 // TODO add your handling code here:}//GEN-LAST:event_id_fieldActionPerformed
-
+    
     private void dPickerMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dPickerMouseReleased
         date_field.setText(new DatePicker(this).setPickedDate());
     }//GEN-LAST:event_dPickerMouseReleased
-
+    
     private void submit_buttonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submit_buttonMouseReleased
         
         Person p = new Person();
@@ -371,7 +405,44 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             dispose();
         }
     }//GEN-LAST:event_submit_buttonMouseReleased
-
+    
+    private void search_buttonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseReleased
+        try {
+            String login = search_field.getText();
+            int [] type = {0,0,1};
+            Vector <String> vector = dat.searchUser(login,type);
+            if(vector.size() == 0){
+                String [] temp = {"A procura não encontrou resultados"};
+                list_field.setListData(temp);
+            }
+            else{
+                list_field.setListData(vector);
+            }
+        } catch (SQLException ex) {
+            //Logger.getLogger(DeleteUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_search_buttonMouseReleased
+    
+    private void list_fieldValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list_fieldValueChanged
+        Object [] selected = list_field.getSelectedValues();
+        if(selected.length > 1 || selected.length == 0);
+        else if(selected.length == 1 && selected[0].equals("A procura não encontrou resultados"));
+        else
+        {
+            lib = dat.getLibrarian((String)selected[0]);
+            this.email_field.setText(this.lib.getEmail());
+            this.name_field.setText(this.lib.getName());
+            this.phone_field.setText(this.lib.getPhone());
+            this.id_field.setText(""+this.lib.getId());
+            this.street_field.setText(this.lib.getAddress());
+            this.city_field.setText(this.lib.getCity());
+            this.postal_code_field.setText(this.lib.getPostalcode());
+            this.country_field.setText(this.lib.getCountry());
+            this.date_field.setText(this.lib.getExpires());
+            
+        }
+    }//GEN-LAST:event_list_fieldValueChanged
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel add_user;
     private javax.swing.JButton back_button;
@@ -391,9 +462,13 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList list_field;
     private javax.swing.JTextField name_field;
     private javax.swing.JTextField phone_field;
     private javax.swing.JTextField postal_code_field;
+    private javax.swing.JButton search_button;
+    private javax.swing.JTextField search_field;
     private javax.swing.JTextField street_field;
     private javax.swing.JButton submit_button;
     // End of variables declaration//GEN-END:variables
