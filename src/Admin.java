@@ -9,11 +9,12 @@
  */
 public class Admin{
     //private String auth_token;
+    int[] type;
     
     private Person p;
     
 
-    public Admin(Person p) {
+    public Admin(Person p, int type[]) {
         this.p = p;
     }
     
@@ -102,11 +103,11 @@ public class Admin{
     }
 
     public int[] getType() {
-        return p.getType();
+        return this.type;
     }
 
     public void setType(int[] type) {
-        this.p.setType(type);//type = type;
+        this.type=type;//type = type;
     }
     public String getCountry() {
         return p.getCountry();//ountry;

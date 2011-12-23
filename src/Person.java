@@ -19,7 +19,7 @@ public class Person {
     protected String city;
     protected String country;
     protected String phone;
-    protected int[] type;
+    //protected int[] type;
 
     public Person() {
         this.id = -1;
@@ -32,7 +32,7 @@ public class Person {
         this.city = "";
         this.phone = "";
         this.country = "";
-        this.type = new int[3];
+       // this.type = new int[3];
         
     }
 
@@ -43,7 +43,7 @@ public class Person {
         this.password = password;
     }
 
-    public Person(int id, String email, String address, String login, String password, String name, String postalcode, String city, String phone, int[] type, String country) {
+    public Person(int id, String email, String address, String login, String password, String name, String postalcode, String city, String phone, String country) {
         this.id = id;
         this.email = email;
         this.address = address;
@@ -53,7 +53,7 @@ public class Person {
         this.postalcode = postalcode;
         this.city = city;
         this.phone = phone;
-        this.type = type;
+       // this.type = type;
         this.country = country;
     }
 
@@ -139,17 +139,11 @@ public class Person {
         this.postalcode = postalcode;
     }
 
-    public int[] getType() {
-        return type;
-    }
 
-    public void setType(int[] type) {
-        this.type = type;
-    }
 
     @Override
     public String toString() {
-        return "Person{" + "id=" + id + ", email=" + email + ", address=" + address + ", login=" + login + ", password=" + password + ", name=" + name + ", postalcode=" + postalcode + ", city=" + city + ", country=" + country + ", phone=" + phone + ", type=" + type + '}';
+        return "Person{" + "id=" + id + ", email=" + email + ", address=" + address + ", login=" + login + ", password=" + password + ", name=" + name + ", postalcode=" + postalcode + ", city=" + city + ", country=" + country + ", phone=" + phone + '}';
     }
     
 }

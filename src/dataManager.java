@@ -79,9 +79,9 @@ public class dataManager implements Subject{
     }
     
     /***************ADDRESS******************
-     * 
+     *
      * NOT NEEDED IN THE NEW DB SCHEME
-     * 
+     *
      */
     //
     //    public boolean existsStreet(String street, String postalcode)
@@ -191,6 +191,46 @@ public class dataManager implements Subject{
         return date;
     }
     
+    public int[] getPersonType(Person p)
+    {
+        int[] type = new int[3];
+        
+        
+        try {
+            resultSet = st.executeQuery("select adminaccess,readeraccess,librarianaccess from User where login='" + p.getLogin() + "';");
+            while (resultSet.next()) {
+                type[0] = resultSet.getInt("adminaccess");
+                type[1] = resultSet.getInt("readeraccess");
+                type[2] = resultSet.getInt("librarianaccess");
+            }
+            return type;
+        } catch (SQLException ex) {
+            Logger.getLogger(dataManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return type;
+        
+    }
+    
+    public int[] getPersonTypeById(int id)
+    {
+        int[] type = new int[3];
+        
+        
+        try {
+            resultSet = st.executeQuery("select adminaccess,readeraccess,librarianaccess from User where idUser='" + id + "';");
+            while (resultSet.next()) {
+                type[0] = resultSet.getInt("adminaccess");
+                type[1] = resultSet.getInt("readeraccess");
+                type[2] = resultSet.getInt("librarianaccess");
+            }
+            return type;
+        } catch (SQLException ex) {
+            Logger.getLogger(dataManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return type;
+        
+    }
+    
     //    public int checkLogin(String login, String pass)
     //if returned object equals the sent one, then
     //it is an invalid login
@@ -198,7 +238,6 @@ public class dataManager implements Subject{
     public Person checkLogin(Person p) {
         //String login;
         String hash;
-        PersonBuilder pb;
         try {
             //Vai a base de dados confirmar o login e a password...
             resultSet = st.executeQuery("select * from User where login='" + p.getLogin() + "';");
@@ -208,11 +247,8 @@ public class dataManager implements Subject{
                 hash = resultSet.getString("md5_pass");
                 
                 if (hash.equals(getMd5(p.getPassword()))) {
-                    int[] type = new int[3];
-                    type[0] = resultSet.getInt("adminaccess");
-                    type[1] = resultSet.getInt("readeraccess");
-                    type[2] = resultSet.getInt("librarianaccess");
-                    pb = new PersonBuilder();
+                    
+                    Person pb = new Person();
                     pb.setId(resultSet.getInt("idUser"));
                     
                     pb.setAddress(resultSet.getString("address"));
@@ -226,9 +262,8 @@ public class dataManager implements Subject{
                     pb.setCity(resultSet.getString("city"));
                     pb.setCountry(resultSet.getString("country"));
                     pb.setPhone(resultSet.getString("phonenumber"));
-                    pb.setType(type);
                     //System.out.println("Person: "+ pb.toString());
-                    return pb.buildPerson();//resultSet.getByte("type");
+                    return pb;//resultSet.getByte("type");
                 } else {
                     return p;
                 }
@@ -257,17 +292,12 @@ public class dataManager implements Subject{
     
     public Person getPerson(String login) {
         Person p = new Person();
-        PersonBuilder pb;
         try {
             //Vai a base de dados confirmar o login e a password...
             resultSet = st.executeQuery("select * from User where login='" + login + "';");
             //-1 -> existe mas a pass está mal
             while (resultSet.next()) {
-                int[] type = new int[3];
-                type[0] = resultSet.getInt("adminaccess");
-                type[1] = resultSet.getInt("readeraccess");
-                type[2] = resultSet.getInt("librarianaccess");
-                pb = new PersonBuilder();
+                Person pb = new Person();
                 pb.setId(resultSet.getInt("idUser"));
                 pb.setAddress(resultSet.getString("address"));
                 pb.setName(resultSet.getString("name"));
@@ -278,9 +308,8 @@ public class dataManager implements Subject{
                 pb.setCity(resultSet.getString("city"));
                 pb.setCountry(resultSet.getString("country"));
                 pb.setPhone(resultSet.getString("phonenumber"));
-                pb.setType(type);
                 
-                return pb.buildPerson();//resultSet.getByte("type");
+                return pb;//resultSet.getByte("type");
                 
             }
         } catch (Exception e) {
@@ -292,7 +321,6 @@ public class dataManager implements Subject{
     }
     
     public Admin getAdmin(String login) {
-        AdminBuilder pb;
         Admin a = new Admin();
         try {
             //Vai a base de dados confirmar o login e a password...
@@ -300,12 +328,7 @@ public class dataManager implements Subject{
             System.out.println("query: " + "select * from User where login='" + login + "';");
             //-1 -> existe mas a pass está mal
             while (resultSet.next()) {
-                int[] type = new int[3];
-                type[0] = resultSet.getInt("adminaccess");
-                type[1] = resultSet.getInt("readeraccess");
-                type[2] = resultSet.getInt("librarianaccess");
-                System.out.println("adminaccess: " + type[0]);
-                pb = new AdminBuilder();
+                Person pb = new Person();
                 pb.setId(resultSet.getInt("idUser"));
                 pb.setAddress(resultSet.getString("address"));
                 pb.setName(resultSet.getString("name"));
@@ -316,9 +339,15 @@ public class dataManager implements Subject{
                 pb.setCity(resultSet.getString("city"));
                 pb.setCountry(resultSet.getString("country"));
                 pb.setPhone(resultSet.getString("phonenumber"));
-                pb.setType(type);
                 
-                return pb.Build();//resultSet.getByte("type");
+                
+                /*******BuilderPattern******/
+                
+                AdminBuilder ab = new AdminBuilder();
+                ab.buildPerson(pb);
+                ab.buildType(getPersonType(pb));
+                
+                return ab.getResult();
                 
             }
         } catch (Exception e) {

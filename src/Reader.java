@@ -16,10 +16,11 @@ public class Reader {
     private Person p;
     String expires;
     int limit;
+    int[] type;
     
     
     
-    public Reader(Person p, int limit, String expires)
+    public Reader(Person p, int limit, String expires, int type[])
     {
         this.p = p;
         this.limit = limit;
@@ -119,11 +120,11 @@ public class Reader {
     }
 
     public int[] getType() {
-        return p.getType();
+        return this.type;
     }
 
     public void setType(int[] type) {
-        this.p.setType(type);//type = type;
+        this.type=type;//type = type;
     }
     
     public String getCountry() {

@@ -7,35 +7,43 @@
  *
  * @author jlnabais
  */
-public class ReaderBuilder extends PersonBuilder{
+public class ReaderBuilder implements Builder{
 
+    private Person p;
+    private int[] type;
+    private String date;
+    private int limit;
+    
     public ReaderBuilder() {
-        super();
-        this.limit = -1;
-        this.expires = null;
     }
 
-    public String getExpires() {
-        return expires;
+    @Override
+    public void buildPerson(Person p) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+        this.p = p;
     }
 
-    public void setExpires(String expires) {
-        this.expires = expires;
+    @Override
+    public void buildType(int[] type) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+        this.type = type;
     }
 
-    public int getLimit() {
-        return limit;
+    @Override
+    public void buildExpires(String date) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+        this.date = date;
     }
 
-    public void setLimit(int limit) {
-        this.limit = limit;
+    @Override
+    public void buildLimit(int limit) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+        this.limit=limit;
     }
-
-        public Reader Build()
+    
+    public Reader getResult()
     {
-        Person p =  new Person(this.id, this.email, this.address, this.login, this.password, this.name, this.postalcode, this.city, this.phone, this.type, this.country);
-        Reader r = new Reader(p, this.limit, this.expires);
-
-        return r;
+        return new Reader(p,limit,date,type);
     }
+
 }

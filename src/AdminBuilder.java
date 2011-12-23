@@ -7,15 +7,39 @@
  *
  * @author jlnabais
  */
-public class AdminBuilder  extends PersonBuilder{
-
+public class AdminBuilder  implements Builder{
+    
+    private Person p;
+    private int[] type;
+    
     public AdminBuilder() {
 
     }
-        public Admin Build()
+
+    @Override
+    public void buildPerson(Person p) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+        this.p=p;
+    }
+
+    @Override
+    public void buildType(int[] type) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+        this.type=type;
+    }
+
+    @Override
+    public void buildExpires(String date) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void buildLimit(int limit) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    public Admin getResult()
     {
-        Person p =  new Person(this.id, this.email, this.address, this.login, this.password, this.name, this.postalcode, this.city, this.phone, this.type, this.country);
-        Admin a = new Admin(p);
-        return a;
+        return new Admin(p,type);
     }
 }

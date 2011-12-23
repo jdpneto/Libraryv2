@@ -7,35 +7,33 @@
  *
  * @author jlnabais
  */
-public class LibrarianBuilder  extends PersonBuilder{
-
-    public LibrarianBuilder() {
-        this.expires = null;
+public class LibrarianBuilder implements Builder{
+    
+    private Person p;
+    private int[] type;
+    private String expires;
+    
+    LibrarianBuilder(){
+        
     }
 
-    public String getExpires() {
-        return expires;
+    @Override
+    public void buildPerson(Person p) {
+       this.p = p;
     }
 
-    public void setExpires(String expires) {
-        this.expires = expires;
+    @Override
+    public void buildType(int[] type) {
+        this.type=type;
     }
 
-    public int getLimit() {
-        return limit;
+    @Override
+    public void buildExpires(String date) {
+        this.expires=expires;
     }
 
-    public void setLimit(int limit) {
-        this.limit = limit;
+    @Override
+    public void buildLimit(int limit) {
+        
     }
-
-
-
-    public Librarian Build()
-    {
-        Person p =  new Person(this.id, this.email, this.address, this.login, this.password, this.name, this.postalcode, this.city, this.phone, this.type, this.country);
-        Librarian l = new Librarian (p, this.expires);
-        return l;
-    }
-
 }

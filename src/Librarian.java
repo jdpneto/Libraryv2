@@ -10,8 +10,9 @@
 public class Librarian{
     private Person p;
     String expires;
+    int[] type;
     
-    public Librarian(Person p, String expires){
+    public Librarian(Person p, String expires,int type[]){
         this.p = p;
         this.expires=expires;
         
@@ -110,11 +111,11 @@ public class Librarian{
     }
 
     public int[] getType() {
-        return p.getType();
+        return this.type;
     }
 
     public void setType(int[] type) {
-        this.p.setType(type);//type = type;
+        this.type=type;//type = type;
     }
     
     public String getCountry() {
