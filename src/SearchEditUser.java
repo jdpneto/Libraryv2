@@ -16,12 +16,12 @@ import java.util.Vector;
  *
  * @author jlnabais
  */
-public class EditUser extends javax.swing.JFrame {
+public class SearchEditUser extends javax.swing.JFrame {
     
     dataManager dat;
     int current_id;
     /** Creates new form EditUser */
-    public EditUser(dataManager dat) {
+    public SearchEditUser(dataManager dat) {
         this.dat = dat;
         current_id = -1;
         initComponents();
@@ -363,7 +363,7 @@ private void limit_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
     // TODO add your handling code here:
-    new AdminManageUsers(dat).setVisible(true);
+    new LibrarianForm(dat).setVisible(true);
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
 
@@ -438,7 +438,7 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             error.setVisible(true);
         else
         {
-            new AdminManageUsers(dat).setVisible(true);
+            new LibrarianForm(dat).setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_submit_buttonMouseReleased

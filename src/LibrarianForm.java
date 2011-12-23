@@ -38,6 +38,7 @@ public class LibrarianForm extends javax.swing.JFrame {
         add_user = new javax.swing.JButton();
         manage_book = new javax.swing.JButton();
         manage_reservations = new javax.swing.JButton();
+        search_users = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,6 +76,13 @@ public class LibrarianForm extends javax.swing.JFrame {
             }
         });
 
+        search_users.setText("Search/Edit User");
+        search_users.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                search_usersMouseReleased(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,6 +99,7 @@ public class LibrarianForm extends javax.swing.JFrame {
                                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 418, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(18, 18, 18)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(search_users, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
                                     .add(manage_reservations, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
                                     .add(add_user, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
                                     .add(logout, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
@@ -101,23 +110,23 @@ public class LibrarianForm extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jLabel1)
+                .add(27, 27, 27)
+                .add(jLabel2)
+                .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .add(97, 97, 97)
                         .add(add_user)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(manage_book)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(manage_reservations)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 158, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(search_users)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 161, Short.MAX_VALUE)
                         .add(logout))
-                    .add(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jLabel1)
-                        .add(27, 27, 27)
-                        .add(jLabel2)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 284, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 284, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(29, 29, 29))
         );
 
@@ -148,6 +157,11 @@ private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     dispose();
 }//GEN-LAST:event_logoutActionPerformed
 
+    private void search_usersMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_usersMouseReleased
+        new SearchEditUser(dat).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_search_usersMouseReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_user;
     private javax.swing.JLabel jLabel1;
@@ -157,5 +171,6 @@ private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private javax.swing.JButton logout;
     private javax.swing.JButton manage_book;
     private javax.swing.JButton manage_reservations;
+    private javax.swing.JButton search_users;
     // End of variables declaration//GEN-END:variables
 }

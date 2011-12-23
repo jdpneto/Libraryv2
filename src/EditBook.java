@@ -1,3 +1,7 @@
+
+import java.sql.SQLException;
+import java.util.Vector;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -13,14 +17,15 @@
  * @author jlnabais
  */
 public class EditBook extends javax.swing.JFrame {
-
+    
     dataManager dat;
     /** Creates new form EditBook */
     public EditBook(dataManager dat) {
         this.dat = dat;
         initComponents();
+        error.setVisible(false);
     }
-
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -45,6 +50,11 @@ public class EditBook extends javax.swing.JFrame {
         copies_field = new javax.swing.JTextField();
         submit_button = new javax.swing.JButton();
         back_button = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        list_field = new javax.swing.JList();
+        search_field = new javax.swing.JTextField();
+        search_button = new javax.swing.JButton();
+        error = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +109,11 @@ public class EditBook extends javax.swing.JFrame {
         });
 
         submit_button.setText("Submit");
+        submit_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                submit_buttonMouseReleased(evt);
+            }
+        });
         submit_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submit_buttonActionPerformed(evt);
@@ -106,29 +121,60 @@ public class EditBook extends javax.swing.JFrame {
         });
 
         back_button.setText("Back to Panel");
+        back_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                back_buttonMouseReleased(evt);
+            }
+        });
         back_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 back_buttonActionPerformed(evt);
             }
         });
 
+        list_field.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = {};
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        list_field.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                list_fieldValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(list_field);
+
+        search_button.setText("Search");
+        search_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                search_buttonMouseReleased(evt);
+            }
+        });
+
+        error.setForeground(new java.awt.Color(204, 0, 0));
+        error.setText("error saving book");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(292, 292, 292)
+                .add(317, 317, 317)
                 .add(add_user)
-                .addContainerGap(358, Short.MAX_VALUE))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .add(130, 130, 130)
-                        .add(submit_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 145, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 240, Short.MAX_VALUE)
-                        .add(back_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 160, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .add(43, 43, 43)
+                .addContainerGap(342, Short.MAX_VALUE))
+            .add(layout.createSequentialGroup()
+                .add(51, 51, 51)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(layout.createSequentialGroup()
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 221, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .add(18, 220, Short.MAX_VALUE)
+                                .add(search_button))
+                            .add(layout.createSequentialGroup()
+                                .add(18, 18, 18)
+                                .add(search_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 287, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                    .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jLabel2)
                             .add(jLabel1)
@@ -137,45 +183,68 @@ public class EditBook extends javax.swing.JFrame {
                             .add(jLabel5)
                             .add(jLabel4))
                         .add(36, 36, 36)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(copies_field)
-                            .add(year_field)
-                            .add(category_field)
-                            .add(isbn_field)
-                            .add(author_field)
-                            .add(title_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))))
-                .add(34, 34, 34))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, copies_field)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, year_field)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, category_field)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, isbn_field)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, author_field)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, title_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))))
+                .addContainerGap(141, Short.MAX_VALUE))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(error))
+                    .add(layout.createSequentialGroup()
+                        .add(130, 130, 130)
+                        .add(submit_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 145, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 240, Short.MAX_VALUE)
+                        .add(back_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 160, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .add(43, 43, 43))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .add(add_user)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 16, Short.MAX_VALUE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(layout.createSequentialGroup()
+                        .add(search_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(search_button)))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel2)
+                            .add(title_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel1)
+                            .add(author_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel3)
+                            .add(isbn_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(year_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jLabel4))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(category_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jLabel5))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(copies_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jLabel6)))
+                    .add(layout.createSequentialGroup()
+                        .add(35, 35, 35)
+                        .add(error)))
                 .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel2)
-                    .add(title_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel1)
-                    .add(author_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel3)
-                    .add(isbn_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(year_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel4))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(category_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel5))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(copies_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel6))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 78, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(submit_button)
                     .add(back_button))
@@ -184,47 +253,99 @@ public class EditBook extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
 private void title_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_title_fieldActionPerformed
-// TODO add your handling code here:
+    // TODO add your handling code here:
 }//GEN-LAST:event_title_fieldActionPerformed
 
 private void author_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_author_fieldActionPerformed
-// TODO add your handling code here:
+    // TODO add your handling code here:
 }//GEN-LAST:event_author_fieldActionPerformed
 
 private void isbn_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isbn_fieldActionPerformed
-// TODO add your handling code here:
+    // TODO add your handling code here:
 }//GEN-LAST:event_isbn_fieldActionPerformed
 
 private void category_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_category_fieldActionPerformed
-// TODO add your handling code here:
+    // TODO add your handling code here:
 }//GEN-LAST:event_category_fieldActionPerformed
 
 private void year_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year_fieldActionPerformed
-// TODO add your handling code here:
+    // TODO add your handling code here:
 }//GEN-LAST:event_year_fieldActionPerformed
 
 private void copies_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copies_fieldActionPerformed
-// TODO add your handling code here:
+    // TODO add your handling code here:
 }//GEN-LAST:event_copies_fieldActionPerformed
 
 private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_buttonActionPerformed
-// TODO add your handling code here:
+    // TODO add your handling code here:
 }//GEN-LAST:event_submit_buttonActionPerformed
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
-// TODO add your handling code here:
+    // TODO add your handling code here:
     new ManageBooks(dat).setVisible(true);
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
 
+    private void search_buttonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseReleased
+        
+        String text = search_field.getText();
+        Vector <String> vector = dat.getBookListByTitle(text);
+        if(vector.size() == 0){
+            String [] temp = {"A procura não encontrou resultados"};
+            list_field.setListData(temp);
+        }
+        else{
+            list_field.setListData(vector);
+        }
+    }//GEN-LAST:event_search_buttonMouseReleased
+    
+    private void list_fieldValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list_fieldValueChanged
+        Object [] selected = list_field.getSelectedValues();
+        if(selected.length > 1 || selected.length == 0);
+        else if(selected.length == 1 && selected[0].equals("A procura não encontrou resultados"));
+        else
+        {
+            Book b = dat.getBookByTitle((String)selected[0]);
+            this.title_field.setText(b.getName());
+            this.isbn_field.setText(b.getIsbn());
+            this.author_field.setText(b.getAuthor());
+            this.category_field.setText(b.getAuthor());
+            this.year_field.setText(""+b.getYear());
+            this.copies_field.setText(""+b.getNumberOfCopies());
+            
+        }
+    }//GEN-LAST:event_list_fieldValueChanged
+    
+    private void submit_buttonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submit_buttonMouseReleased
+        Book b = new Book();
+        b.setName(this.title_field.getText());
+        b.setIsbn(this.isbn_field.getText());
+        b.setAuthor(this.author_field.getText());
+        b.setCategory(this.category_field.getText());
+        b.setYear(Integer.parseInt(this.year_field.getText()));
+        b.setNumberOfCopies(Integer.parseInt(this.copies_field.getText()));
+        b = dat.storeBook(b);
+        if(b.getIsbn().length()<1)
+            error.setVisible(true);
+        else{
+            new ManageBooks(dat).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_submit_buttonMouseReleased
+
+    private void back_buttonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back_buttonMouseReleased
+        
+    }//GEN-LAST:event_back_buttonMouseReleased
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel add_user;
     private javax.swing.JTextField author_field;
     private javax.swing.JButton back_button;
     private javax.swing.JTextField category_field;
     private javax.swing.JTextField copies_field;
+    private javax.swing.JLabel error;
     private javax.swing.JTextField isbn_field;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -232,6 +353,10 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList list_field;
+    private javax.swing.JButton search_button;
+    private javax.swing.JTextField search_field;
     private javax.swing.JButton submit_button;
     private javax.swing.JTextField title_field;
     private javax.swing.JTextField year_field;
