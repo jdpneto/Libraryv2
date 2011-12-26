@@ -24,12 +24,16 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class dataManager implements Subject{
+public class dataManager implements Subject,Observer{
     
     private Connection con;
     private Statement st;
     private ResultSet resultSet;
     private PreparedStatement preparedStatement;
+    
+    /*******OBJSERVER STATE AND SUBJECTS************/
+    ArrayList<Observer> observers = new ArrayList<Observer>();
+    ArrayList<Stat> subjectState = new ArrayList<Stat>();
     
     public dataManager() {
         try {
@@ -71,6 +75,57 @@ public class dataManager implements Subject{
             Logger.getLogger(dataManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "empty";
+    }
+    
+    public ArrayList<Stat> generateStats()
+    {
+        ArrayList<Book> ret = new ArrayList<Book>();
+        ArrayList<Stat> stats = new ArrayList<Stat>();
+        String tmp;
+        int total=0;
+        try {
+            resultSet = st.executeQuery("select category from Book;");
+            while (resultSet.next()) {
+                total++;
+                Book b = new Book();
+                tmp = resultSet.getString("category");
+                int i = exists(stats,tmp);
+                if(i >= 0)
+                    stats.get(i).addOne();
+                else
+                    stats.add(new Stat(tmp,1));
+                //resultSet.getString("category");
+            }
+            
+            for(Stat s : stats)
+            {
+                System.out.println((s.getValue()*100)/total);
+                s.setValue(Math.round((s.getValue()*100)/total));
+            }
+            int offset = 0;
+            for(Stat s : stats)
+                offset +=s.getValue();
+            
+            offset = (100-offset);
+            stats.get(0).setValue(stats.get(0).getValue()+offset);
+            
+            
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        
+        return stats;
+    }
+    private int exists(ArrayList<Stat> tmp, String type)
+    {
+        for (int i = 0; i < tmp.size(); i++)
+        {
+            if(tmp.get(i).getType().equals(type))
+            {
+                return i;
+            }
+        }
+        return -1;
     }
     
     //just because I sometipes use toMd5
@@ -871,6 +926,10 @@ public class dataManager implements Subject{
                     + b.getNumberOfCopies() + ");";
             System.out.println(insert);
             st.execute(insert);
+            
+            subjectState = generateStats();
+            System.out.println(subjectState);
+            Notify();
             return b;
             
             
@@ -1140,29 +1199,49 @@ public class dataManager implements Subject{
         return reservations;
     }
     
+    /**************OBSERVER PATTERN********************/
+    
+    
+    
     @Override
     public void attach(Observer o) {
         //TODO: Implementar as cenas do subject
-        throw new UnsupportedOperationException("Not supported yet.");
+        observers.add(o);
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
     
     @Override
     public void detach(Observer o) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
-    @Override
-    public String getState() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
-    @Override
-    public void setState(String state) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        observers.remove(o);
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
     
     @Override
     public void Notify() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //throw new UnsupportedOperationException("Not supported yet.");
+        for(Observer o : observers){
+            o.update(this);
+        }
+    }
+    
+    @Override
+    public ArrayList<Stat> getState() {
+        //throw new UnsupportedOperationException("Not supported yet.");
+        return subjectState;
+        
+    }
+    
+    
+    @Override
+    public void setState(ArrayList<Stat> state) {
+        subjectState = state;
+        
+    }
+    
+    //observer classes
+    
+    @Override
+    public void update(Subject s) {
+        subjectState = s.getState();
     }
 }

@@ -1,5 +1,4 @@
 
-import javax.swing.JLabel;
 
 /*
  * To change this template, choose Tools | Templates

@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -9,11 +12,11 @@
  */
 public class PdfObserver implements Observer {
 
-    String ObserverState;
+    ArrayList<Stat> ObserverState;
     @Override
-    public void update(Subject o) {
+    public void update(Subject s) {
         //throw new UnsupportedOperationException("Not supported yet.");
-        ObserverState = o.getState();
+        ObserverState = s.getState();
     }
     
 }

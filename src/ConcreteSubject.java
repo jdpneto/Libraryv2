@@ -11,8 +11,9 @@ import java.util.ArrayList;
  * @author david
  */
 public class ConcreteSubject implements Subject {
+    
     ArrayList<Observer> observers = new ArrayList<Observer>();
-    String statsState = "";
+    ArrayList<Stat> statsState = new ArrayList<Stat>();
 
     @Override
     public void attach(Observer o) {
@@ -28,13 +29,13 @@ public class ConcreteSubject implements Subject {
     }
 
     @Override
-    public String getState() {
+    public ArrayList<Stat> getState() {
         //throw new UnsupportedOperationException("Not supported yet.");
         return statsState;
     }
 
     @Override
-    public void setState(String state) {
+    public void setState(ArrayList<Stat> state) {
         //throw new UnsupportedOperationException("Not supported yet.");
         this.statsState = state;
     }
