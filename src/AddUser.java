@@ -353,8 +353,8 @@ private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     type[0] = 0;
     type[1] = 1;
     type[2] = 0;
-    Person p = new Person(-1,email,street,username,password,name,postal_code,city,phone,type,country);
-    Reader r = new Reader(p, limit,dat.datetoString(date));
+    Person p = new Person(-1,email,street,username,password,name,postal_code,city,phone,country);
+    Reader r = new Reader(p, limit,dat.datetoString(date),type);
     dat.storeReader(r);
     if(this.type == 1)
         new AdminManageUsers(dat).setVisible(true);

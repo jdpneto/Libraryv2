@@ -15,6 +15,7 @@ public class Librarian{
     public Librarian(Person p, String expires,int type[]){
         this.p = p;
         this.expires=expires;
+        this.type = type;
         
     }
     

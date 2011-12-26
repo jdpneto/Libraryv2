@@ -329,8 +329,8 @@ private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     type[0] = 0;
     type[1] = 0;
     type[2] = 1;
-    Person p = new Person(-1,email,street,username,password,name,postal_code,city,phone,type,country);
-    Librarian l = new Librarian(p, expires_field.getText());
+    Person p = new Person(-1,email,street,username,password,name,postal_code,city,phone,country);
+    Librarian l = new Librarian(p, expires_field.getText(),type);
     dat.storeLibrarian(l);
     new AdminManageLibrarians(dat).setVisible(true);
     dispose();

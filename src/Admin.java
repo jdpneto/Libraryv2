@@ -16,6 +16,7 @@ public class Admin{
 
     public Admin(Person p, int type[]) {
         this.p = p;
+        this.type=type;
     }
     
     public Admin(){

@@ -217,7 +217,7 @@ public class dataManager implements Subject{
         
         
         try {
-            resultSet = st.executeQuery("select adminaccess,readeraccess,librarianaccess from User where idUser='" + id + "';");
+            resultSet = st.executeQuery("select adminaccess,readeraccess,librarianaccess from User where idUser=" + id + ";");
             while (resultSet.next()) {
                 type[0] = resultSet.getInt("adminaccess");
                 type[1] = resultSet.getInt("readeraccess");
@@ -228,6 +228,40 @@ public class dataManager implements Subject{
             Logger.getLogger(dataManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return type;
+        
+    }
+    public String getPersonExpiresById(int id)
+    {
+        String expires = "";
+        
+        
+        try {
+            resultSet = st.executeQuery("select expires from User where idUser=" + id + ";");
+            while (resultSet.next()) {
+                expires = resultSet.getString("expires");
+            }
+            return expires;
+        } catch (SQLException ex) {
+            Logger.getLogger(dataManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return expires;
+        
+    }
+    public int getPersonLimitById(int id)
+    {
+        int limit = -1;
+        
+        
+        try {
+            resultSet = st.executeQuery("select booklimit from User where idUser=" + id + ";");
+            while (resultSet.next()) {
+                limit = resultSet.getInt("booklimit");
+            }
+            return limit;
+        } catch (SQLException ex) {
+            Logger.getLogger(dataManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return limit;
         
     }
     
@@ -344,8 +378,8 @@ public class dataManager implements Subject{
                 /*******BuilderPattern******/
                 
                 AdminBuilder ab = new AdminBuilder();
-                ab.buildPerson(pb);
-                ab.buildType(getPersonType(pb));
+                Director d = new Director(ab);
+                d.Construct(pb,getPersonTypeById(pb.getId()) , "UNLIMITED", 0);
                 
                 return ab.getResult();
                 
@@ -360,32 +394,31 @@ public class dataManager implements Subject{
     
     public Reader getReader(String login) {
         Reader r = new Reader();
-        ReaderBuilder pb;
         try {
             //Vai a base de dados confirmar o login e a password...
             resultSet = st.executeQuery("select * from User where login='" + login + "';");
             //-1 -> existe mas a pass está mal
             while (resultSet.next()) {
-                int[] type = new int[3];
-                type[0] = resultSet.getInt("adminaccess");
-                type[1] = resultSet.getInt("readeraccess");
-                type[2] = resultSet.getInt("librarianaccess");
-                pb = new ReaderBuilder();
+                Person pb = new Person();
                 pb.setId(resultSet.getInt("idUser"));
                 pb.setAddress(resultSet.getString("address"));
                 pb.setName(resultSet.getString("name"));
                 pb.setLogin(resultSet.getString("login"));
                 pb.setEmail(resultSet.getString("email"));
                 pb.setPassword(resultSet.getString("md5_pass"));
-                pb.setExpires(resultSet.getString("expires"));
-                pb.setLimit(resultSet.getInt("booklimit"));
                 pb.setPostalcode(resultSet.getString("postalcode"));
                 pb.setCity(resultSet.getString("city"));
                 pb.setCountry(resultSet.getString("country"));
                 pb.setPhone(resultSet.getString("phonenumber"));
-                pb.setType(type);
                 
-                return pb.Build();//resultSet.getByte("type");
+                /*******BuilderPattern******/
+                
+                ReaderBuilder rb = new ReaderBuilder();
+                Director d = new Director(rb);
+                d.Construct(pb,getPersonTypeById(pb.getId()) , getPersonExpiresById(pb.getId()), getPersonLimitById(pb.getId()));
+                
+                return rb.getResult();
+                
                 
             }
         } catch (Exception e) {
@@ -398,32 +431,31 @@ public class dataManager implements Subject{
     
     public Reader getReaderById(int id) {
         Reader r = new Reader();
-        ReaderBuilder pb;
         try {
             //Vai a base de dados confirmar o login e a password...
-            resultSet = st.executeQuery("select * from User where idUser='" + id + "';");
+            resultSet = st.executeQuery("select * from User where idUser=" + id + ";");
             
             while (resultSet.next()) {
-                int[] type = new int[3];
-                type[0] = resultSet.getInt("adminaccess");
-                type[1] = resultSet.getInt("readeraccess");
-                type[2] = resultSet.getInt("librarianaccess");
-                pb = new ReaderBuilder();
+                Person pb = new Person();
                 pb.setId(resultSet.getInt("idUser"));
                 pb.setAddress(resultSet.getString("address"));
                 pb.setName(resultSet.getString("name"));
                 pb.setLogin(resultSet.getString("login"));
                 pb.setEmail(resultSet.getString("email"));
                 pb.setPassword(resultSet.getString("md5_pass"));
-                pb.setExpires(resultSet.getString("expires"));
-                pb.setLimit(resultSet.getInt("booklimit"));
                 pb.setPostalcode(resultSet.getString("postalcode"));
                 pb.setCity(resultSet.getString("city"));
                 pb.setCountry(resultSet.getString("country"));
                 pb.setPhone(resultSet.getString("phonenumber"));
-                pb.setType(type);
                 
-                return pb.Build();//resultSet.getByte("type");
+                /*******BuilderPattern******/
+                
+                ReaderBuilder rb = new ReaderBuilder();
+                Director d = new Director(rb);
+                d.Construct(pb,getPersonTypeById(pb.getId()) , getPersonExpiresById(pb.getId()), getPersonLimitById(pb.getId()));
+                
+                return rb.getResult();
+                
                 
             }
         } catch (Exception e) {
@@ -436,31 +468,33 @@ public class dataManager implements Subject{
     
     public Librarian getLibrarian(String login) {
         Librarian l = new Librarian();
-        LibrarianBuilder pb;
         try {
             //Vai a base de dados confirmar o login e a password...
             resultSet = st.executeQuery("select * from User where login='" + login + "';");
             //-1 -> existe mas a pass está mal
             while (resultSet.next()) {
-                int[] type = new int[3];
-                type[0] = resultSet.getInt("adminaccess");
-                type[1] = resultSet.getInt("readeraccess");
-                type[2] = resultSet.getInt("librarianaccess");
-                pb = new LibrarianBuilder();
+                Person pb = new Person();
                 pb.setId(resultSet.getInt("idUser"));
                 pb.setAddress(resultSet.getString("address"));
                 pb.setName(resultSet.getString("name"));
                 pb.setLogin(resultSet.getString("login"));
                 pb.setEmail(resultSet.getString("email"));
                 pb.setPassword(resultSet.getString("md5_pass"));
-                pb.setExpires(resultSet.getString("expires"));
                 pb.setPostalcode(resultSet.getString("postalcode"));
                 pb.setCity(resultSet.getString("city"));
                 pb.setCountry(resultSet.getString("country"));
                 pb.setPhone(resultSet.getString("phonenumber"));
-                pb.setType(type);
                 
-                return pb.Build();//resultSet.getByte("type");
+                /*******BuilderPattern******/
+                
+                LibrarianBuilder lb = new LibrarianBuilder();
+                Director d = new Director(lb);
+                d.Construct(pb,getPersonTypeById(pb.getId()) , getPersonExpiresById(pb.getId()), getPersonLimitById(pb.getId()));
+                
+                return lb.getResult();
+                
+                
+                //return pb.Build();//resultSet.getByte("type");
                 
             }
         } catch (Exception e) {
@@ -504,31 +538,34 @@ public class dataManager implements Subject{
     }
     public Librarian getLibrarianById(int id) {
         Librarian l = new Librarian();
-        LibrarianBuilder pb;
+        //LibrarianBuilder pb;
         try {
             //Vai a base de dados confirmar o login e a password...
-            resultSet = st.executeQuery("select * from User where idUser='" + id + "';");
+            resultSet = st.executeQuery("select * from User where idUser=" + id + ";");
             //-1 -> existe mas a pass está mal
             while (resultSet.next()) {
-                int[] type = new int[3];
-                type[0] = resultSet.getInt("adminaccess");
-                type[1] = resultSet.getInt("readeraccess");
-                type[2] = resultSet.getInt("librarianaccess");
-                pb = new LibrarianBuilder();
+                Person pb = new Person();
                 pb.setId(resultSet.getInt("idUser"));
                 pb.setAddress(resultSet.getString("address"));
                 pb.setName(resultSet.getString("name"));
                 pb.setLogin(resultSet.getString("login"));
                 pb.setEmail(resultSet.getString("email"));
                 pb.setPassword(resultSet.getString("md5_pass"));
-                pb.setExpires(resultSet.getString("expires"));
                 pb.setPostalcode(resultSet.getString("postalcode"));
                 pb.setCity(resultSet.getString("city"));
                 pb.setCountry(resultSet.getString("country"));
                 pb.setPhone(resultSet.getString("phonenumber"));
-                pb.setType(type);
                 
-                return pb.Build();//resultSet.getByte("type");
+                /*******BuilderPattern******/
+                
+                LibrarianBuilder lb = new LibrarianBuilder();
+                Director d = new Director(lb);
+                d.Construct(pb,getPersonTypeById(pb.getId()) , getPersonExpiresById(pb.getId()), getPersonLimitById(pb.getId()));
+                
+                return lb.getResult();
+                
+                
+                //return pb.Build();//resultSet.getByte("type");
                 
             }
         } catch (Exception e) {

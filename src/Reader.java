@@ -25,6 +25,7 @@ public class Reader {
         this.p = p;
         this.limit = limit;
         this.expires = expires;
+        this.type=type;
     }
     
     public Reader(){

@@ -36,4 +36,9 @@ public class LibrarianBuilder implements Builder{
     public void buildLimit(int limit) {
         
     }
+    
+    public Librarian getResult()
+    {
+        return new Librarian(p,expires,type);
+    }
 }

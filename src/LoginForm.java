@@ -145,13 +145,14 @@ private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:even
     if (p.getId() > 0) {
         int option = type_box.getSelectedIndex();
         //System.out.println(option);
-        if (option == 0 && p.type[0] == 1) {
+        int[] type = dat.getPersonType(p);
+        if (option == 0 && type[0] == 1) {
             new AdminForm(dat).setVisible(true);
             dispose();
-        } else if (option == 1 && p.type[2] == 1) {
+        } else if (option == 1 && type[2] == 1) {
             new LibrarianForm(dat).setVisible(true);
             dispose();
-        } else if (option == 2 && p.type[1] == 1) {
+        } else if (option == 2 && type[1] == 1) {
             new UserForm(dat).setVisible(true);
             dispose();
         } else if(option == -1){
