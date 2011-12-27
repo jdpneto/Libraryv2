@@ -18,11 +18,11 @@ import java.util.Vector;
  */
 public class EditLibrarian extends javax.swing.JFrame {
     
-    dataManager dat;
+    Library dat;
     Librarian lib = new Librarian();
     /** Creates new form EditLibrarian */
-    public EditLibrarian(dataManager dat) {
-        this.dat = dat;
+    public EditLibrarian() {
+        this.dat = Library.Instance();
         initComponents();
         error.setVisible(false);
         
@@ -363,7 +363,7 @@ private void country_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
     // TODO add your handling code here:
-    new AdminManageLibrarians(dat).setVisible(true);
+    new AdminManageLibrarians().setVisible(true);
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
 
@@ -401,7 +401,7 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             error.setVisible(true);
         else
         {
-            new AdminManageLibrarians(dat).setVisible(true);
+            new AdminManageLibrarians().setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_submit_buttonMouseReleased

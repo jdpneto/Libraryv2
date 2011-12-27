@@ -18,11 +18,11 @@ import java.util.Vector;
  */
 public class EditUser extends javax.swing.JFrame {
     
-    dataManager dat;
+    Library dat;
     int current_id;
     /** Creates new form EditUser */
-    public EditUser(dataManager dat) {
-        this.dat = dat;
+    public EditUser() {
+        this.dat = Library.Instance();
         current_id = -1;
         initComponents();
         error.setVisible(false);
@@ -363,7 +363,7 @@ private void limit_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
     // TODO add your handling code here:
-    new AdminManageUsers(dat).setVisible(true);
+    new AdminManageUsers().setVisible(true);
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
 
@@ -438,7 +438,7 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             error.setVisible(true);
         else
         {
-            new AdminManageUsers(dat).setVisible(true);
+            new AdminManageUsers().setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_submit_buttonMouseReleased

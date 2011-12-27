@@ -14,10 +14,10 @@
  */
 public class ViewNotifications extends javax.swing.JFrame {
 
-    dataManager dat;
+    Library dat;
     /** Creates new form ViewNotifications */
-    public ViewNotifications(dataManager dat) {
-        this.dat = dat;
+    public ViewNotifications() {
+        this.dat = Library.Instance();
         initComponents();
     }
 
@@ -97,7 +97,7 @@ private void remove_notificationActionPerformed(java.awt.event.ActionEvent evt) 
 
 private void users_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_users_panelActionPerformed
 // TODO add your handling code here:
-    new UserForm(dat).setVisible(true);
+    new UserForm().setVisible(true);
     dispose();
 }//GEN-LAST:event_users_panelActionPerformed
 

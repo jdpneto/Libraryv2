@@ -16,7 +16,7 @@ public class Main {
         // TODO code application logic here
         //System.out.println(dat.checkLogin("admin", "admin"));
         //System.out.println(dat.checkLogin("admin", "nonadmin"));
-        new Library();
+        new LoginForm().setVisible(true);
         
     }
     

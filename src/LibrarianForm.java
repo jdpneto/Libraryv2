@@ -14,10 +14,10 @@
  */
 public class LibrarianForm extends javax.swing.JFrame {
 
-    dataManager dat;
+    Library dat;
     /** Creates new form LibrarianForm */
-    public LibrarianForm(dataManager dat) {
-        this.dat = dat;
+    public LibrarianForm() {
+        this.dat = Library.Instance();
         initComponents();
     }
 
@@ -135,30 +135,30 @@ public class LibrarianForm extends javax.swing.JFrame {
 
 private void add_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_userActionPerformed
 // TODO add your handling code here:
-    new AddUser(dat,2).setVisible(true);
+    new AddUser(2).setVisible(true);
     dispose();
 }//GEN-LAST:event_add_userActionPerformed
 
 private void manage_bookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_bookActionPerformed
 // TODO add your handling code here:
-    new ManageBooks(dat).setVisible(true);
+    new ManageBooks().setVisible(true);
     dispose();
 }//GEN-LAST:event_manage_bookActionPerformed
 
 private void manage_reservationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_reservationsActionPerformed
 // TODO add your handling code here:
-    new ManageReservations(dat).setVisible(true);
+    new ManageReservations().setVisible(true);
     dispose();
 }//GEN-LAST:event_manage_reservationsActionPerformed
 
 private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
 // TODO add your handling code here:
-    new LoginForm(dat).setVisible(true);
+    new LoginForm().setVisible(true);
     dispose();
 }//GEN-LAST:event_logoutActionPerformed
 
     private void search_usersMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_usersMouseReleased
-        new SearchEditUser(dat).setVisible(true);
+        new SearchEditUser().setVisible(true);
         dispose();
     }//GEN-LAST:event_search_usersMouseReleased
 

@@ -17,10 +17,10 @@ import java.util.Date;
  */
 public class AddLibrarian extends javax.swing.JFrame {
     
-    dataManager dat;
+    Library dat;
     /** Creates new form AddLibrarian */
-    public AddLibrarian(dataManager dat) {
-        this.dat = dat;
+    public AddLibrarian() {
+        this.dat = Library.Instance();
         initComponents();
         expires_field.setEnabled(false);
     }
@@ -332,7 +332,7 @@ private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     Person p = new Person(-1,email,street,username,password,name,postal_code,city,phone,country);
     Librarian l = new Librarian(p, expires_field.getText(),type);
     dat.storeLibrarian(l);
-    new AdminManageLibrarians(dat).setVisible(true);
+    new AdminManageLibrarians().setVisible(true);
     dispose();
 }//GEN-LAST:event_submit_buttonActionPerformed
 
@@ -358,7 +358,7 @@ private void country_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
 // TODO add your handling code here:
-    new AdminManageLibrarians(dat).setVisible(true);
+    new AdminManageLibrarians().setVisible(true);
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
 

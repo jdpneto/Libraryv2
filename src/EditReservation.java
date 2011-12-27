@@ -14,10 +14,10 @@
  */
 public class EditReservation extends javax.swing.JFrame {
 
-    dataManager dat;
+    Library dat;
     /** Creates new form EditReservation */
-    public EditReservation(dataManager dat) {
-        this.dat = dat;
+    public EditReservation() {
+        this.dat = Library.Instance();
         initComponents();
         end_field.setEnabled(false);
         start_field.setEnabled(false);
@@ -220,7 +220,7 @@ private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
 // TODO add your handling code here:
-    new ManageReservations(dat).setVisible(true);
+    new ManageReservations().setVisible(true);
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
 

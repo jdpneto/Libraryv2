@@ -17,11 +17,11 @@ import java.util.Date;
  */
 public class AddReservation extends javax.swing.JFrame {
 
-    dataManager dat;
+    Library dat;
 
     /** Creates new form AddReservation */
-    public AddReservation(dataManager dat) {
-        this.dat = dat;
+    public AddReservation() {
+        this.dat = Library.Instance();
         initComponents();
         error.setVisible(false);
         start_field.setEnabled(false);
@@ -242,7 +242,7 @@ private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     if(!title.equals(""))
     {
         dat.storeReservation(tmp);
-        new ManageReservations(dat).setVisible(true);
+        new ManageReservations().setVisible(true);
         dispose();
     }
     else
@@ -254,7 +254,7 @@ private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
 // TODO add your handling code here:
-    new ManageReservations(dat).setVisible(true);
+    new ManageReservations().setVisible(true);
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
 

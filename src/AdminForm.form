@@ -138,6 +138,7 @@
         <Property name="text" type="java.lang.String" value="Export Book Database to json"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="export_jsonMouseReleased"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="export_jsonActionPerformed"/>
       </Events>
     </Component>
@@ -146,6 +147,7 @@
         <Property name="text" type="java.lang.String" value="Export Book Database to xml"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="export_xmlMouseReleased"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="export_xmlActionPerformed"/>
       </Events>
     </Component>

@@ -35,7 +35,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="696" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="699" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="300" max="-2" attributes="0"/>
@@ -43,7 +43,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="find_book" pref="637" max="32767" attributes="0"/>
+                      <Component id="find_book" pref="641" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="find_button" min="-2" pref="47" max="-2" attributes="0"/>
                   </Group>
@@ -70,7 +70,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="comment_button" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="29" max="32767" attributes="0"/>
+                      <EmptySpace pref="31" max="32767" attributes="0"/>
                       <Component id="users_panel" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>

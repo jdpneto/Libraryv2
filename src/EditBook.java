@@ -18,10 +18,10 @@ import java.util.Vector;
  */
 public class EditBook extends javax.swing.JFrame {
     
-    dataManager dat;
+    Library dat;
     /** Creates new form EditBook */
-    public EditBook(dataManager dat) {
-        this.dat = dat;
+    public EditBook() {
+        this.dat = Library.Instance();
         initComponents();
         error.setVisible(false);
     }
@@ -284,7 +284,7 @@ private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
     // TODO add your handling code here:
-    new ManageBooks(dat).setVisible(true);
+    new ManageBooks().setVisible(true);
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
 
@@ -330,7 +330,7 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         if(b.getIsbn().length()<1)
             error.setVisible(true);
         else{
-            new ManageBooks(dat).setVisible(true);
+            new ManageBooks().setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_submit_buttonMouseReleased

@@ -14,10 +14,10 @@
  */
 public class ManageReservations extends javax.swing.JFrame {
 
-    dataManager dat;
+    Library dat;
     /** Creates new form ManageReservations */
-    public ManageReservations(dataManager dat) {
-        this.dat = dat;
+    public ManageReservations() {
+        this.dat = Library.Instance();
         initComponents();
     }
 
@@ -135,25 +135,25 @@ public class ManageReservations extends javax.swing.JFrame {
 
 private void add_reservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_reservationActionPerformed
 // TODO add your handling code here:
-    new AddReservation(dat).setVisible(true);
+    new AddReservation().setVisible(true);
     dispose();
 }//GEN-LAST:event_add_reservationActionPerformed
 
 private void delete_reservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_reservationActionPerformed
 // TODO add your handling code here:
-    new DeleteReservation(dat).setVisible(true);
+    new DeleteReservation().setVisible(true);
     dispose();
 }//GEN-LAST:event_delete_reservationActionPerformed
 
 private void librarians_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_librarians_panelActionPerformed
 // TODO add your handling code here:
-    new LibrarianForm(dat).setVisible(true);
+    new LibrarianForm().setVisible(true);
     dispose();
 }//GEN-LAST:event_librarians_panelActionPerformed
 
 private void edit_reservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_reservationActionPerformed
 // TODO add your handling code here:
-    new EditReservation(dat).setVisible(true);
+    new EditReservation().setVisible(true);
     dispose();
 }//GEN-LAST:event_edit_reservationActionPerformed
 

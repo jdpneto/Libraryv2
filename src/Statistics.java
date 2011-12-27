@@ -14,10 +14,10 @@
  */
 public class Statistics extends javax.swing.JFrame {
 
-    dataManager dat;
+    Library dat;
     /** Creates new form Statistics */
-    public Statistics(dataManager dat) {
-        this.dat = dat;
+    public Statistics() {
+        this.dat = Library.Instance();
         initComponents();
     }
 
@@ -72,7 +72,7 @@ public class Statistics extends javax.swing.JFrame {
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
 // TODO add your handling code here:
-    new AdminForm(dat).setVisible(true);
+    new AdminForm().setVisible(true);
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
 

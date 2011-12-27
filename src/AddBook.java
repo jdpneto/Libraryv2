@@ -14,10 +14,10 @@
  */
 public class AddBook extends javax.swing.JFrame {
 
-    dataManager dat;
+    Library dat;
     /** Creates new form AddBook */
-    public AddBook(dataManager dat) {
-        this.dat = dat;
+    public AddBook() {
+        this.dat = Library.Instance();
         initComponents();
     }
 
@@ -222,13 +222,13 @@ private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     //store all information
     Book tmp = new Book(ISBN,title,author,year,category,numberOfCopies);
     dat.storeBook(tmp);
-    new ManageBooks(dat).setVisible(true);
+    new ManageBooks().setVisible(true);
     dispose();
 }//GEN-LAST:event_submit_buttonActionPerformed
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
 // TODO add your handling code here:
-    new ManageBooks(dat).setVisible(true);
+    new ManageBooks().setVisible(true);
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
 

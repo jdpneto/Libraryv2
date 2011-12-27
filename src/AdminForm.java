@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -14,11 +17,18 @@
  */
 public class AdminForm extends javax.swing.JFrame {
 
-    dataManager dat;
+    Library dat;
     /** Creates new form AdminForm */
-    public AdminForm(dataManager dat) {
-        this.dat = dat;
+    public AdminForm() {
+        this.dat = Library.Instance();
         initComponents();
+    }
+    
+    private void export_file(AbstractParserCreator parserCreator)
+    {
+        ArrayList<Book> books= dat.getAllBooks();
+        Parser parser = parserCreator.createParser();
+        parser.toFile(books);
     }
 
     /** This method is called from within the constructor to
@@ -78,6 +88,11 @@ public class AdminForm extends javax.swing.JFrame {
         });
 
         export_json.setText("Export Book Database to json");
+        export_json.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                export_jsonMouseReleased(evt);
+            }
+        });
         export_json.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 export_jsonActionPerformed(evt);
@@ -85,6 +100,11 @@ public class AdminForm extends javax.swing.JFrame {
         });
 
         export_xml.setText("Export Book Database to xml");
+        export_xml.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                export_xmlMouseReleased(evt);
+            }
+        });
         export_xml.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 export_xmlActionPerformed(evt);
@@ -146,25 +166,25 @@ public class AdminForm extends javax.swing.JFrame {
 
 private void user_managementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_managementActionPerformed
 // TODO add your handling code here:
-    new AdminManageUsers(dat).setVisible(true);
+    new AdminManageUsers().setVisible(true);
     dispose();
 }//GEN-LAST:event_user_managementActionPerformed
 
 private void librarian_managementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_librarian_managementActionPerformed
 // TODO add your handling code here:
-    new AdminManageLibrarians(dat).setVisible(true);
+    new AdminManageLibrarians().setVisible(true);
     dispose();
 }//GEN-LAST:event_librarian_managementActionPerformed
 
 private void statisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statisticsActionPerformed
 // TODO add your handling code here:
-    new Statistics(dat).setVisible(true);
+    new Statistics().setVisible(true);
     dispose();
 }//GEN-LAST:event_statisticsActionPerformed
 
 private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
 // TODO add your handling code here:
-    new LoginForm(dat).setVisible(true);
+    new LoginForm().setVisible(true);
     dispose();
 }//GEN-LAST:event_logoutActionPerformed
 
@@ -175,6 +195,16 @@ private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private void export_xmlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_export_xmlActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_export_xmlActionPerformed
+
+    private void export_jsonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_export_jsonMouseReleased
+        AbstractParserCreator json_parser = new JSONParserCreator();
+        export_file(json_parser);
+    }//GEN-LAST:event_export_jsonMouseReleased
+
+    private void export_xmlMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_export_xmlMouseReleased
+        AbstractParserCreator xml_parser = new XMLParserCreator();
+        export_file(xml_parser);
+    }//GEN-LAST:event_export_xmlMouseReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton export_json;

@@ -14,10 +14,10 @@
  */
 public class ManageBooks extends javax.swing.JFrame {
 
-    dataManager dat;
+    Library dat;
     /** Creates new form ManageBooks */
-    public ManageBooks(dataManager dat) {
-        this.dat = dat;
+    public ManageBooks() {
+        this.dat = Library.Instance();
         initComponents();
     }
 
@@ -136,25 +136,25 @@ public class ManageBooks extends javax.swing.JFrame {
 
 private void add_bookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_bookActionPerformed
 // TODO add your handling code here:
-    new AddBook(dat).setVisible(true);
+    new AddBook().setVisible(true);
     dispose();
 }//GEN-LAST:event_add_bookActionPerformed
 
 private void delete_bookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_bookActionPerformed
 // TODO add your handling code here:
-    new DeleteBook(dat).setVisible(true);
+    new DeleteBook().setVisible(true);
     dispose();
 }//GEN-LAST:event_delete_bookActionPerformed
 
 private void librarians_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_librarians_panelActionPerformed
 // TODO add your handling code here:
-    new LibrarianForm(dat).setVisible(true);
+    new LibrarianForm().setVisible(true);
     dispose();
 }//GEN-LAST:event_librarians_panelActionPerformed
 
 private void edit_bookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_bookActionPerformed
 // TODO add your handling code here:
-    new EditBook(dat).setVisible(true);
+    new EditBook().setVisible(true);
     dispose();
 }//GEN-LAST:event_edit_bookActionPerformed
 

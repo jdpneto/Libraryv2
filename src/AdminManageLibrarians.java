@@ -14,10 +14,10 @@
  */
 public class AdminManageLibrarians extends javax.swing.JFrame {
 
-    dataManager dat;
+    Library dat;
     /** Creates new form AdminManageLibrarians */
-    public AdminManageLibrarians(dataManager dat) {
-        this.dat = dat;
+    public AdminManageLibrarians() {
+        this.dat = Library.Instance();
         initComponents();
         list_panel.setListData(dat.getLibrarians());
     }
@@ -136,13 +136,13 @@ public class AdminManageLibrarians extends javax.swing.JFrame {
 
 private void add_librarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_librarianActionPerformed
 // TODO add your handling code here:
-    new AddLibrarian(dat).setVisible(true);
+    new AddLibrarian().setVisible(true);
     dispose();
 }//GEN-LAST:event_add_librarianActionPerformed
 
 private void edit_librarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_librarianActionPerformed
 // TODO add your handling code here:
-    new EditLibrarian(dat).setVisible(true);
+    new EditLibrarian().setVisible(true);
     dispose();
 }//GEN-LAST:event_edit_librarianActionPerformed
 
@@ -152,13 +152,13 @@ private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 
 private void delete_librarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_librarianActionPerformed
 // TODO add your handling code here:
-    new DeleteLibrarian(dat).setVisible(true);
+    new DeleteLibrarian().setVisible(true);
     dispose();
 }//GEN-LAST:event_delete_librarianActionPerformed
 
 private void admins_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admins_panelActionPerformed
 // TODO add your handling code here:
-    new AdminForm(dat).setVisible(true);
+    new AdminForm().setVisible(true);
     dispose();
 }//GEN-LAST:event_admins_panelActionPerformed
 

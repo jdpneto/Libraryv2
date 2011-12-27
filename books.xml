@@ -1,0 +1,137 @@
+<list>
+  <Book>
+    <isbn>9780552552097</isbn>
+    <name>Eragon</name>
+    <author></author>
+    <year>2005</year>
+    <category>Fantasia</category>
+    <number__of__copies>6</number__of__copies>
+    <comments/>
+  </Book>
+  <Book>
+    <isbn>9780552552110</isbn>
+    <name>Eldest</name>
+    <author></author>
+    <year>2006</year>
+    <category>Fantasia</category>
+    <number__of__copies>8</number__of__copies>
+    <comments/>
+  </Book>
+  <Book>
+    <isbn>9780552552127</isbn>
+    <name>Brisingr</name>
+    <author></author>
+    <year>2009</year>
+    <category>Fantasia</category>
+    <number__of__copies>9</number__of__copies>
+    <comments/>
+  </Book>
+  <Book>
+    <isbn>9789722325332</isbn>
+    <name>Harry Potter e a Pedra Filosofal</name>
+    <author></author>
+    <year>1997</year>
+    <category>Fantasia</category>
+    <number__of__copies>8</number__of__copies>
+    <comments/>
+  </Book>
+  <Book>
+    <isbn>9789722325691</isbn>
+    <name>Harry Potter e a Câmara dos Segredos</name>
+    <author></author>
+    <year>1998</year>
+    <category>Fantasia</category>
+    <number__of__copies>10</number__of__copies>
+    <comments/>
+  </Book>
+  <Book>
+    <isbn>9789722326018</isbn>
+    <name>Harry Potter e o Prisioneiro de Azkaban</name>
+    <author></author>
+    <year>1999</year>
+    <category>Fantasia</category>
+    <number__of__copies>12</number__of__copies>
+    <comments/>
+  </Book>
+  <Book>
+    <isbn>9789722326803</isbn>
+    <name>Harry Potter e o Cálice de Fogo</name>
+    <author></author>
+    <year>2000</year>
+    <category>Fantasia</category>
+    <number__of__copies>14</number__of__copies>
+    <comments/>
+  </Book>
+  <Book>
+    <isbn>9789722331005</isbn>
+    <name>Harry Potter e a Ordem da Fénix</name>
+    <author></author>
+    <year>2003</year>
+    <category>Fantasia</category>
+    <number__of__copies>16</number__of__copies>
+    <comments/>
+  </Book>
+  <Book>
+    <isbn>9789722338356</isbn>
+    <name>Harry Potter e os Talismãs da Morte</name>
+    <author></author>
+    <year>2007</year>
+    <category>Fantasia</category>
+    <number__of__copies>20</number__of__copies>
+    <comments/>
+  </Book>
+  <Book>
+    <isbn>9789722520829</isbn>
+    <name>As Aventuras de Sherlock Holmes</name>
+    <author></author>
+    <year>1892</year>
+    <category>Policial</category>
+    <number__of__copies>3</number__of__copies>
+    <comments/>
+  </Book>
+  <Book>
+    <isbn>9789724129761</isbn>
+    <name>Um Crime no Expresso do Oriente</name>
+    <author></author>
+    <year>1892</year>
+    <category>Policial</category>
+    <number__of__copies>5</number__of__copies>
+    <comments/>
+  </Book>
+  <Book>
+    <isbn>9789727570430</isbn>
+    <name>Osteoporose</name>
+    <author></author>
+    <year>1998</year>
+    <category>Medico</category>
+    <number__of__copies>1</number__of__copies>
+    <comments/>
+  </Book>
+  <Book>
+    <isbn>9789727573899</isbn>
+    <name>Cirurgia Oncológica do Nariz</name>
+    <author></author>
+    <year>2006</year>
+    <category>Medico</category>
+    <number__of__copies>1</number__of__copies>
+    <comments/>
+  </Book>
+  <Book>
+    <isbn>9789727574155</isbn>
+    <name>Ossos e Articulações</name>
+    <author></author>
+    <year>2006</year>
+    <category>Medico</category>
+    <number__of__copies>1</number__of__copies>
+    <comments/>
+  </Book>
+  <Book>
+    <isbn>9789895579129</isbn>
+    <name>Herança</name>
+    <author></author>
+    <year>2011</year>
+    <category>Fantasia</category>
+    <number__of__copies>16</number__of__copies>
+    <comments/>
+  </Book>
+</list>

@@ -14,10 +14,10 @@
  */
 public class AdminManageUsers extends javax.swing.JFrame {
 
-    dataManager dat;
+    Library dat;
     /** Creates new form AdminManageUsers */
-    public AdminManageUsers(dataManager dat) {
-        this.dat = dat;
+    public AdminManageUsers() {
+        this.dat = Library.Instance();
         initComponents();
         list_panel.setListData(dat.getReaders());
     }
@@ -140,25 +140,25 @@ private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 
 private void add_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_userActionPerformed
 // TODO add your handling code here:
-    new AddUser(dat,1).setVisible(true);
+    new AddUser(1).setVisible(true);
     dispose();
 }//GEN-LAST:event_add_userActionPerformed
 
 private void edit_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_userActionPerformed
 // TODO add your handling code here:
-    new EditUser(dat).setVisible(true);
+    new EditUser().setVisible(true);
     dispose();
 }//GEN-LAST:event_edit_userActionPerformed
 
 private void delete_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_userActionPerformed
 // TODO add your handling code here:
-    new DeleteUser(dat).setVisible(true);
+    new DeleteUser().setVisible(true);
     dispose();
 }//GEN-LAST:event_delete_userActionPerformed
 
 private void admins_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admins_panelActionPerformed
 // TODO add your handling code here:
-    new AdminForm(dat).setVisible(true);
+    new AdminForm().setVisible(true);
     dispose();
 }//GEN-LAST:event_admins_panelActionPerformed
 

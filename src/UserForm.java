@@ -14,10 +14,10 @@
  */
 public class UserForm extends javax.swing.JFrame {
 
-    dataManager dat;
+    Library dat;
     /** Creates new form UserForm */
-    public UserForm(dataManager dat) {
-        this.dat = dat;
+    public UserForm() {
+        this.dat = Library.Instance();
         initComponents();
     }
 
@@ -113,19 +113,19 @@ public class UserForm extends javax.swing.JFrame {
 
 private void find_bookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_find_bookActionPerformed
 // TODO add your handling code here:
-    new FindBook(dat).setVisible(true);
+    new FindBook().setVisible(true);
     dispose();
 }//GEN-LAST:event_find_bookActionPerformed
 
 private void view_notificationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_notificationsActionPerformed
 // TODO add your handling code here:
-    new ViewNotifications(dat).setVisible(true);
+    new ViewNotifications().setVisible(true);
     dispose();
 }//GEN-LAST:event_view_notificationsActionPerformed
 
 private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
 // TODO add your handling code here:
-    new LoginForm(dat).setVisible(true);
+    new LoginForm().setVisible(true);
     dispose();
 }//GEN-LAST:event_logoutActionPerformed
 

@@ -20,10 +20,10 @@ import java.util.logging.Logger;
  */
 public class DeleteUser extends javax.swing.JFrame {
     
-    dataManager dat;
+    Library dat;
     /** Creates new form DeleteUser */
-    public DeleteUser(dataManager dat) {
-        this.dat = dat;
+    public DeleteUser() {
+        this.dat = Library.Instance();
         initComponents();
         list_panel.setListData(dat.getReaders());
     }
@@ -147,7 +147,7 @@ public class DeleteUser extends javax.swing.JFrame {
     }//GEN-LAST:event_delete_buttonMouseReleased
     
     private void back_buttonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back_buttonMouseReleased
-        new AdminManageUsers(dat).setVisible(true);
+        new AdminManageUsers().setVisible(true);
         dispose();
     }//GEN-LAST:event_back_buttonMouseReleased
     

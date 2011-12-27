@@ -20,11 +20,11 @@ import java.util.logging.Logger;
  */
 public class DeleteReservation extends javax.swing.JFrame {
 
-    dataManager dat;
+    Library dat;
 
     /** Creates new form DeleteUser */
-    public DeleteReservation(dataManager dat) {
-        this.dat = dat;
+    public DeleteReservation() {
+        this.dat = Library.Instance();
         initComponents();
         list_panel.setListData(dat.getReservationsList());
     }
@@ -158,7 +158,7 @@ private void delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
 // TODO add your handling code here:
-    new ManageReservations(dat).setVisible(true);
+    new ManageReservations().setVisible(true);
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -16,11 +16,11 @@
  */
 public class LoginForm extends javax.swing.JFrame {
 
-    dataManager dat;
+    Library dat;
 
     /** Creates new form LoginForm */
-    public LoginForm(dataManager dat) {
-        this.dat = dat;
+    public LoginForm() {
+        this.dat = Library.Instance();
         initComponents();
     }
 
@@ -146,13 +146,13 @@ private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:even
         //System.out.println(option);
         int[] type = dat.getPersonType(p);
         if (option == 0 && type[0] == 1) {
-            new AdminForm(dat).setVisible(true);
+            new AdminForm().setVisible(true);
             dispose();
         } else if (option == 1 && type[2] == 1) {
-            new LibrarianForm(dat).setVisible(true);
+            new LibrarianForm().setVisible(true);
             dispose();
         } else if (option == 2 && type[1] == 1) {
-            new UserForm(dat).setVisible(true);
+            new UserForm().setVisible(true);
             dispose();
         } else if(option == -1){
             error_msg.setText("Error");

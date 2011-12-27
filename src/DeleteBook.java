@@ -20,11 +20,11 @@ import java.util.logging.Logger;
  */
 public class DeleteBook extends javax.swing.JFrame {
 
-    dataManager dat;
+    Library dat;
 
     /** Creates new form DeleteBook */
-    public DeleteBook(dataManager dat) {
-        this.dat = dat;
+    public DeleteBook() {
+        this.dat = Library.Instance();
         initComponents();
         list_panel.setListData(dat.getAllBookTitles());
     }
@@ -157,7 +157,7 @@ private void delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
 // TODO add your handling code here:
-    new ManageBooks(dat).setVisible(true);
+    new ManageBooks().setVisible(true);
     dispose();
 }//GEN-LAST:event_back_buttonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
