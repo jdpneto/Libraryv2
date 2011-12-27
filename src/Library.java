@@ -124,29 +124,7 @@ public class Library {
         }
     }
 
-    public ArrayList<Reservation> expiredReservations(){
-        ArrayList<Reservation> expired_reservations = new ArrayList<Reservation>();
-        Date actual = new Date();
-        for(Reservation reservation : this.getReservations()){
-            if(reservation.getEndDate().before(actual)){
-                expired_reservations.add(reservation);
-            }
-        }
-        return expired_reservations;
-    }
 
-    public ArrayList<Reservation> expiringReservations(long interval){
-        ArrayList<Reservation> expiring_reservations = new ArrayList<Reservation>();
-        Date actual = new Date();
-        //get time in ms
-        long interval_in_ms = interval*24*60*60*1000;
-        for(Reservation reservation : this.getReservations()){
-            if(actual.after(reservation.getEndDate()) && (reservation.getEndDate().getTime()-actual.getTime()) < interval_in_ms){
-                expiring_reservations.add(reservation);
-            }
-        }
-        return expiring_reservations;
-    }
 
     public ArrayList<Admin> getAdmins() {
         return admins;

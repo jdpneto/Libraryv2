@@ -1231,7 +1231,6 @@ public class dataManager implements Subject,Observer{
         
     }
     
-    
     @Override
     public void setState(ArrayList<Stat> state) {
         subjectState = state;
@@ -1243,5 +1242,16 @@ public class dataManager implements Subject,Observer{
     @Override
     public void update(Subject s) {
         subjectState = s.getState();
+    }
+    
+    //**************SINGLETON*****************
+    
+    private static dataManager _instance = null;
+    
+    public static dataManager Instance()
+    {
+        if(_instance == null)
+            _instance = new dataManager();
+        return _instance;
     }
 }
