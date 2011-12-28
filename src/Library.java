@@ -100,12 +100,17 @@ public class Library implements Subject,Observer{
     public ArrayList<Reservation> expiredReservations(){
         ArrayList<Reservation> expired_reservations = new ArrayList<Reservation>();
         Date actual = new Date();
-        //ArrayList<Reservation> reservation = getAllReservations();
-        for(Reservation reservation : getAllReservations()){
-            if(reservation.getEndDate().before(actual)){
-                expired_reservations.add(reservation);
-            }
+        List<Reservation> reservation = getAllReservations();
+        ListIterator<Reservation> iter = new ListIterator(reservation);
+        
+        if(!iter.IsDone())
+        {
+            expired_reservations.add(iter.First());
+            while(!iter.IsDone())
+                expired_reservations.add(iter.Next());
         }
+        
+        
         return expired_reservations;
     }
     
@@ -114,11 +119,23 @@ public class Library implements Subject,Observer{
         Date actual = new Date();
         //get time in ms
         long interval_in_ms = interval*24*60*60*1000;
-        for(Reservation reservation : getAllReservations()){
-            if(actual.after(reservation.getEndDate()) && (reservation.getEndDate().getTime()-actual.getTime()) < interval_in_ms){
-                expiring_reservations.add(reservation);
+        
+        List<Reservation> reservations = getAllReservations();
+        ListIterator<Reservation> iter = new ListIterator(reservations);
+        if(!iter.IsDone())
+        {
+            expiring_reservations.add(iter.First());
+            while(!iter.IsDone())
+            {
+                Reservation reservation = iter.Next();
+                if(actual.after(reservation.getEndDate()) && (reservation.getEndDate().getTime()-actual.getTime()) < interval_in_ms){
+                    expiring_reservations.add(reservation);
             }
+                
+            }
+                
         }
+        
         return expiring_reservations;
     }
     
@@ -1260,8 +1277,29 @@ public class Library implements Subject,Observer{
         return reservations;
     }
     
-    public ArrayList<Reservation> getAllReservations() {
-        ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+//    public ArrayList<Reservation> getAllReservations() {
+//        ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+//        try {
+//            
+//            resultSet = st.executeQuery("select * from Reservation;");
+//            Reservation tmp;
+//            while (resultSet.next()) {
+//                tmp = new Reservation();
+//                tmp.setId(resultSet.getInt("idReservation"));
+//                tmp.setStartDate(stringToDate(resultSet.getString("startdate")));
+//                tmp.setEndDate(stringToDate(resultSet.getString("enddate")));
+//                tmp.setUser_id(resultSet.getInt("user"));
+//                reservations.add(tmp);
+//            }
+//            return reservations;
+//            
+//        } catch (Exception e) {
+//            System.err.println(e);
+//        }
+//        return reservations;
+//    }
+        public List<Reservation> getAllReservations() {
+        List<Reservation> reservations = new List<Reservation>();
         try {
             
             resultSet = st.executeQuery("select * from Reservation;");
@@ -1272,7 +1310,7 @@ public class Library implements Subject,Observer{
                 tmp.setStartDate(stringToDate(resultSet.getString("startdate")));
                 tmp.setEndDate(stringToDate(resultSet.getString("enddate")));
                 tmp.setUser_id(resultSet.getInt("user"));
-                reservations.add(tmp);
+                reservations.Append(tmp);
             }
             return reservations;
             

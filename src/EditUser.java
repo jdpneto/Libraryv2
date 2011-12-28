@@ -69,6 +69,7 @@ public class EditUser extends javax.swing.JFrame {
         error = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         user_id_field = new javax.swing.JTextField();
+        undo_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -193,14 +194,21 @@ public class EditUser extends javax.swing.JFrame {
 
         jLabel5.setText("User Id:");
 
+        undo_button.setText("Undo Changes");
+        undo_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                undo_buttonMouseReleased(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(292, 292, 292)
+                .add(307, 307, 307)
                 .add(add_user)
-                .addContainerGap(361, Short.MAX_VALUE))
+                .addContainerGap(339, Short.MAX_VALUE))
             .add(layout.createSequentialGroup()
                 .add(32, 32, 32)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
@@ -251,8 +259,9 @@ public class EditUser extends javax.swing.JFrame {
                             .add(20, 20, 20)
                             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                                 .add(error)
-                                .add(back_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 160, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
-                .add(51, 51, 51))
+                                .add(back_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 160, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(undo_button)))))
+                .add(36, 36, 36))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -288,7 +297,8 @@ public class EditUser extends javax.swing.JFrame {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel7)
-                    .add(street_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(street_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(undo_button))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(city_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -309,7 +319,7 @@ public class EditUser extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
                         .add(jButton1)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 16, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 13, Short.MAX_VALUE)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(submit_button)
                             .add(back_button)))
@@ -446,6 +456,10 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             dispose();
         }
     }//GEN-LAST:event_submit_buttonMouseReleased
+
+    private void undo_buttonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_undo_buttonMouseReleased
+        
+    }//GEN-LAST:event_undo_buttonMouseReleased
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel add_user;
@@ -477,6 +491,7 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JTextField search_field;
     private javax.swing.JTextField street_field;
     private javax.swing.JButton submit_button;
+    private javax.swing.JButton undo_button;
     private javax.swing.JTextField user_id_field;
     // End of variables declaration//GEN-END:variables
 }
