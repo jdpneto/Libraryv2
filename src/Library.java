@@ -12,6 +12,10 @@
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,6 +39,12 @@ public class Library implements Subject,Observer{
     ArrayList<Observer> observers = new ArrayList<Observer>();
     ArrayList<Stat> subjectState = new ArrayList<Stat>();
     
+    
+    /******************PROXY*********************/
+    Log adminlog;
+    Log librarianlog;
+    
+    
     public Library() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -48,6 +58,9 @@ public class Library implements Subject,Observer{
             attach(new ImageObserver());
             attach(new PdfObserver());
             
+            /********PROXY*******/
+            librarianlog = new LogProxy("librarian.log");
+            adminlog = new LogProxy("admin.log");
             
         } catch (Exception e) {
             System.err.println(e);
@@ -84,7 +97,7 @@ public class Library implements Subject,Observer{
         return "empty";
     }
     
-        public ArrayList<Reservation> expiredReservations(){
+    public ArrayList<Reservation> expiredReservations(){
         ArrayList<Reservation> expired_reservations = new ArrayList<Reservation>();
         Date actual = new Date();
         //ArrayList<Reservation> reservation = getAllReservations();
@@ -95,7 +108,7 @@ public class Library implements Subject,Observer{
         }
         return expired_reservations;
     }
-
+    
     public ArrayList<Reservation> expiringReservations(long interval){
         ArrayList<Reservation> expiring_reservations = new ArrayList<Reservation>();
         Date actual = new Date();
@@ -383,6 +396,7 @@ public class Library implements Subject,Observer{
                     pb.setCountry(resultSet.getString("country"));
                     pb.setPhone(resultSet.getString("phonenumber"));
                     //System.out.println("Person: "+ pb.toString());
+                    addLineToLog("admin.log","User "+pb.getLogin()+" logged in");
                     return pb;//resultSet.getByte("type");
                 } else {
                     return p;
@@ -614,6 +628,7 @@ public class Library implements Subject,Observer{
                     + l.getPhone() + "');";
             System.out.println(insert);
             st.execute(insert);
+            addLineToLog("admin.log","Librarian "+l.getLogin()+" added!");
             return getLibrarian(l.getLogin());
             
             
@@ -686,6 +701,8 @@ public class Library implements Subject,Observer{
                     + r.getLimit()+");";
             System.out.println(insert);
             st.execute(insert);
+            addLineToLog("admin.log","Reader "+r.getLogin()+" added!");
+            addLineToLog("librarian.log","Reader "+r.getLogin()+" added!");
             return getReader(r.getLogin());
             
             
@@ -718,6 +735,7 @@ public class Library implements Subject,Observer{
                     + a.getPhone() + "');";
             System.out.println(insert);
             st.execute(insert);
+            addLineToLog("admin.log","Admin "+a.getLogin()+" added!");
             return getAdmin(a.getLogin());
             
             
@@ -815,10 +833,12 @@ public class Library implements Subject,Observer{
     }
     
     public boolean removeUser(String id) throws SQLException {
+        Reader p = getReaderById(Integer.parseInt(id));
         preparedStatement = (PreparedStatement) con.prepareStatement("DELETE FROM User WHERE idUser = " + id);
         preparedStatement.executeUpdate();
         if (preparedStatement != null) {
             //return new Person();
+            addLineToLog("admin.log","User "+p.getLogin()+" removed!");
             return true;
         } else {
             // return p;
@@ -829,7 +849,9 @@ public class Library implements Subject,Observer{
     public Person editUser(Person p, String expires, int limit) {
         //TODO: POSSIVEL IMPLEMENTACAO DE UM ITERATOR QUE CIRCULA PELOS VÁRIOS CAMPOS
         //Nao se pode editar id e login
-        Person p2 = getPerson(p.getLogin());
+        //Person p2 = getPerson(p.getLogin());
+        addLineToLog("admin.log","User "+p.getLogin()+" edited!");
+        addLineToLog("librarian.log","User "+p.getLogin()+" edited!");
         String ps = "UPDATE User SET address = '" + p.getAddress() + "',"
                 + " city = '" + p.getCity() + "',"
                 + " country = '" + p.getCountry() + "',"
@@ -957,7 +979,7 @@ public class Library implements Subject,Observer{
                     + b.getNumberOfCopies() + ");";
             System.out.println(insert);
             st.execute(insert);
-            
+            addLineToLog("librarian.log"," Book "+b.getName()+" added!");
             subjectState = generateStats();
             
             Notify();
@@ -972,10 +994,12 @@ public class Library implements Subject,Observer{
     }
     
     public boolean removeBook(String isbn) throws SQLException {
+        Book b = getBookByISBN(isbn);
         preparedStatement = (PreparedStatement) con.prepareStatement("DELETE FROM Book WHERE ISBN = '" + isbn + "';");
         preparedStatement.executeUpdate();
         if (preparedStatement != null) {
             //return new Person();
+            addLineToLog("librarian.log"," Book "+b.getName()+" deleted!");
             subjectState = generateStats();
             Notify();
             return true;
@@ -1061,6 +1085,7 @@ public class Library implements Subject,Observer{
                     + c.getRating() + ");";
             System.out.println(insert);
             st.execute(insert);
+            addLineToLog("librarian.log"," Comment added to book "+c.getBook());
             return c;
         } catch (Exception e) {
             System.err.println(e);
@@ -1136,6 +1161,7 @@ public class Library implements Subject,Observer{
                     + r.getBook() + "');";
             System.out.println(insert);
             st.execute(insert);
+            addLineToLog("librarian.log",r.getBook()+" reserved!");
             return r;
         } catch (Exception e) {
             System.err.println(e);
@@ -1144,10 +1170,12 @@ public class Library implements Subject,Observer{
     }
     
     public boolean removeReservation(String id) throws SQLException {
+        Reservation r = getReservation(id);
         preparedStatement = (PreparedStatement) con.prepareStatement("DELETE FROM Reservation WHERE idReservation = '" + id + "';");
         preparedStatement.executeUpdate();
         if (preparedStatement != null) {
             //return new Person();
+            addLineToLog("librarian.log",r.getBook()+" returned!");
             return true;
         } else {
             // return p;
@@ -1232,7 +1260,7 @@ public class Library implements Subject,Observer{
         return reservations;
     }
     
-        public ArrayList<Reservation> getAllReservations() {
+    public ArrayList<Reservation> getAllReservations() {
         ArrayList<Reservation> reservations = new ArrayList<Reservation>();
         try {
             
@@ -1253,6 +1281,46 @@ public class Library implements Subject,Observer{
         }
         return reservations;
     }
+    
+    public void addLineToLog(String filename, String line)
+    {
+        if(filename.equals("librarian.log"))
+            librarianlog.addLineToLog(line);
+        else
+            adminlog.addLineToLog(line);
+        try {
+            Writer output;
+            output = new BufferedWriter(new FileWriter(filename, true));
+            output.append(line);
+            output.append(System.getProperty("line.separator"));
+            output.close();
+        }catch (IOException ex) {
+            //Logger.getLogger(Library.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    /**************PROXY PATTERN***********************/
+    
+    public String[] loadLibrarianLog()
+    {
+        
+        String ret_log = librarianlog.displayLog();
+        return ret_log.split(System.getProperty("line.separator"));
+    }
+    
+    public String[] loadAdminLog()
+    {
+       
+        String ret_log = adminlog.displayLog();
+        return ret_log.split(System.getProperty("line.separator"));
+    }
+    
+    
+    
+    
+    
+    
     
     /**************OBSERVER PATTERN********************/
     

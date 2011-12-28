@@ -19,6 +19,7 @@ public class LibrarianForm extends javax.swing.JFrame {
     public LibrarianForm() {
         this.dat = Library.Instance();
         initComponents();
+        list_panel.setListData(dat.loadLibrarianLog());
     }
 
     /** This method is called from within the constructor to
@@ -34,7 +35,7 @@ public class LibrarianForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        list_field = new javax.swing.JList();
+        list_panel = new javax.swing.JList();
         add_user = new javax.swing.JButton();
         manage_book = new javax.swing.JButton();
         manage_reservations = new javax.swing.JButton();
@@ -51,9 +52,9 @@ public class LibrarianForm extends javax.swing.JFrame {
 
         jLabel1.setText("Librarian Panel");
 
-        jLabel2.setText("Critical Reservations:");
+        jLabel2.setText("Log");
 
-        jScrollPane1.setViewportView(list_field);
+        jScrollPane1.setViewportView(list_panel);
 
         add_user.setText("Add User");
         add_user.addActionListener(new java.awt.event.ActionListener() {
@@ -167,7 +168,7 @@ private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList list_field;
+    private javax.swing.JList list_panel;
     private javax.swing.JButton logout;
     private javax.swing.JButton manage_book;
     private javax.swing.JButton manage_reservations;

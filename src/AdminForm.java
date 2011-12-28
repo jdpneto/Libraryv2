@@ -22,6 +22,7 @@ public class AdminForm extends javax.swing.JFrame {
     public AdminForm() {
         this.dat = Library.Instance();
         initComponents();
+        list_panel.setListData(dat.loadAdminLog());
     }
     
     private void export_file(AbstractParserCreator parserCreator)

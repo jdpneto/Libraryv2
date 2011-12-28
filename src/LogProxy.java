@@ -7,24 +7,24 @@
  *
  * @author jlnabais
  */
-public class ProxyLog implements Log{
+public class LogProxy implements Log{
     private String filename;
-    private ConcreteLog log;
+    private RealLog log;
     
-    public ProxyLog(String filename){
+    public LogProxy(String filename){
         this.filename = filename;
     }
     
     public String displayLog(){
         if(log == null){
-            log = new ConcreteLog(this.filename);
+            log = new RealLog(this.filename);
         }
         return log.displayLog();
     }
     
     public void addLineToLog(String line){
         if(log == null){
-            log = new ConcreteLog(this.filename);
+            log = new RealLog(this.filename);
         }
         log.addLineToLog(line);
     }

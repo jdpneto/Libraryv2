@@ -20,6 +20,7 @@ public class EditUser extends javax.swing.JFrame {
     
     Library dat;
     int current_id;
+    Person p;
     /** Creates new form EditUser */
     public EditUser() {
         this.dat = Library.Instance();
@@ -395,7 +396,9 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         else if(selected.length == 1 && selected[0].equals("A procura não encontrou resultados"));
         else
         {
+            
             Reader r = dat.getReader((String)selected[0]);
+            
             this.email_field.setText(r.getEmail());
             this.name_field.setText(r.getName());
             this.phone_field.setText(r.getPhone());
@@ -408,13 +411,14 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             this.limit_field.setText(""+r.getLimit());
             this.user_id_field.setText(""+r.getId());
             this.current_id = r.getId();
+            this.p=r.getPerson();
             
         }
         
     }//GEN-LAST:event_list_fieldValueChanged
     
     private void submit_buttonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submit_buttonMouseReleased
-        Person p = new Person();
+        
         p.setEmail(email_field.getText());
         //this.email_field.setText(this.lib.getEmail());
         p.setName(name_field.getText());
@@ -425,7 +429,7 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         //this.id_field.setText(""+this.lib.getId());
         p.setAddress(street_field.getText());
         //this.street_field.setText(this.lib.getAddress());
-        p.setAddress(city_field.getText());
+        p.setCity(city_field.getText());
         //this.city_field.setText(this.lib.getCity());
         p.setPostalcode(postal_code_field.getText());
         //this.postal_code_field.setText(this.lib.getPostalcode());
