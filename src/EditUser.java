@@ -194,6 +194,12 @@ public class EditUser extends javax.swing.JFrame {
 
         jLabel5.setText("User Id:");
 
+        user_id_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                user_id_fieldActionPerformed(evt);
+            }
+        });
+
         undo_button.setText("Undo Changes");
         undo_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -208,7 +214,7 @@ public class EditUser extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .add(307, 307, 307)
                 .add(add_user)
-                .addContainerGap(339, Short.MAX_VALUE))
+                .addContainerGap(342, Short.MAX_VALUE))
             .add(layout.createSequentialGroup()
                 .add(32, 32, 32)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
@@ -219,13 +225,6 @@ public class EditUser extends javax.swing.JFrame {
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(87, 87, 87)
                         .add(submit_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 145, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .add(125, 125, 125)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(email_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                            .add(phone_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                            .add(name_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)))
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jLabel7)
@@ -239,12 +238,16 @@ public class EditUser extends javax.swing.JFrame {
                             .add(limit_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
                             .add(country_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, postal_code_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                            .add(street_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, city_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
                             .add(layout.createSequentialGroup()
                                 .add(expires_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 180, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(27, 27, 27)
-                                .add(jButton1)))))
+                                .add(jButton1))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, street_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+                            .add(email_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+                            .add(phone_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+                            .add(name_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))))
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
@@ -328,6 +331,8 @@ public class EditUser extends javax.swing.JFrame {
                         .add(expires_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
+
+        user_id_field.setEditable(false);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -460,6 +465,10 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private void undo_buttonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_undo_buttonMouseReleased
         
     }//GEN-LAST:event_undo_buttonMouseReleased
+
+    private void user_id_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_id_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_user_id_fieldActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel add_user;

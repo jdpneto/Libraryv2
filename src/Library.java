@@ -28,23 +28,19 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Library implements Subject,Observer{
-    
+public class Library implements Subject, Observer {
+
     private Connection con;
     private Statement st;
     private ResultSet resultSet;
     private PreparedStatement preparedStatement;
-    
     /*******OBJSERVER STATE AND SUBJECTS************/
     ArrayList<Observer> observers = new ArrayList<Observer>();
     ArrayList<Stat> subjectState = new ArrayList<Stat>();
-    
-    
     /******************PROXY*********************/
     Log adminlog;
     Log librarianlog;
-    
-    
+
     public Library() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -52,39 +48,39 @@ public class Library implements Subject,Observer{
             st = (Statement) con.createStatement();
             resultSet = null;
             preparedStatement = null;
-            
-            
+
+
             //**************OBSERVERS***************//
             attach(new ImageObserver());
             attach(new PdfObserver());
-            
+
             /********PROXY*******/
             librarianlog = new LogProxy("librarian.log");
             adminlog = new LogProxy("admin.log");
-            
+
         } catch (Exception e) {
             System.err.println(e);
-            
+
         }
-        
+
     }
     //Obter a variável 'con'
-    
+
     public Connection getCon() {
         return con;
     }
-    
+
     //Obter a variável 'st'
     //teste final
     public Statement getSt() {
         return st;
     }
-    
+
     //Obter a variável 'resultSet'
     public ResultSet getResultSet() {
         return resultSet;
     }
-    
+
     //helper function to get md5 hashes
     public String getMd5(String pass) {
         try {
@@ -96,104 +92,100 @@ public class Library implements Subject,Observer{
         }
         return "empty";
     }
-    
-    public ArrayList<Reservation> expiredReservations(){
+
+    public ArrayList<Reservation> expiredReservations() {
         ArrayList<Reservation> expired_reservations = new ArrayList<Reservation>();
         Date actual = new Date();
         List<Reservation> reservation = getAllReservations();
         ListIterator<Reservation> iter = new ListIterator(reservation);
-        
-        if(!iter.IsDone())
-        {
+
+        if (!iter.IsDone()) {
             expired_reservations.add(iter.First());
-            while(!iter.IsDone())
+            while (!iter.IsDone()) {
                 expired_reservations.add(iter.Next());
+            }
         }
-        
-        
+
+
         return expired_reservations;
     }
-    
-    public ArrayList<Reservation> expiringReservations(long interval){
+
+    public ArrayList<Reservation> expiringReservations(long interval) {
         ArrayList<Reservation> expiring_reservations = new ArrayList<Reservation>();
         Date actual = new Date();
         //get time in ms
-        long interval_in_ms = interval*24*60*60*1000;
-        
+        long interval_in_ms = interval * 24 * 60 * 60 * 1000;
+
         List<Reservation> reservations = getAllReservations();
         ListIterator<Reservation> iter = new ListIterator(reservations);
-        if(!iter.IsDone())
-        {
+        if (!iter.IsDone()) {
             expiring_reservations.add(iter.First());
-            while(!iter.IsDone())
-            {
+            while (!iter.IsDone()) {
                 Reservation reservation = iter.Next();
-                if(actual.after(reservation.getEndDate()) && (reservation.getEndDate().getTime()-actual.getTime()) < interval_in_ms){
+                if (actual.after(reservation.getEndDate()) && (reservation.getEndDate().getTime() - actual.getTime()) < interval_in_ms) {
                     expiring_reservations.add(reservation);
+                }
+
             }
-                
-            }
-                
+
         }
-        
+
         return expiring_reservations;
     }
-    
-    public ArrayList<Stat> generateStats()
-    {
+
+    public ArrayList<Stat> generateStats() {
         ArrayList<Stat> stats = new ArrayList<Stat>();
         String tmp;
-        int total=0;
+        int total = 0;
         try {
             resultSet = st.executeQuery("select category from Book;");
             while (resultSet.next()) {
                 total++;
                 Book b = new Book();
                 tmp = resultSet.getString("category");
-                int i = exists(stats,tmp);
-                if(i >= 0)
+                int i = exists(stats, tmp);
+                if (i >= 0) {
                     stats.get(i).addOne();
-                else
-                    stats.add(new Stat(tmp,1));
+                } else {
+                    stats.add(new Stat(tmp, 1));
+                }
                 //resultSet.getString("category");
             }
-            
-            for(Stat s : stats)
-            {
-                System.out.println((s.getValue()*100)/total);
-                s.setValue(Math.round((s.getValue()*100)/total));
+
+            for (Stat s : stats) {
+                System.out.println((s.getValue() * 100) / total);
+                s.setValue(Math.round((s.getValue() * 100) / total));
             }
             int offset = 0;
-            for(Stat s : stats)
-                offset +=s.getValue();
-            
-            offset = (100-offset);
-            stats.get(0).setValue(stats.get(0).getValue()+offset);
-            
-            
+            for (Stat s : stats) {
+                offset += s.getValue();
+            }
+
+            offset = (100 - offset);
+            stats.get(0).setValue(stats.get(0).getValue() + offset);
+
+
         } catch (Exception e) {
             System.err.println(e);
         }
-        
+
         return stats;
     }
-    private int exists(ArrayList<Stat> tmp, String type)
-    {
-        for (int i = 0; i < tmp.size(); i++)
-        {
-            if(tmp.get(i).getType().equals(type))
-            {
+
+    private int exists(ArrayList<Stat> tmp, String type) {
+        for (int i = 0; i < tmp.size(); i++) {
+            if (tmp.get(i).getType().equals(type)) {
                 return i;
             }
         }
         return -1;
     }
-    
+
     //just because I sometipes use toMd5
     public String toMd5(String pass) {
         return getMd5(pass);
     }
-    
+
     /***************ADDRESS******************
      *
      * NOT NEEDED IN THE NEW DB SCHEME
@@ -297,21 +289,20 @@ public class Library implements Subject,Observer{
             System.err.println(ex);
         }
         return da;
-        
-        
+
+
     }
-    
+
     public String datetoString(Date d) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String date = dateFormat.format(d);
         return date;
     }
-    
-    public int[] getPersonType(Person p)
-    {
+
+    public int[] getPersonType(Person p) {
         int[] type = new int[3];
-        
-        
+
+
         try {
             resultSet = st.executeQuery("select adminaccess,readeraccess,librarianaccess from User where login='" + p.getLogin() + "';");
             while (resultSet.next()) {
@@ -324,14 +315,13 @@ public class Library implements Subject,Observer{
             Logger.getLogger(Library.class.getName()).log(Level.SEVERE, null, ex);
         }
         return type;
-        
+
     }
-    
-    public int[] getPersonTypeById(int id)
-    {
+
+    public int[] getPersonTypeById(int id) {
         int[] type = new int[3];
-        
-        
+
+
         try {
             resultSet = st.executeQuery("select adminaccess,readeraccess,librarianaccess from User where idUser=" + id + ";");
             while (resultSet.next()) {
@@ -344,13 +334,13 @@ public class Library implements Subject,Observer{
             Logger.getLogger(Library.class.getName()).log(Level.SEVERE, null, ex);
         }
         return type;
-        
+
     }
-    public String getPersonExpiresById(int id)
-    {
+
+    public String getPersonExpiresById(int id) {
         String expires = "";
-        
-        
+
+
         try {
             resultSet = st.executeQuery("select expires from User where idUser=" + id + ";");
             while (resultSet.next()) {
@@ -361,13 +351,13 @@ public class Library implements Subject,Observer{
             Logger.getLogger(Library.class.getName()).log(Level.SEVERE, null, ex);
         }
         return expires;
-        
+
     }
-    public int getPersonLimitById(int id)
-    {
+
+    public int getPersonLimitById(int id) {
         int limit = -1;
-        
-        
+
+
         try {
             resultSet = st.executeQuery("select booklimit from User where idUser=" + id + ";");
             while (resultSet.next()) {
@@ -378,9 +368,9 @@ public class Library implements Subject,Observer{
             Logger.getLogger(Library.class.getName()).log(Level.SEVERE, null, ex);
         }
         return limit;
-        
+
     }
-    
+
     //    public int checkLogin(String login, String pass)
     //if returned object equals the sent one, then
     //it is an invalid login
@@ -395,12 +385,12 @@ public class Library implements Subject,Observer{
             while (resultSet.next()) {
                 p.setId(-2);
                 hash = resultSet.getString("md5_pass");
-                
+
                 if (hash.equals(getMd5(p.getPassword()))) {
-                    
+
                     Person pb = new Person();
                     pb.setId(resultSet.getInt("idUser"));
-                    
+
                     pb.setAddress(resultSet.getString("address"));
                     pb.setName(resultSet.getString("name"));
                     pb.setLogin(resultSet.getString("login"));
@@ -413,7 +403,7 @@ public class Library implements Subject,Observer{
                     pb.setCountry(resultSet.getString("country"));
                     pb.setPhone(resultSet.getString("phonenumber"));
                     //System.out.println("Person: "+ pb.toString());
-                    addLineToLog("admin.log","User "+pb.getLogin()+" logged in");
+                    addLineToLog("admin.log", "User " + pb.getLogin() + " logged in");
                     return pb;//resultSet.getByte("type");
                 } else {
                     return p;
@@ -426,7 +416,7 @@ public class Library implements Subject,Observer{
         //nao existe utilizador
         return p;
     }
-    
+
     //person storage helper
     private boolean existsPerson(String login) {
         try {
@@ -440,7 +430,7 @@ public class Library implements Subject,Observer{
         }
         return false;
     }
-    
+
     public Person getPerson(String login) {
         Person p = new Person();
         try {
@@ -459,9 +449,9 @@ public class Library implements Subject,Observer{
                 pb.setCity(resultSet.getString("city"));
                 pb.setCountry(resultSet.getString("country"));
                 pb.setPhone(resultSet.getString("phonenumber"));
-                
+
                 return pb;//resultSet.getByte("type");
-                
+
             }
         } catch (Exception e) {
             System.err.println(e);
@@ -470,7 +460,7 @@ public class Library implements Subject,Observer{
         //nao existe utilizador
         return p;
     }
-    
+
     public Admin getAdmin(String login) {
         Admin a = new Admin();
         try {
@@ -490,16 +480,15 @@ public class Library implements Subject,Observer{
                 pb.setCity(resultSet.getString("city"));
                 pb.setCountry(resultSet.getString("country"));
                 pb.setPhone(resultSet.getString("phonenumber"));
-                
-                
+
+
                 /*******BuilderPattern******/
-                
                 AdminBuilder ab = new AdminBuilder();
                 Director d = new Director(ab);
-                d.Construct(pb,getPersonTypeById(pb.getId()) , "UNLIMITED", 0);
-                
+                d.Construct(pb, getPersonTypeById(pb.getId()), "UNLIMITED", 0);
+
                 return ab.getResult();
-                
+
             }
         } catch (Exception e) {
             System.err.println(e);
@@ -508,7 +497,7 @@ public class Library implements Subject,Observer{
         //nao existe utilizador
         return a;
     }
-    
+
     public Reader getReader(String login) {
         Reader r = new Reader();
         try {
@@ -527,16 +516,15 @@ public class Library implements Subject,Observer{
                 pb.setCity(resultSet.getString("city"));
                 pb.setCountry(resultSet.getString("country"));
                 pb.setPhone(resultSet.getString("phonenumber"));
-                
+
                 /*******BuilderPattern******/
-                
                 ReaderBuilder rb = new ReaderBuilder();
                 Director d = new Director(rb);
-                d.Construct(pb,getPersonTypeById(pb.getId()) , getPersonExpiresById(pb.getId()), getPersonLimitById(pb.getId()));
-                
+                d.Construct(pb, getPersonTypeById(pb.getId()), getPersonExpiresById(pb.getId()), getPersonLimitById(pb.getId()));
+
                 return rb.getResult();
-                
-                
+
+
             }
         } catch (Exception e) {
             System.err.println(e);
@@ -545,13 +533,13 @@ public class Library implements Subject,Observer{
         //nao existe utilizador
         return r;
     }
-    
+
     public Reader getReaderById(int id) {
         Reader r = new Reader();
         try {
             //Vai a base de dados confirmar o login e a password...
             resultSet = st.executeQuery("select * from User where idUser=" + id + ";");
-            
+
             while (resultSet.next()) {
                 Person pb = new Person();
                 pb.setId(resultSet.getInt("idUser"));
@@ -564,16 +552,15 @@ public class Library implements Subject,Observer{
                 pb.setCity(resultSet.getString("city"));
                 pb.setCountry(resultSet.getString("country"));
                 pb.setPhone(resultSet.getString("phonenumber"));
-                
+
                 /*******BuilderPattern******/
-                
                 ReaderBuilder rb = new ReaderBuilder();
                 Director d = new Director(rb);
-                d.Construct(pb,getPersonTypeById(pb.getId()) , getPersonExpiresById(pb.getId()), getPersonLimitById(pb.getId()));
-                
+                d.Construct(pb, getPersonTypeById(pb.getId()), getPersonExpiresById(pb.getId()), getPersonLimitById(pb.getId()));
+
                 return rb.getResult();
-                
-                
+
+
             }
         } catch (Exception e) {
             System.err.println(e);
@@ -582,7 +569,7 @@ public class Library implements Subject,Observer{
         //nao existe utilizador
         return r;
     }
-    
+
     public Librarian getLibrarian(String login) {
         Librarian l = new Librarian();
         try {
@@ -601,18 +588,17 @@ public class Library implements Subject,Observer{
                 pb.setCity(resultSet.getString("city"));
                 pb.setCountry(resultSet.getString("country"));
                 pb.setPhone(resultSet.getString("phonenumber"));
-                
+
                 /*******BuilderPattern******/
-                
                 LibrarianBuilder lb = new LibrarianBuilder();
                 Director d = new Director(lb);
-                d.Construct(pb,getPersonTypeById(pb.getId()) , getPersonExpiresById(pb.getId()), getPersonLimitById(pb.getId()));
-                
+                d.Construct(pb, getPersonTypeById(pb.getId()), getPersonExpiresById(pb.getId()), getPersonLimitById(pb.getId()));
+
                 return lb.getResult();
-                
-                
+
+
                 //return pb.Build();//resultSet.getByte("type");
-                
+
             }
         } catch (Exception e) {
             System.err.println(e);
@@ -621,7 +607,7 @@ public class Library implements Subject,Observer{
         //nao existe utilizador
         return l;
     }
-    
+
     public Librarian storeLibrarian(Librarian l) {
         if (existsPerson(l.getLogin())) {
             return l;
@@ -645,15 +631,16 @@ public class Library implements Subject,Observer{
                     + l.getPhone() + "');";
             System.out.println(insert);
             st.execute(insert);
-            addLineToLog("admin.log","Librarian "+l.getLogin()+" added!");
+            addLineToLog("admin.log", "Librarian " + l.getLogin() + " added!");
             return getLibrarian(l.getLogin());
-            
-            
+
+
         } catch (Exception e) {
             System.err.println(e);
             return l;
         }
     }
+
     public Librarian getLibrarianById(int id) {
         Librarian l = new Librarian();
         //LibrarianBuilder pb;
@@ -673,18 +660,17 @@ public class Library implements Subject,Observer{
                 pb.setCity(resultSet.getString("city"));
                 pb.setCountry(resultSet.getString("country"));
                 pb.setPhone(resultSet.getString("phonenumber"));
-                
+
                 /*******BuilderPattern******/
-                
                 LibrarianBuilder lb = new LibrarianBuilder();
                 Director d = new Director(lb);
-                d.Construct(pb,getPersonTypeById(pb.getId()) , getPersonExpiresById(pb.getId()), getPersonLimitById(pb.getId()));
-                
+                d.Construct(pb, getPersonTypeById(pb.getId()), getPersonExpiresById(pb.getId()), getPersonLimitById(pb.getId()));
+
                 return lb.getResult();
-                
-                
+
+
                 //return pb.Build();//resultSet.getByte("type");
-                
+
             }
         } catch (Exception e) {
             System.err.println(e);
@@ -693,7 +679,7 @@ public class Library implements Subject,Observer{
         //nao existe utilizador
         return l;
     }
-    
+
     public Reader storeReader(Reader r) {
         if (existsPerson(r.getLogin())) {
             return r;
@@ -715,21 +701,21 @@ public class Library implements Subject,Observer{
                     + type[1] + ", "
                     + type[2] + ", '"
                     + r.getPhone() + "', "
-                    + r.getLimit()+");";
+                    + r.getLimit() + ");";
             System.out.println(insert);
             st.execute(insert);
-            addLineToLog("admin.log","Reader "+r.getLogin()+" added!");
-            addLineToLog("librarian.log","Reader "+r.getLogin()+" added!");
+            addLineToLog("admin.log", "Reader " + r.getLogin() + " added!");
+            addLineToLog("librarian.log", "Reader " + r.getLogin() + " added!");
             return getReader(r.getLogin());
-            
-            
+
+
         } catch (Exception e) {
             System.err.println(e);
             return r;
         }
-        
+
     }
-    
+
     public Admin storeAdmin(Admin a) {
         if (existsPerson(a.getLogin())) {
             return a;
@@ -752,19 +738,19 @@ public class Library implements Subject,Observer{
                     + a.getPhone() + "');";
             System.out.println(insert);
             st.execute(insert);
-            addLineToLog("admin.log","Admin "+a.getLogin()+" added!");
+            addLineToLog("admin.log", "Admin " + a.getLogin() + " added!");
             return getAdmin(a.getLogin());
-            
-            
+
+
         } catch (Exception e) {
             System.err.println(e);
             return a;
         }
     }
-    
+
     public Vector<String> getReaders() {
         Vector<String> a = new Vector<String>();
-        
+
         try {
             resultSet = st.executeQuery("select * from User where readeraccess = 1");
             while (resultSet.next()) {
@@ -775,9 +761,9 @@ public class Library implements Subject,Observer{
             System.err.println(e);
         }
         return a;
-        
+
     }
-    
+
     public Vector<String> getAdmins() {
         Vector<String> a = new Vector<String>();
         try {
@@ -790,9 +776,9 @@ public class Library implements Subject,Observer{
             System.err.println(e);
         }
         return a;
-        
+
     }
-    
+
     public Vector<String> getLibrarians() {
         Vector<String> a = new Vector<String>();
         try {
@@ -806,7 +792,7 @@ public class Library implements Subject,Observer{
         }
         return a;
     }
-    
+
     public Vector<String> searchUser(String login, int[] type) throws SQLException {
         Vector<String> vector = new Vector<String>();
         //Person p;
@@ -848,27 +834,27 @@ public class Library implements Subject,Observer{
         }
         return vector;
     }
-    
+
     public boolean removeUser(String id) throws SQLException {
         Reader p = getReaderById(Integer.parseInt(id));
         preparedStatement = (PreparedStatement) con.prepareStatement("DELETE FROM User WHERE idUser = " + id);
         preparedStatement.executeUpdate();
         if (preparedStatement != null) {
             //return new Person();
-            addLineToLog("admin.log","User "+p.getLogin()+" removed!");
+            addLineToLog("admin.log", "User " + p.getLogin() + " removed!");
             return true;
         } else {
             // return p;
             return false;
         }
     }
-    
+
     public Person editUser(Person p, String expires, int limit) {
         //TODO: POSSIVEL IMPLEMENTACAO DE UM ITERATOR QUE CIRCULA PELOS VÁRIOS CAMPOS
         //Nao se pode editar id e login
         //Person p2 = getPerson(p.getLogin());
-        addLineToLog("admin.log","User "+p.getLogin()+" edited!");
-        addLineToLog("librarian.log","User "+p.getLogin()+" edited!");
+        addLineToLog("admin.log", "User " + p.getLogin() + " edited!");
+        addLineToLog("librarian.log", "User " + p.getLogin() + " edited!");
         String ps = "UPDATE User SET address = '" + p.getAddress() + "',"
                 + " city = '" + p.getCity() + "',"
                 + " country = '" + p.getCountry() + "',"
@@ -877,15 +863,15 @@ public class Library implements Subject,Observer{
                 + " md5_pass = '" + p.getPassword() + "',"
                 + " phonenumber = '" + p.getPhone() + "',"
                 + " postalcode = '" + p.getPostalcode() + "'";
-        if(expires != null){
+        if (expires != null) {
             ps += ", expires = '" + expires + "'";
         }
-        if(limit != -1){
-            ps+= ", booklimit = "+limit;
+        if (limit != -1) {
+            ps += ", booklimit = " + limit;
         }
-        
+
         ps += " WHERE idUser = " + p.id;
-        
+
         try {
             //preparedStatement = (PreparedStatement) con.prepareStatement("UPDATE User SET name='" + name + ",email='" + email + "',expires='" + expires + "' WHERE idUser = " + id);
             System.out.println(ps);
@@ -897,7 +883,7 @@ public class Library implements Subject,Observer{
             return new Person();
         }
     }
-    
+
     /************************BOOKS**************************/
     private boolean existsBook(String ISBN) {
         try {
@@ -911,7 +897,7 @@ public class Library implements Subject,Observer{
         }
         return false;
     }
-    
+
     public Vector<String> getBookListByTitle(String title) {
         Vector<String> v = new Vector<String>();
         try {
@@ -925,15 +911,15 @@ public class Library implements Subject,Observer{
         }
         return v;
     }
-    
+
     public Book getBookByISBN(String ISBN) {
-        
+
         Book b = new Book();
         try {
             resultSet = st.executeQuery("select * from Book where ISBN='" + ISBN + "';");
             while (resultSet.next()) {
                 b.setAuthor(resultSet.getString("author"));
-                
+
                 b.setName(resultSet.getString("title"));
                 b.setYear(resultSet.getInt("year"));
                 b.setCategory(resultSet.getString("category"));
@@ -943,18 +929,18 @@ public class Library implements Subject,Observer{
                 //Reader(String name,int limit, Date expires, int id, String e_mail, Address address,int doornumber, String username, String password)
                 // Book(String isbn, String name, String author, Date year, String category, int number_of_copies, ArrayList<Comment> comments)
                 //String isbn, String name, String author, int year, String category, int number_of_copies
-                
+
                 //b = new Book(ISBN,title,author,year,cat,ncopies); //,email,addr,doornumber,login,pass);
             }
-            
-            
+
+
         } catch (Exception e) {
             System.err.println(e);
             return b;
         }
         return b;
     }
-    
+
     public Book getBookByTitle(String title) {
         Book b = new Book();
         try {
@@ -970,18 +956,18 @@ public class Library implements Subject,Observer{
                 //Reader(String name,int limit, Date expires, int id, String e_mail, Address address,int doornumber, String username, String password)
                 // Book(String isbn, String name, String author, Date year, String category, int number_of_copies, ArrayList<Comment> comments)
                 //String isbn, String name, String author, int year, String category, int number_of_copies
-                
+
                 //b = new Book(ISBN,title,author,year,cat,ncopies); //,email,addr,doornumber,login,pass);
             }
-            
-            
+
+
         } catch (Exception e) {
             System.err.println("1:" + e);
             return b;
         }
         return b;
     }
-    
+
     public Book storeBook(Book b) {
         if (existsBook(b.getIsbn())) {
             return new Book();
@@ -996,27 +982,27 @@ public class Library implements Subject,Observer{
                     + b.getNumberOfCopies() + ");";
             System.out.println(insert);
             st.execute(insert);
-            addLineToLog("librarian.log"," Book "+b.getName()+" added!");
+            addLineToLog("librarian.log", " Book " + b.getName() + " added!");
             subjectState = generateStats();
-            
+
             Notify();
             return b;
-            
-            
+
+
         } catch (Exception e) {
             System.err.println(e);
             return new Book();
         }
-        
+
     }
-    
+
     public boolean removeBook(String isbn) throws SQLException {
         Book b = getBookByISBN(isbn);
         preparedStatement = (PreparedStatement) con.prepareStatement("DELETE FROM Book WHERE ISBN = '" + isbn + "';");
         preparedStatement.executeUpdate();
         if (preparedStatement != null) {
             //return new Person();
-            addLineToLog("librarian.log"," Book "+b.getName()+" deleted!");
+            addLineToLog("librarian.log", " Book " + b.getName() + " deleted!");
             subjectState = generateStats();
             Notify();
             return true;
@@ -1025,10 +1011,10 @@ public class Library implements Subject,Observer{
             return false;
         }
     }
-    
+
     public ArrayList<Book> getAllBooks() {
         ArrayList<Book> ret = new ArrayList<Book>();
-        
+
         try {
             resultSet = st.executeQuery("select * from Book;");
             while (resultSet.next()) {
@@ -1039,21 +1025,21 @@ public class Library implements Subject,Observer{
                 b.setCategory(resultSet.getString("category"));
                 b.setNumberOfCopies(resultSet.getInt("numberofcopies"));
                 ret.add(b);
-                
+
             }
             return ret;
-            
-            
-            
+
+
+
         } catch (Exception e) {
             System.err.println(e);
         }
         return ret;
     }
-    
+
     public Vector<String> getAllBookTitles() {
         Vector<String> ret = new Vector<String>();
-        
+
         try {
             resultSet = st.executeQuery("select * from Book;");
             while (resultSet.next()) {
@@ -1065,7 +1051,7 @@ public class Library implements Subject,Observer{
         }
         return ret;
     }
-    
+
     /************************COMMENTS**************************/
     /*
      *
@@ -1089,7 +1075,7 @@ public class Library implements Subject,Observer{
         }
         return false;
     }
-    
+
     public Comment storeComment(Comment c) {
         if (existsComment(c.getId())) {
             return new Comment();
@@ -1102,15 +1088,15 @@ public class Library implements Subject,Observer{
                     + c.getRating() + ");";
             System.out.println(insert);
             st.execute(insert);
-            addLineToLog("librarian.log"," Comment added to book "+c.getBook());
+            addLineToLog("librarian.log", " Comment added to book " + c.getBook());
             return c;
         } catch (Exception e) {
             System.err.println(e);
         }
         return new Comment();
-        
+
     }
-    
+
     public ArrayList<Comment> getCommentsByBook(String ISBN) {
         ArrayList<Comment> comments = new ArrayList<Comment>();
         try {
@@ -1125,13 +1111,13 @@ public class Library implements Subject,Observer{
                 comments.add(tmp);
             }
             return comments;
-            
+
         } catch (Exception e) {
             System.err.println(e);
         }
         return comments;
     }
-    
+
     /************************RESERVATIONS**************************/
     private boolean existsReservation(int idReservation) {
         try {
@@ -1145,7 +1131,7 @@ public class Library implements Subject,Observer{
         }
         return false;
     }
-    
+
     public Reservation getReservation(String idReservation) {
         try {
             resultSet = st.executeQuery("select * from Reservation where idReservation='" + idReservation + "';");
@@ -1156,7 +1142,7 @@ public class Library implements Subject,Observer{
                 tmp.setStartDate(stringToDate(resultSet.getString("startdate")));
                 tmp.setEndDate(stringToDate(resultSet.getString("enddate")));
                 tmp.setUser_id(resultSet.getInt("user"));
-                tmp.setBook(resultSet.getString("book"));
+                tmp.setBook_title(resultSet.getString("book"));
                 return tmp;
             }
             return new Reservation();
@@ -1165,66 +1151,82 @@ public class Library implements Subject,Observer{
         }
         return new Reservation();
     }
-    
+
     public Reservation storeReservation(Reservation r) {
         /*if (existsReservation(r.getId())) {
          * return new Reservation();
          * }*/
         try {
-            String insert = "INSERT INTO Reservation (startdate,enddate,user,book) "
-                    + "VALUES('" + datetoString(r.getStartDate()) + "','"
-                    + datetoString(r.getEndDate()) + "','"
-                    + r.getUser_id() + "','"
-                    + r.getBook() + "');";
-            System.out.println(insert);
-            st.execute(insert);
-            addLineToLog("librarian.log",r.getBook()+" reserved!");
-            return r;
+            resultSet = st.executeQuery("select * from Book where title = '" + r.getBook_title() + "';");
+            Book tmp = new Book();
+            while (resultSet.next()) {
+                tmp.setAuthor(resultSet.getString("author"));
+                tmp.setName(resultSet.getString("title"));
+                tmp.setIsbn(resultSet.getString("isbn"));
+                tmp.setYear(resultSet.getInt("year"));
+                tmp.setCategory(resultSet.getString("category"));
+                tmp.setNumberOfCopies(resultSet.getInt("numberofcopies"));
+            }
+            if(r.getNumber_of_copies() > tmp.getNumberOfCopies()){
+                return new Reservation();
+            }
+            else{
+                System.out.println("***");
+                String insert = "INSERT INTO Reservation (startdate,enddate,user,book) "
+                        + "VALUES('" + datetoString(r.getStartDate()) + "','"
+                        + datetoString(r.getEndDate()) + "','"
+                        + r.getUser_id() + "','"
+                        + r.getBook_title() + "');";
+                System.out.println(insert);
+                st.execute(insert);
+                addLineToLog("librarian.log", r.getBook_title() + " reserved!");
+                return r;
+            }
         } catch (Exception e) {
             System.err.println(e);
         }
         return new Reservation();
     }
-    
+
     public boolean removeReservation(String id) throws SQLException {
         Reservation r = getReservation(id);
         preparedStatement = (PreparedStatement) con.prepareStatement("DELETE FROM Reservation WHERE idReservation = '" + id + "';");
         preparedStatement.executeUpdate();
         if (preparedStatement != null) {
             //return new Person();
-            addLineToLog("librarian.log",r.getBook()+" returned!");
+            addLineToLog("librarian.log", r.getBook_title() + " returned!");
             return true;
         } else {
             // return p;
             return false;
         }
     }
-    
+
     public Vector<String> getReservationsList() {
         Vector<String> reservations = new Vector<String>();
         try {
             resultSet = st.executeQuery("select * from Reservation ;");
             Reservation tmp;
-            int i=0;
+            int i = 0;
             while (resultSet.next()) {
                 tmp = new Reservation();
                 tmp.setId(resultSet.getInt("idReservation"));
                 tmp.setStartDate(stringToDate(resultSet.getString("startdate")));
                 tmp.setEndDate(stringToDate(resultSet.getString("enddate")));
                 tmp.setUser_id(resultSet.getInt("user"));
-                tmp.setBook(resultSet.getString("book"));
-                reservations.add(tmp.getId() + " : " + getReaderById(tmp.getUser_id()).getLogin() + " >>> " + tmp.getBook());
+                tmp.setBook_title(resultSet.getString("book"));
+                reservations.add(tmp.getId() + " : " + getReaderById(tmp.getUser_id()).getLogin() + " >>> " + tmp.getBook_title());
                 System.out.println(reservations.get(i));
                 i++;
             }
             return reservations;
-            
+
         } catch (Exception e) {
             System.err.println(e);
         }
         return reservations;
     }
-    
+
     public Vector<String> getReservationsByUserLogin(String login) {
         Vector<String> reservations = new Vector<String>();
         Vector<Person> results = new Vector<Person>();
@@ -1234,7 +1236,7 @@ public class Library implements Subject,Observer{
             for (int i = 0; i < vector.size(); i++) {
                 results.add(getPerson(vector.get(i)));
                 int id = results.get(i).getId();
-                System.out.println(id+" : "+results.get(i).getLogin());
+                System.out.println(id + " : " + results.get(i).getLogin());
                 resultSet = st.executeQuery("select * from Reservation where user =" + id + ";");
                 Reservation tmp;
                 while (resultSet.next()) {
@@ -1243,22 +1245,22 @@ public class Library implements Subject,Observer{
                     tmp.setStartDate(stringToDate(resultSet.getString("startdate")));
                     tmp.setEndDate(stringToDate(resultSet.getString("enddate")));
                     tmp.setUser_id(id);
-                    tmp.setBook(resultSet.getString("book"));
-                    reservations.add(tmp.getId() + " >>> " + tmp.getBook());
+                    tmp.setBook_title(resultSet.getString("book"));
+                    reservations.add(tmp.getId() + " >>> " + tmp.getBook_title());
                 }
             }
             return reservations;
-            
+
         } catch (Exception e) {
             System.err.println(e);
         }
         return reservations;
     }
-    
+
     public ArrayList<Reservation> getReservationsByUserId(int id) {
         ArrayList<Reservation> reservations = new ArrayList<Reservation>();
         try {
-            
+
             resultSet = st.executeQuery("select * from Reservation where user ='" + id + "';");
             Reservation tmp;
             while (resultSet.next()) {
@@ -1270,13 +1272,13 @@ public class Library implements Subject,Observer{
                 reservations.add(tmp);
             }
             return reservations;
-            
+
         } catch (Exception e) {
             System.err.println(e);
         }
         return reservations;
     }
-    
+
 //    public ArrayList<Reservation> getAllReservations() {
 //        ArrayList<Reservation> reservations = new ArrayList<Reservation>();
 //        try {
@@ -1298,10 +1300,10 @@ public class Library implements Subject,Observer{
 //        }
 //        return reservations;
 //    }
-        public List<Reservation> getAllReservations() {
+    public List<Reservation> getAllReservations() {
         List<Reservation> reservations = new List<Reservation>();
         try {
-            
+
             resultSet = st.executeQuery("select * from Reservation;");
             Reservation tmp;
             while (resultSet.next()) {
@@ -1313,106 +1315,90 @@ public class Library implements Subject,Observer{
                 reservations.Append(tmp);
             }
             return reservations;
-            
+
         } catch (Exception e) {
             System.err.println(e);
         }
         return reservations;
     }
-    
-    public void addLineToLog(String filename, String line)
-    {
-        if(filename.equals("librarian.log"))
+
+    public void addLineToLog(String filename, String line) {
+        if (filename.equals("librarian.log")) {
             librarianlog.addLineToLog(line);
-        else
+        } else {
             adminlog.addLineToLog(line);
+        }
         try {
             Writer output;
             output = new BufferedWriter(new FileWriter(filename, true));
             output.append(line);
             output.append(System.getProperty("line.separator"));
             output.close();
-        }catch (IOException ex) {
+        } catch (IOException ex) {
             //Logger.getLogger(Library.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
+
     /**************PROXY PATTERN***********************/
-    
-    public String[] loadLibrarianLog()
-    {
-        
+    public String[] loadLibrarianLog() {
+
         String ret_log = librarianlog.displayLog();
         return ret_log.split(System.getProperty("line.separator"));
     }
-    
-    public String[] loadAdminLog()
-    {
-       
+
+    public String[] loadAdminLog() {
+
         String ret_log = adminlog.displayLog();
         return ret_log.split(System.getProperty("line.separator"));
     }
-    
-    
-    
-    
-    
-    
-    
+
     /**************OBSERVER PATTERN********************/
-    
-    
-    
     @Override
     public void attach(Observer o) {
         //TODO: Implementar as cenas do subject
         observers.add(o);
         //throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
     @Override
     public void detach(Observer o) {
         observers.remove(o);
         //throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
     @Override
     public void Notify() {
         //throw new UnsupportedOperationException("Not supported yet.");
-        for(Observer o : observers){
+        for (Observer o : observers) {
             o.update(this);
         }
     }
-    
+
     @Override
     public ArrayList<Stat> getState() {
         //throw new UnsupportedOperationException("Not supported yet.");
         return subjectState;
-        
+
     }
-    
+
     @Override
     public void setState(ArrayList<Stat> state) {
         subjectState = state;
-        
+
     }
-    
+
     //observer classes
-    
     @Override
     public void update(Subject s) {
         subjectState = s.getState();
     }
-    
     //**************SINGLETON*****************
-    
     private static Library _instance = null;
-    
-    public static Library Instance()
-    {
-        if(_instance == null)
+
+    public static Library Instance() {
+        if (_instance == null) {
             _instance = new Library();
+        }
         return _instance;
     }
 }

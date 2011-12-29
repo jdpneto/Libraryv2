@@ -232,21 +232,30 @@ private void start_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_buttonActionPerformed
     //get all the information
     int id              = dat.getReader(id_field.getText()).getId();
-    String title        = dat.getBookByTitle(title_field.getText()).getIsbn();
+    String title        = dat.getBookByTitle(title_field.getText()).getName();
     int numberOfCopies  = Integer.parseInt(copies_field.getText());
     Date startDate      = dat.stringToDate(start_field.getText());
     Date endDate        = dat.stringToDate(end_field.getText());
 
     //store all information
     Reservation tmp = new Reservation(startDate, endDate, title, id, numberOfCopies);
-    if(!title.equals(""))
+    Reservation check;
+    if(!title.equals("")) // tirar depois de selecao de livro por lista e nao por escrita
     {
-        dat.storeReservation(tmp);
-        new ManageReservations().setVisible(true);
-        dispose();
+        check = dat.storeReservation(tmp);
+        if(!check.getBook_title().equals("")){
+            new ManageReservations().setVisible(true);
+            dispose();
+        }
+        else{
+            System.out.println(tmp.toString());
+            error.setText("Too many copies requested");
+            error.setVisible(true);
+        }
     }
     else
     {
+        error.setText("Book/User does not exist");
         error.setVisible(true);
     }
     
