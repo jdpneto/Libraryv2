@@ -14,14 +14,14 @@ public class Reservation {
     private Date start_date;
     private Date end_date;
     private int number_of_copies;
-    private String book_title;
+    private String book_isbn;
     private int user_id;
     private int id;
 
     public Reservation() {
         this.start_date = null;
         this.end_date = null;
-        this.book_title = "";
+        this.book_isbn = "";
         this.number_of_copies = -1;
         this.user_id = -1;
     }
@@ -29,17 +29,17 @@ public class Reservation {
     public Reservation(Date start_date, Date end_date, String book, int user_id ,int number_of_copies) {
         this.start_date = start_date;
         this.end_date = end_date;
-        this.book_title = book;
+        this.book_isbn = book;
         this.number_of_copies = number_of_copies;
         this.user_id = user_id;
     }
 
-    public String getBook_title() {
-        return book_title;
+    public String getBook_isbn() {
+        return book_isbn;
     }
 
-    public void setBook_title(String book) {
-        this.book_title = book;
+    public void setBook_isbn(String book) {
+        this.book_isbn = book;
     }
 
     public Date getEndDate() {

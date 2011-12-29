@@ -1142,7 +1142,7 @@ public class Library implements Subject, Observer {
                 tmp.setStartDate(stringToDate(resultSet.getString("startdate")));
                 tmp.setEndDate(stringToDate(resultSet.getString("enddate")));
                 tmp.setUser_id(resultSet.getInt("user"));
-                tmp.setBook_title(resultSet.getString("book"));
+                tmp.setBook_isbn(resultSet.getString("isbn"));
                 return tmp;
             }
             return new Reservation();
@@ -1157,7 +1157,7 @@ public class Library implements Subject, Observer {
          * return new Reservation();
          * }*/
         try {
-            resultSet = st.executeQuery("select * from Book where title = '" + r.getBook_title() + "';");
+            resultSet = st.executeQuery("select * from Book where isbn = '" + r.getBook_isbn() + "';");
             Book tmp = new Book();
             while (resultSet.next()) {
                 tmp.setAuthor(resultSet.getString("author"));
@@ -1171,16 +1171,27 @@ public class Library implements Subject, Observer {
                 return new Reservation();
             }
             else{
-                System.out.println("***");
                 String insert = "INSERT INTO Reservation (startdate,enddate,user,book) "
                         + "VALUES('" + datetoString(r.getStartDate()) + "','"
                         + datetoString(r.getEndDate()) + "','"
                         + r.getUser_id() + "','"
-                        + r.getBook_title() + "');";
+                        + r.getBook_isbn() + "');";
                 System.out.println(insert);
                 st.execute(insert);
-                addLineToLog("librarian.log", r.getBook_title() + " reserved!");
+                addLineToLog("librarian.log", r.getBook_isbn() + " reserved!");
+                            
+                String ps = "UPDATE Book SET author = '" + tmp.getAuthor() + "',"
+                + " title = '" + tmp.getName() + "',"
+                + " year = '" + tmp.getYear() + "',"
+                + " category = '" + tmp.getCategory() + "',"
+                + " numberofcopies = '" + (tmp.getNumberOfCopies()-r.getNumber_of_copies()) + "'";
+                ps += " WHERE isbn = '" + tmp.getIsbn() +"';";
+
+                System.out.println(ps);
+                preparedStatement = (PreparedStatement) con.prepareStatement(ps);
+                preparedStatement.executeUpdate();
                 return r;
+                
             }
         } catch (Exception e) {
             System.err.println(e);
@@ -1194,7 +1205,7 @@ public class Library implements Subject, Observer {
         preparedStatement.executeUpdate();
         if (preparedStatement != null) {
             //return new Person();
-            addLineToLog("librarian.log", r.getBook_title() + " returned!");
+            addLineToLog("librarian.log", r.getBook_isbn() + " returned!");
             return true;
         } else {
             // return p;
@@ -1214,8 +1225,8 @@ public class Library implements Subject, Observer {
                 tmp.setStartDate(stringToDate(resultSet.getString("startdate")));
                 tmp.setEndDate(stringToDate(resultSet.getString("enddate")));
                 tmp.setUser_id(resultSet.getInt("user"));
-                tmp.setBook_title(resultSet.getString("book"));
-                reservations.add(tmp.getId() + " : " + getReaderById(tmp.getUser_id()).getLogin() + " >>> " + tmp.getBook_title());
+                tmp.setBook_isbn(resultSet.getString("book"));
+                reservations.add(tmp.getId() + " : " + getReaderById(tmp.getUser_id()).getLogin() + " >>> " + tmp.getBook_isbn());
                 System.out.println(reservations.get(i));
                 i++;
             }
@@ -1245,8 +1256,8 @@ public class Library implements Subject, Observer {
                     tmp.setStartDate(stringToDate(resultSet.getString("startdate")));
                     tmp.setEndDate(stringToDate(resultSet.getString("enddate")));
                     tmp.setUser_id(id);
-                    tmp.setBook_title(resultSet.getString("book"));
-                    reservations.add(tmp.getId() + " >>> " + tmp.getBook_title());
+                    tmp.setBook_isbn(resultSet.getString("book"));
+                    reservations.add(tmp.getId() + " >>> " + tmp.getBook_isbn());
                 }
             }
             return reservations;
