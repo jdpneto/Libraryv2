@@ -138,6 +138,14 @@ public class Person {
     public void setPostalcode(String postalcode) {
         this.postalcode = postalcode;
     }
+    
+    
+    // {
+        
+    public Person clone()
+    {
+        return new Person(id, email, address, login, password, name, postalcode, city, phone, country);
+    }
 
 
 

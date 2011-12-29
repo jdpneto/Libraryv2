@@ -30,7 +30,9 @@ public class EditUser extends javax.swing.JFrame {
         initComponents();
         undo_button.setEnabled(false);
         o = new Originator();
+        submit_button.setEnabled(false);
         error.setVisible(false);
+        success.setVisible(false);
         c = new Caretaker();
         expires_field.setEnabled(false);
     }
@@ -445,9 +447,11 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             this.p=r.getPerson();
             
             
+            submit_button.setEnabled(true);
+            
             //*****************MEMENTO*******************//
             
-            State st = new State(r.getPerson(),r.getExpires(),r.getLimit());
+            State st = new State(r.getPerson().clone(),r.getExpires(),r.getLimit());
             
             o.setState(st);
             c.setMemento(o.CreateMemento());//= o.CreateMemento();
@@ -479,7 +483,7 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         //this.country_field.setText(this.lib.getCountry());
         String str = expires_field.getText();
         //this.date_field.setText(this.lib.getExpires());
-        p = dat.editUser(p, str, Integer.parseInt(limit_field.getText()));
+        this.p = dat.editUser(p, str, Integer.parseInt(limit_field.getText()));
         if(p.getId() == -1)
         {
             success.setVisible(false);
@@ -487,7 +491,8 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         }
         else
         {
-            o.setState(new State(p,str,Integer.parseInt(limit_field.getText())));
+            submit_button.setEnabled(false);
+            //o.setState(new State(p,str,Integer.parseInt(limit_field.getText())));
             success.setVisible(true);
             error.setVisible(false);
         }
@@ -499,7 +504,8 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         o.SetMemento(c.getMemento());
         
         State st=o.getState();
-        Person p = st.getP();
+        this.p = st.getP();
+        
         
         this.email_field.setText(p.getEmail());
         this.name_field.setText(p.getName());
@@ -513,7 +519,20 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         this.limit_field.setText(""+st.getLimit());
         this.user_id_field.setText(""+p.getId());
         this.current_id = p.getId();
-        this.p=p;
+        
+        
+        this.p = dat.editUser(p, expires_field.getText(), Integer.parseInt(limit_field.getText()));
+        if(this.p.getId() == -1)
+        {
+            success.setVisible(false);
+            error.setVisible(true);
+        }
+        else
+        {
+            submit_button.setEnabled(true);
+            success.setVisible(true);
+            error.setVisible(false);
+        }
     }//GEN-LAST:event_undo_buttonMouseReleased
     
     private void user_id_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_id_fieldActionPerformed
