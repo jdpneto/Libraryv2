@@ -8,15 +8,15 @@
  * @author jlnabais
  */
 public class Originator {
-    private Person state;
+    private State state;
 
-    public Person getState() {
+    public State getState() {
         return state;
     }
 
-    public void setState(Person state) {
+    public void setState(State state) {
         this.state = state;
-        System.out.println("Person = " + state);
+        System.out.println("State = " + state);
     }
 
     // Creates memento
