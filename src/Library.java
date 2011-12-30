@@ -122,7 +122,7 @@ public class Library implements Subject, Observer {
             expiring_reservations.add(iter.First());
             while (!iter.IsDone()) {
                 Reservation reservation = iter.Next();
-                if (actual.after(reservation.getEndDate()) && (reservation.getEndDate().getTime() - actual.getTime()) < interval_in_ms) {
+                if (actual.after(reservation.getEnd_date()) && (reservation.getEnd_date().getTime() - actual.getTime()) < interval_in_ms) {
                     expiring_reservations.add(reservation);
                 }
 
@@ -1139,8 +1139,8 @@ public class Library implements Subject, Observer {
             while (resultSet.next()) {
                 tmp = new Reservation();
                 tmp.setId(resultSet.getInt("idReservation"));
-                tmp.setStartDate(stringToDate(resultSet.getString("startdate")));
-                tmp.setEndDate(stringToDate(resultSet.getString("enddate")));
+                tmp.setStart_date(stringToDate(resultSet.getString("startdate")));
+                tmp.setEnd_date(stringToDate(resultSet.getString("enddate")));
                 tmp.setUser_id(resultSet.getInt("user"));
                 tmp.setBook_isbn(resultSet.getString("isbn"));
                 return tmp;
@@ -1172,8 +1172,8 @@ public class Library implements Subject, Observer {
             }
             else{
                 String insert = "INSERT INTO Reservation (startdate,enddate,user,book) "
-                        + "VALUES('" + datetoString(r.getStartDate()) + "','"
-                        + datetoString(r.getEndDate()) + "','"
+                        + "VALUES('" + datetoString(r.getStart_date()) + "','"
+                        + datetoString(r.getEnd_date()) + "','"
                         + r.getUser_id() + "','"
                         + r.getBook_isbn() + "');";
                 System.out.println(insert);
@@ -1222,8 +1222,8 @@ public class Library implements Subject, Observer {
             while (resultSet.next()) {
                 tmp = new Reservation();
                 tmp.setId(resultSet.getInt("idReservation"));
-                tmp.setStartDate(stringToDate(resultSet.getString("startdate")));
-                tmp.setEndDate(stringToDate(resultSet.getString("enddate")));
+                tmp.setStart_date(stringToDate(resultSet.getString("startdate")));
+                tmp.setEnd_date(stringToDate(resultSet.getString("enddate")));
                 tmp.setUser_id(resultSet.getInt("user"));
                 tmp.setBook_isbn(resultSet.getString("book"));
                 reservations.add(tmp.getId() + " : " + getReaderById(tmp.getUser_id()).getLogin() + " >>> " + tmp.getBook_isbn());
@@ -1253,11 +1253,11 @@ public class Library implements Subject, Observer {
                 while (resultSet.next()) {
                     tmp = new Reservation();
                     tmp.setId(resultSet.getInt("idReservation"));
-                    tmp.setStartDate(stringToDate(resultSet.getString("startdate")));
-                    tmp.setEndDate(stringToDate(resultSet.getString("enddate")));
+                    tmp.setStart_date(stringToDate(resultSet.getString("startdate")));
+                    tmp.setEnd_date(stringToDate(resultSet.getString("enddate")));
                     tmp.setUser_id(id);
                     tmp.setBook_isbn(resultSet.getString("book"));
-                    reservations.add(tmp.getId() + " >>> " + tmp.getBook_isbn());
+                    reservations.add(tmp.getId() + " : " + getBookByISBN(tmp.getBook_isbn()).getName());
                 }
             }
             return reservations;
@@ -1277,8 +1277,8 @@ public class Library implements Subject, Observer {
             while (resultSet.next()) {
                 tmp = new Reservation();
                 tmp.setId(resultSet.getInt("idReservation"));
-                tmp.setStartDate(stringToDate(resultSet.getString("startdate")));
-                tmp.setEndDate(stringToDate(resultSet.getString("enddate")));
+                tmp.setStart_date(stringToDate(resultSet.getString("startdate")));
+                tmp.setEnd_date(stringToDate(resultSet.getString("enddate")));
                 tmp.setUser_id(id);
                 reservations.add(tmp);
             }
@@ -1320,8 +1320,8 @@ public class Library implements Subject, Observer {
             while (resultSet.next()) {
                 tmp = new Reservation();
                 tmp.setId(resultSet.getInt("idReservation"));
-                tmp.setStartDate(stringToDate(resultSet.getString("startdate")));
-                tmp.setEndDate(stringToDate(resultSet.getString("enddate")));
+                tmp.setStart_date(stringToDate(resultSet.getString("startdate")));
+                tmp.setEnd_date(stringToDate(resultSet.getString("enddate")));
                 tmp.setUser_id(resultSet.getInt("user"));
                 reservations.Append(tmp);
             }

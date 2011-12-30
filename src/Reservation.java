@@ -42,22 +42,6 @@ public class Reservation {
         this.book_isbn = book;
     }
 
-    public Date getEndDate() {
-        return end_date;
-    }
-
-    public void setEndDate(Date end_date) {
-        this.end_date = end_date;
-    }
-
-    public Date getStartDate() {
-        return start_date;
-    }
-
-    public void setStartDate(Date start_date) {
-        this.start_date = start_date;
-    }
-
     public int getNumber_of_copies() {
         return number_of_copies;
     }
