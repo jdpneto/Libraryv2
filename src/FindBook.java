@@ -1,3 +1,7 @@
+
+import java.sql.SQLException;
+import java.util.Vector;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -35,16 +39,19 @@ public class FindBook extends javax.swing.JFrame {
         find_button = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         list_field = new javax.swing.JList();
-        comment_button = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        comment_field = new javax.swing.JTextArea();
         users_panel = new javax.swing.JButton();
+        open_details = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Find Book");
 
         find_button.setText("Find");
+        find_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                find_buttonMouseReleased(evt);
+            }
+        });
         find_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 find_buttonActionPerformed(evt);
@@ -53,23 +60,14 @@ public class FindBook extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(list_field);
 
-        comment_button.setText("Comment Book");
-        comment_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comment_buttonActionPerformed(evt);
-            }
-        });
-
-        comment_field.setColumns(20);
-        comment_field.setRows(5);
-        jScrollPane2.setViewportView(comment_field);
-
         users_panel.setText("User's Panel");
         users_panel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 users_panelActionPerformed(evt);
             }
         });
+
+        open_details.setText("Open Details");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,23 +76,22 @@ public class FindBook extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 538, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(users_panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                            .add(comment_button, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)))
+                        .add(567, 567, 567)
+                        .add(users_panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .addContainerGap()
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(300, 300, 300)
                         .add(jLabel1))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                    .add(layout.createSequentialGroup()
                         .addContainerGap()
-                        .add(find_book, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(find_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 47, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(find_book, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 544, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(18, 18, 18)
+                        .add(find_button, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(572, Short.MAX_VALUE)
+                        .add(open_details, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 151, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -108,14 +105,10 @@ public class FindBook extends javax.swing.JFrame {
                     .add(find_book, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 231, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(29, 29, 29)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                    .add(layout.createSequentialGroup()
-                        .add(12, 12, 12)
-                        .add(comment_button)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 31, Short.MAX_VALUE)
-                        .add(users_panel)))
+                .add(18, 18, 18)
+                .add(open_details)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 30, Short.MAX_VALUE)
+                .add(users_panel)
                 .addContainerGap())
         );
 
@@ -126,25 +119,34 @@ private void find_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 // TODO add your handling code here:
 }//GEN-LAST:event_find_buttonActionPerformed
 
-private void comment_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comment_buttonActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_comment_buttonActionPerformed
-
 private void users_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_users_panelActionPerformed
 // TODO add your handling code here:
     new UserForm().setVisible(true);
     dispose();
 }//GEN-LAST:event_users_panelActionPerformed
 
+    private void find_buttonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_find_buttonMouseReleased
+        
+            String search = find_book.getText();
+            
+            Vector <String> vector = dat.getBookListByTitle(search);
+            if(vector.size() == 0){
+                String [] temp = {"A procura não encontrou resultados"};
+                list_field.setListData(temp);
+            }
+            else{
+                list_field.setListData(vector);
+            }
+        
+    }//GEN-LAST:event_find_buttonMouseReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton comment_button;
-    private javax.swing.JTextArea comment_field;
     private javax.swing.JTextField find_book;
     private javax.swing.JButton find_button;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList list_field;
+    private javax.swing.JButton open_details;
     private javax.swing.JButton users_panel;
     // End of variables declaration//GEN-END:variables
 }
