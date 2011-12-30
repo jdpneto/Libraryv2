@@ -1,4 +1,5 @@
 
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
@@ -344,6 +345,7 @@ private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 
     //store all information
     Reservation tmp = new Reservation(startDate, endDate, isbn, id, numberOfCopies);
+    tmp.setId(id);
     Reservation check;
     check = dat.editReservation(tmp);
     if (!check.getBook_isbn().equals("")) {
@@ -375,14 +377,19 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     }//GEN-LAST:event_search_fieldActionPerformed
 
     private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
-        String text = search_field.getText();
-        Vector <String> vector = dat.getBookListByTitle(text);
-        if(vector.size() == 0){
-            String [] temp = {"A procura não encontrou resultados"};
-            user_list.setListData(temp);
-        }
-        else{
-            user_list.setListData(vector);
+        try {
+            String login = search_field.getText();
+            int [] type = {0,1,0};
+            Vector <String> vector = dat.searchUser(login,type);
+            if(vector.size() == 0){
+                String [] temp = {"A procura não encontrou resultados"};
+                user_list.setListData(temp);
+            }
+            else{
+                user_list.setListData(vector);
+            }
+        } catch (SQLException ex) {
+            //Logger.getLogger(DeleteUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_search_buttonActionPerformed
 
@@ -410,13 +417,14 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         else
         {
             Reservation r = dat.getReservation(((String)selected[0]).split(" : ")[0]);
+            System.out.println("idReservation = "+r.getId());
             id_field.setText(r.getId()+"");
             title_field.setText(dat.getBookByISBN(r.getBook_isbn()).getName());
             copies_field.setText(""+r.getNumber_of_copies());
             start_field.setText(dat.datetoString(r.getStart_date()));
             end_field.setText(dat.datetoString(r.getStart_date()));
             int reserved = Integer.parseInt(copies_field.getText());
-            Book b = dat.getBookByTitle(title_field.getName());
+            Book b = dat.getBookByTitle(title_field.getText());
 
             String[] options = new String [b.getNumberOfCopies()+reserved];
             for(int i=1;i<=options.length;i++){

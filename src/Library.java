@@ -1139,12 +1139,14 @@ public class Library implements Subject, Observer {
             resultSet = st.executeQuery("select * from Reservation where idReservation='" + idReservation + "';");
             Reservation tmp;
             while (resultSet.next()) {
+                System.out.println(idReservation+","+resultSet.getInt("idReservation"));
                 tmp = new Reservation();
                 tmp.setId(resultSet.getInt("idReservation"));
                 tmp.setStart_date(stringToDate(resultSet.getString("startdate")));
                 tmp.setEnd_date(stringToDate(resultSet.getString("enddate")));
                 tmp.setUser_id(resultSet.getInt("user"));
-                tmp.setBook_isbn(resultSet.getString("isbn"));
+                tmp.setBook_isbn(resultSet.getString("book"));
+                tmp.setnumber_of_copies(resultSet.getInt("nbooks"));
                 return tmp;
             }
             return new Reservation();
@@ -1210,18 +1212,18 @@ public class Library implements Subject, Observer {
             resultSet = st.executeQuery("select * from Reservation where idReservation = '" + r.getId() + "';");
             Reservation stored = new Reservation();
             while (resultSet.next()) {
-                stored.setBook_isbn(resultSet.getString("isbn"));
+                stored.setBook_isbn(resultSet.getString("book"));
                 stored.setUser_id(resultSet.getInt("user"));
                 stored.setnumber_of_copies(resultSet.getInt("nbooks"));
                 stored.setStart_date(stringToDate(resultSet.getString("startdate")));
                 stored.setEnd_date(stringToDate(resultSet.getString("enddate")));
             }
-            resultSet = st.executeQuery("select * from Book where isbn = '" + r.getBook_isbn() + "';");
+            resultSet = st.executeQuery("select * from Book where ISBN = '" + r.getBook_isbn() + "';");
             Book tmp = new Book();
             while (resultSet.next()) {
                 tmp.setAuthor(resultSet.getString("author"));
                 tmp.setName(resultSet.getString("title"));
-                tmp.setIsbn(resultSet.getString("isbn"));
+                tmp.setIsbn(resultSet.getString("ISBN"));
                 tmp.setYear(resultSet.getInt("year"));
                 tmp.setCategory(resultSet.getString("category"));
                 tmp.setNumberOfCopies(resultSet.getInt("numberofcopies"));
@@ -1230,14 +1232,15 @@ public class Library implements Subject, Observer {
                 return new Reservation();
             }
             else{
-                String update_reservation = "UPDATE Reservation (startdate,enddate,user,book) "
-                        + "VALUES('" + datetoString(r.getStart_date()) + "','"
-                        + datetoString(r.getEnd_date()) + "','"
-                        + r.getUser_id() + "','"
-                        + r.getBook_isbn() + "')"
+                String update_reservation = "UPDATE Reservation SET startdate='" + datetoString(r.getStart_date()) + "',"
+                        + " enddate = '" + datetoString(r.getEnd_date()) + "',"
+                        + " user = '" + r.getUser_id() + "',"
+                        + " book = '" + r.getBook_isbn() + "',"
+                        + " nbooks = '" + r.getNumber_of_copies() + "'"
                         + " WHERE idReservation = '" + r.getId() +"';";
                 System.out.println(update_reservation);
-                st.execute(update_reservation);
+                preparedStatement = (PreparedStatement) con.prepareStatement(update_reservation);
+                preparedStatement.executeUpdate();
                 addLineToLog("librarian.log", r.getBook_isbn() + " reservation edited!");
                             
                 String ps = "UPDATE Book SET author = '" + tmp.getAuthor() + "',"
@@ -1245,7 +1248,7 @@ public class Library implements Subject, Observer {
                 + " year = '" + tmp.getYear() + "',"
                 + " category = '" + tmp.getCategory() + "',"
                 + " numberofcopies = '" + (stored.getNumber_of_copies()-r.getNumber_of_copies()) + "'";
-                ps += " WHERE isbn = '" + tmp.getIsbn() +"';";
+                ps += " WHERE ISBN = '" + tmp.getIsbn() +"';";
 
                 System.out.println(ps);
                 preparedStatement = (PreparedStatement) con.prepareStatement(ps);
