@@ -21,12 +21,19 @@ public class EditUser extends javax.swing.JFrame {
     Library dat;
     int current_id;
     Person p;
+    Originator o;
+    Caretaker c;
     /** Creates new form EditUser */
     public EditUser() {
         this.dat = Library.Instance();
         current_id = -1;
         initComponents();
+        undo_button.setEnabled(false);
+        o = new Originator();
+        submit_button.setEnabled(false);
         error.setVisible(false);
+        success.setVisible(false);
+        c = new Caretaker();
         expires_field.setEnabled(false);
     }
     
@@ -70,6 +77,7 @@ public class EditUser extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         user_id_field = new javax.swing.JTextField();
         undo_button = new javax.swing.JButton();
+        success = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,7 +107,7 @@ public class EditUser extends javax.swing.JFrame {
             }
         });
 
-        submit_button.setText("Submit");
+        submit_button.setText("Save Changes");
         submit_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 submit_buttonMouseReleased(evt);
@@ -194,12 +202,21 @@ public class EditUser extends javax.swing.JFrame {
 
         jLabel5.setText("User Id:");
 
+        user_id_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                user_id_fieldActionPerformed(evt);
+            }
+        });
+
         undo_button.setText("Undo Changes");
         undo_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 undo_buttonMouseReleased(evt);
             }
         });
+
+        success.setForeground(new java.awt.Color(0, 255, 0));
+        success.setText("Utilizador gravado com sucesso!");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -208,7 +225,7 @@ public class EditUser extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .add(307, 307, 307)
                 .add(add_user)
-                .addContainerGap(339, Short.MAX_VALUE))
+                .addContainerGap(419, Short.MAX_VALUE))
             .add(layout.createSequentialGroup()
                 .add(32, 32, 32)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
@@ -220,13 +237,6 @@ public class EditUser extends javax.swing.JFrame {
                         .add(87, 87, 87)
                         .add(submit_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 145, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .add(125, 125, 125)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(email_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                            .add(phone_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                            .add(name_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jLabel7)
                             .add(jLabel8)
@@ -236,32 +246,41 @@ public class EditUser extends javax.swing.JFrame {
                             .add(jLabel13))
                         .add(47, 47, 47)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(limit_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                            .add(country_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, postal_code_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                            .add(street_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, city_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+                            .add(limit_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                            .add(country_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, postal_code_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, city_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
                             .add(layout.createSequentialGroup()
                                 .add(expires_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 180, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(27, 27, 27)
-                                .add(jButton1)))))
-                .add(18, 18, 18)
+                                .add(jButton1))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, street_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                            .add(email_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                            .add(phone_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                            .add(name_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))))
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                        .add(search_button)
-                        .add(search_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 181, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                            .add(jLabel5)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                            .add(user_id_field))
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                            .add(20, 20, 20)
+                    .add(layout.createSequentialGroup()
+                        .add(18, 18, 18)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                .add(error)
-                                .add(back_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 160, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(undo_button)))))
-                .add(36, 36, 36))
+                                .add(search_button)
+                                .add(search_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 181, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                                .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                                    .add(jLabel5)
+                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                    .add(user_id_field))
+                                .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                                    .add(20, 20, 20)
+                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                        .add(error)
+                                        .add(back_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 160, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(undo_button))))))
+                    .add(layout.createSequentialGroup()
+                        .add(27, 27, 27)
+                        .add(success)))
+                .add(80, 80, 80))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -291,9 +310,11 @@ public class EditUser extends javax.swing.JFrame {
                     .add(phone_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(error))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel3)
-                    .add(email_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(jLabel3)
+                        .add(email_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(success))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel7)
@@ -328,6 +349,8 @@ public class EditUser extends javax.swing.JFrame {
                         .add(expires_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
+
+        user_id_field.setEditable(false);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -423,6 +446,19 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             this.current_id = r.getId();
             this.p=r.getPerson();
             
+            
+            submit_button.setEnabled(true);
+            
+            //*****************MEMENTO*******************//
+            
+            State st = new State(r.getPerson().clone(),r.getExpires(),r.getLimit());
+            
+            o.setState(st);
+            c.setMemento(o.CreateMemento());//= o.CreateMemento();
+            undo_button.setEnabled(true);
+            
+            
+            
         }
         
     }//GEN-LAST:event_list_fieldValueChanged
@@ -447,19 +483,61 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         //this.country_field.setText(this.lib.getCountry());
         String str = expires_field.getText();
         //this.date_field.setText(this.lib.getExpires());
-        p = dat.editUser(p, str, Integer.parseInt(limit_field.getText()));
+        this.p = dat.editUser(p, str, Integer.parseInt(limit_field.getText()));
         if(p.getId() == -1)
+        {
+            success.setVisible(false);
             error.setVisible(true);
+        }
         else
         {
-            new AdminManageUsers().setVisible(true);
-            dispose();
+            submit_button.setEnabled(false);
+            //o.setState(new State(p,str,Integer.parseInt(limit_field.getText())));
+            success.setVisible(true);
+            error.setVisible(false);
         }
     }//GEN-LAST:event_submit_buttonMouseReleased
-
+    
     private void undo_buttonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_undo_buttonMouseReleased
         
+        /**************MEMENTO***************/
+        o.SetMemento(c.getMemento());
+        
+        State st=o.getState();
+        this.p = st.getP();
+        
+        
+        this.email_field.setText(p.getEmail());
+        this.name_field.setText(p.getName());
+        this.phone_field.setText(p.getPhone());
+        //this.id_field.setText(""+r.getId());
+        this.street_field.setText(p.getAddress());
+        this.city_field.setText(p.getCity());
+        this.postal_code_field.setText(p.getPostalcode());
+        this.country_field.setText(p.getCountry());
+        this.expires_field.setText(st.getExpires());
+        this.limit_field.setText(""+st.getLimit());
+        this.user_id_field.setText(""+p.getId());
+        this.current_id = p.getId();
+        
+        
+        this.p = dat.editUser(p, expires_field.getText(), Integer.parseInt(limit_field.getText()));
+        if(this.p.getId() == -1)
+        {
+            success.setVisible(false);
+            error.setVisible(true);
+        }
+        else
+        {
+            submit_button.setEnabled(true);
+            success.setVisible(true);
+            error.setVisible(false);
+        }
     }//GEN-LAST:event_undo_buttonMouseReleased
+    
+    private void user_id_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_id_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_user_id_fieldActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel add_user;
@@ -491,6 +569,7 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JTextField search_field;
     private javax.swing.JTextField street_field;
     private javax.swing.JButton submit_button;
+    private javax.swing.JLabel success;
     private javax.swing.JButton undo_button;
     private javax.swing.JTextField user_id_field;
     // End of variables declaration//GEN-END:variables

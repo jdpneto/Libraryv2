@@ -32,14 +32,12 @@
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="password_field" alignment="0" min="-2" pref="188" max="-2" attributes="1"/>
+                          <Component id="error_msg" alignment="1" min="-2" max="-2" attributes="1"/>
                       </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="type_box" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="ok" alignment="0" max="32767" attributes="1"/>
-                      <Component id="error_msg" alignment="0" max="32767" attributes="1"/>
-                  </Group>
+                  <Component id="ok" alignment="0" min="-2" pref="60" max="-2" attributes="1"/>
               </Group>
               <EmptySpace pref="33" max="32767" attributes="0"/>
           </Group>
@@ -98,6 +96,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="okActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ok.addKeyListener(this);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>

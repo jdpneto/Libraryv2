@@ -48,7 +48,6 @@ public class AdminForm extends javax.swing.JFrame {
         list_panel = new javax.swing.JList();
         user_management = new javax.swing.JButton();
         librarian_management = new javax.swing.JButton();
-        statistics = new javax.swing.JButton();
         export_json = new javax.swing.JButton();
         export_xml = new javax.swing.JButton();
 
@@ -78,13 +77,6 @@ public class AdminForm extends javax.swing.JFrame {
         librarian_management.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 librarian_managementActionPerformed(evt);
-            }
-        });
-
-        statistics.setText("Statistics");
-        statistics.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                statisticsActionPerformed(evt);
             }
         });
 
@@ -126,16 +118,14 @@ public class AdminForm extends javax.swing.JFrame {
                     .add(layout.createSequentialGroup()
                         .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 418, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(export_xml, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(export_xml, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .add(export_json, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                .add(logout, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .add(statistics, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .add(librarian_management, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                                .add(user_management, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .add(librarian_management, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                            .add(user_management, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(logout, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .add(jLabel2))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -150,13 +140,11 @@ public class AdminForm extends javax.swing.JFrame {
                         .add(user_management)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(librarian_management)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(statistics)
-                        .add(44, 44, 44)
+                        .add(48, 48, 48)
                         .add(export_json)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(export_xml)
-                        .add(46, 46, 46)
+                        .add(78, 78, 78)
                         .add(logout))
                     .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 284, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(29, 29, 29))
@@ -176,12 +164,6 @@ private void librarian_managementActionPerformed(java.awt.event.ActionEvent evt)
     new AdminManageLibrarians().setVisible(true);
     dispose();
 }//GEN-LAST:event_librarian_managementActionPerformed
-
-private void statisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statisticsActionPerformed
-// TODO add your handling code here:
-    new Statistics().setVisible(true);
-    dispose();
-}//GEN-LAST:event_statisticsActionPerformed
 
 private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
 // TODO add your handling code here:
@@ -216,7 +198,6 @@ private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private javax.swing.JButton librarian_management;
     private javax.swing.JList list_panel;
     private javax.swing.JButton logout;
-    private javax.swing.JButton statistics;
     private javax.swing.JButton user_management;
     // End of variables declaration//GEN-END:variables
 }

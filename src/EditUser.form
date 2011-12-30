@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -25,7 +25,7 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="307" max="-2" attributes="0"/>
               <Component id="add_user" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="339" max="32767" attributes="0"/>
+              <EmptySpace pref="419" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
@@ -39,15 +39,6 @@
                       <Component id="submit_button" min="-2" pref="145" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="email_field" alignment="0" pref="310" max="32767" attributes="1"/>
-                          <Component id="phone_field" alignment="0" pref="310" max="32767" attributes="1"/>
-                          <Component id="name_field" alignment="0" pref="310" max="32767" attributes="1"/>
-                          <Component id="jScrollPane1" alignment="0" pref="310" max="32767" attributes="1"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
@@ -58,42 +49,54 @@
                       </Group>
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="limit_field" pref="310" max="32767" attributes="1"/>
-                          <Component id="country_field" pref="310" max="32767" attributes="1"/>
-                          <Component id="postal_code_field" alignment="1" pref="310" max="32767" attributes="1"/>
-                          <Component id="street_field" alignment="0" pref="310" max="32767" attributes="1"/>
-                          <Component id="city_field" alignment="1" pref="310" max="32767" attributes="1"/>
+                          <Component id="limit_field" pref="313" max="32767" attributes="1"/>
+                          <Component id="country_field" pref="313" max="32767" attributes="1"/>
+                          <Component id="postal_code_field" alignment="1" pref="313" max="32767" attributes="1"/>
+                          <Component id="city_field" alignment="1" pref="313" max="32767" attributes="1"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="expires_field" min="-2" pref="180" max="-2" attributes="1"/>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="street_field" alignment="1" pref="313" max="32767" attributes="1"/>
+                          <Component id="email_field" alignment="0" pref="313" max="32767" attributes="1"/>
+                          <Component id="phone_field" alignment="0" pref="313" max="32767" attributes="1"/>
+                          <Component id="name_field" alignment="0" pref="313" max="32767" attributes="1"/>
+                          <Component id="jScrollPane1" alignment="0" pref="313" max="32767" attributes="1"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                      <Component id="search_button" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="search_field" alignment="1" min="-2" pref="181" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="1">
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="user_id_field" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="error" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="back_button" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
-                              <Component id="undo_button" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="search_button" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="search_field" alignment="1" min="-2" pref="181" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="1">
+                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="user_id_field" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="error" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="back_button" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="undo_button" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="success" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -131,9 +134,12 @@
                   <Component id="error" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="email_field" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="email_field" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="success" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -219,7 +225,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="submit_button">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Submit"/>
+        <Property name="text" type="java.lang.String" value="Save Changes"/>
       </Properties>
       <Events>
         <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="submit_buttonMouseReleased"/>
@@ -345,6 +351,12 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="user_id_field">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="user_id_fieldActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="user_id_field.setEditable(false);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="undo_button">
       <Properties>
@@ -353,6 +365,14 @@
       <Events>
         <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="undo_buttonMouseReleased"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="success">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="ff" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Utilizador gravado com sucesso!"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

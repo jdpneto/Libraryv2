@@ -1,4 +1,6 @@
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /*
  * To change this template, choose Tools | Templates
@@ -14,7 +16,7 @@
  *
  * @author jlnabais
  */
-public class LoginForm extends javax.swing.JFrame {
+public class LoginForm extends javax.swing.JFrame implements KeyListener {
 
     Library dat;
 
@@ -22,6 +24,7 @@ public class LoginForm extends javax.swing.JFrame {
     public LoginForm() {
         this.dat = Library.Instance();
         initComponents();
+        // addKeyListener(this);
     }
 
     /** This method is called from within the constructor to
@@ -93,12 +96,11 @@ public class LoginForm extends javax.swing.JFrame {
                             .add(org.jdesktop.layout.GroupLayout.LEADING, login_field)
                             .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel2)
                             .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel1)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, password_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 188, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, password_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 188, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(error_msg))
                         .add(27, 27, 27)
                         .add(type_box, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, ok, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, error_msg, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .add(ok, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 60, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -123,6 +125,7 @@ public class LoginForm extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
+        ok.addKeyListener(this);
         error_msg.setVisible(false);
 
         pack();
@@ -136,7 +139,7 @@ private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:even
     //Person p1 = new Person(-1,"lala@lala.com", "", "admin", "admin", "admin", "", "", "", type, "");
     //Admin a = new Admin(p1);
     //dat.storeAdmin(a);
-    
+
     Person p = new Person();
     p.setLogin(login_field.getText());
     p.setPassword(password_field.getText());
@@ -154,8 +157,8 @@ private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:even
         } else if (option == 2 && type[1] == 1) {
             new UserForm().setVisible(true);
             dispose();
-        } else if(option == -1){
-            error_msg.setText("Error");
+        } else{
+            error_msg.setText("Invalid type");
             error_msg.setVisible(true);
         }
     } else if (p.getId() == -1) {
@@ -167,8 +170,8 @@ private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:even
         error_msg.setText("Password invalid");
         error_msg.setVisible(true);
     }//new AdminForm(dat).setVisible(true);
-       //     dispose();
-    
+    //     dispose();
+
 }//GEN-LAST:event_okActionPerformed
 
 private void login_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_fieldActionPerformed
@@ -189,4 +192,23 @@ private void password_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JPasswordField password_field;
     private javax.swing.JComboBox type_box;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+        System.out.println("key: " +key);
+        if (key == KeyEvent.VK_ENTER) {
+            okActionPerformed(null);
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        
+    }
 }

@@ -33,20 +33,17 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jScrollPane1" min="-2" pref="418" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="export_xml" pref="230" max="32767" attributes="1"/>
-                          <Component id="export_json" max="32767" attributes="1"/>
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="logout" max="32767" attributes="1"/>
-                              <Component id="statistics" alignment="0" max="32767" attributes="1"/>
-                              <Component id="librarian_management" alignment="0" pref="225" max="32767" attributes="1"/>
-                              <Component id="user_management" alignment="0" max="32767" attributes="1"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="export_xml" max="32767" attributes="1"/>
+                          <Component id="export_json" alignment="0" max="32767" attributes="1"/>
+                          <Component id="librarian_management" alignment="0" pref="225" max="32767" attributes="1"/>
+                          <Component id="user_management" alignment="0" max="32767" attributes="1"/>
+                          <Component id="logout" alignment="0" max="32767" attributes="1"/>
                       </Group>
                   </Group>
                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -63,13 +60,11 @@
                       <Component id="user_management" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="librarian_management" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="statistics" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Component id="export_json" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="export_xml" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                       <Component id="logout" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" alignment="0" min="-2" pref="284" max="-2" attributes="0"/>
@@ -123,14 +118,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="librarian_managementActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="statistics">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Statistics"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="statisticsActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="export_json">

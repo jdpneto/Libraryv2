@@ -8,17 +8,17 @@
  * @author jlnabais
  */
 public class Memento {
-    private Reader state;
+    private State state;
 
-    public Memento(Reader state) {
+    public Memento(State state) {
         this.state = state;
     }
 
-    public Reader getState() {
+    public State getState() {
         return this.state;
     }
 
-    public void setState(Reader state) {
+    public void setState(State state) {
         this.state = state;
     }
 
