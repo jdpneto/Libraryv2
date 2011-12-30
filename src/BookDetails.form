@@ -23,100 +23,131 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="175" pref="175" max="175" attributes="0"/>
-              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="719" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="rating_slider" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="rating_label" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jScrollPane2" min="-2" pref="319" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="comment_button" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="145" pref="145" max="145" attributes="0"/>
-              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" min="-2" pref="380" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="778" max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="79" pref="79" max="79" attributes="0"/>
               <Component id="jTitleValue" min="-2" pref="324" max="-2" attributes="0"/>
+              <EmptySpace min="785" pref="785" max="785" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
-              <EmptySpace min="30" pref="30" max="30" attributes="0"/>
-              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="47" pref="47" max="47" attributes="0"/>
-              <Component id="jAuthorValue" min="-2" pref="324" max="-2" attributes="0"/>
+              <EmptySpace min="145" pref="145" max="145" attributes="0"/>
+              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="1043" pref="1043" max="1043" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
-              <EmptySpace min="30" pref="30" max="30" attributes="0"/>
-              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="2" pref="2" max="2" attributes="0"/>
-              <Component id="jISBNValue" min="-2" pref="324" max="-2" attributes="0"/>
+              <EmptySpace min="175" pref="175" max="175" attributes="0"/>
+              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="934" pref="934" max="934" attributes="0"/>
           </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="30" pref="30" max="30" attributes="0"/>
-              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="9" pref="9" max="9" attributes="0"/>
-              <Component id="jCopiesValue" min="-2" pref="324" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="30" pref="30" max="30" attributes="0"/>
-              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="30" pref="30" max="30" attributes="0"/>
-              <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="30" pref="30" max="30" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="380" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="30" pref="30" max="30" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="380" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="330" pref="330" max="330" attributes="0"/>
-              <Component id="comment_button" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="title" max="32767" attributes="0"/>
+                      <EmptySpace min="511" pref="511" max="511" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="isbn" alignment="0" pref="35" max="32767" attributes="0"/>
+                          <Component id="genre" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="501" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="copies" alignment="0" max="32767" attributes="1"/>
+                          <Component id="author" alignment="0" max="32767" attributes="1"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="jAuthorValue" min="-2" pref="324" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Component id="jISBNValue" min="-2" pref="324" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="jCopiesValue" min="-2" pref="324" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="273" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="12" pref="12" max="12" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="6" pref="6" max="6" attributes="0"/>
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
               <Component id="jTitleValue" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="14" pref="14" max="14" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="2" pref="2" max="2" attributes="0"/>
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       <Component id="jAuthorValue" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace min="2" pref="2" max="2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
                       <EmptySpace min="2" pref="2" max="2" attributes="0"/>
                       <Component id="jISBNValue" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace min="2" pref="2" max="2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="2" pref="2" max="2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Component id="jCopiesValue" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                      <Component id="copies" min="-2" pref="16" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <Component id="title" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="author" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="genre" min="-2" pref="16" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="2" pref="2" max="2" attributes="0"/>
-              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="12" pref="12" max="12" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="isbn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="2" pref="2" max="2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="140" max="-2" attributes="0"/>
-              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="8" pref="8" max="8" attributes="0"/>
-              <Component id="comment_button" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="184" max="-2" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="rating_slider" min="-2" max="-2" attributes="0"/>
+                  <Component id="rating_label" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="comment_button" min="-2" max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="44" max="32767" attributes="1"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -149,17 +180,17 @@
         <Property name="text" type="java.lang.String" value="Book Details"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
+    <Component class="javax.swing.JLabel" name="title">
       <Properties>
-        <Property name="text" type="java.lang.String" value="T&#xed;tulo"/>
+        <Property name="text" type="java.lang.String" value="title"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
+    <Component class="javax.swing.JLabel" name="author">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Autor"/>
+        <Property name="text" type="java.lang.String" value="author"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel9">
+    <Component class="javax.swing.JLabel" name="isbn">
       <Properties>
         <Property name="text" type="java.lang.String" value="ISBN"/>
       </Properties>
@@ -169,9 +200,9 @@
         <Property name="text" type="java.lang.String" value="Coment&#xe1;rios"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel12">
+    <Component class="javax.swing.JLabel" name="copies">
       <Properties>
-        <Property name="text" type="java.lang.String" value="C&#xf3;pias"/>
+        <Property name="text" type="java.lang.String" value="copies"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="comment_button">
@@ -213,5 +244,25 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JSlider" name="rating_slider">
+      <Properties>
+        <Property name="maximum" type="int" value="5"/>
+        <Property name="minimum" type="int" value="1"/>
+        <Property name="value" type="int" value="1"/>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="rating_sliderStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="rating_label">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Rating"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="genre">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="genre"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

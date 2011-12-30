@@ -19,10 +19,12 @@ import java.util.Vector;
 public class FindBook extends javax.swing.JFrame {
 
     Library dat;
+    Book b;
     /** Creates new form FindBook */
     public FindBook() {
         this.dat = Library.Instance();
         initComponents();
+        open_details.setEnabled(false);
     }
 
     /** This method is called from within the constructor to
@@ -58,6 +60,11 @@ public class FindBook extends javax.swing.JFrame {
             }
         });
 
+        list_field.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                list_fieldValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(list_field);
 
         users_panel.setText("User's Panel");
@@ -68,6 +75,11 @@ public class FindBook extends javax.swing.JFrame {
         });
 
         open_details.setText("Open Details");
+        open_details.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                open_detailsMouseReleased(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,6 +151,27 @@ private void users_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             }
         
     }//GEN-LAST:event_find_buttonMouseReleased
+
+    private void list_fieldValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list_fieldValueChanged
+         Object [] selected = list_field.getSelectedValues();
+        if(selected.length > 1 || selected.length == 0)
+        {
+            open_details.setEnabled(false);
+        }
+        else if(selected.length == 1 && selected[0].equals("A procura não encontrou resultados"));
+        else
+        {
+            b = dat.getBookByTitle((String)selected[0]);
+            open_details.setEnabled(true);
+        }
+        
+        
+    }//GEN-LAST:event_list_fieldValueChanged
+
+    private void open_detailsMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_open_detailsMouseReleased
+        new BookDetails(b).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_open_detailsMouseReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField find_book;

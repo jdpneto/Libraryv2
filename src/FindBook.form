@@ -97,6 +97,9 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
         <Component class="javax.swing.JList" name="list_field">
+          <Events>
+            <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="list_fieldValueChanged"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -112,6 +115,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Open Details"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="open_detailsMouseReleased"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

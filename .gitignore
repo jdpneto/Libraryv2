@@ -4,3 +4,6 @@
 *.pdf
 *.log
 *.png
+admin.log.orig
+admin.log
+librarian.log
