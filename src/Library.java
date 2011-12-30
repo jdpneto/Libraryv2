@@ -1173,11 +1173,12 @@ public class Library implements Subject, Observer {
                 return new Reservation();
             }
             else{
-                String insert = "INSERT INTO Reservation (startdate,enddate,user,book) "
+                String insert = "INSERT INTO Reservation (startdate,enddate,user,book,nbooks) "
                         + "VALUES('" + datetoString(r.getStart_date()) + "','"
                         + datetoString(r.getEnd_date()) + "','"
                         + r.getUser_id() + "','"
-                        + r.getBook_isbn() + "');";
+                        + r.getBook_isbn() + "','"
+                        + r.getNumber_of_copies() + "');";
                 System.out.println(insert);
                 st.execute(insert);
                 addLineToLog("librarian.log", r.getBook_isbn() + " reserved!");
@@ -1187,6 +1188,63 @@ public class Library implements Subject, Observer {
                 + " year = '" + tmp.getYear() + "',"
                 + " category = '" + tmp.getCategory() + "',"
                 + " numberofcopies = '" + (tmp.getNumberOfCopies()-r.getNumber_of_copies()) + "'";
+                ps += " WHERE isbn = '" + tmp.getIsbn() +"';";
+
+                System.out.println(ps);
+                preparedStatement = (PreparedStatement) con.prepareStatement(ps);
+                preparedStatement.executeUpdate();
+                return r;
+                
+            }
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return new Reservation();
+    }
+    
+    public Reservation editReservation(Reservation r) {
+        /*if (existsReservation(r.getId())) {
+         * return new Reservation();
+         * }*/
+        try {
+            resultSet = st.executeQuery("select * from Reservation where idReservation = '" + r.getId() + "';");
+            Reservation stored = new Reservation();
+            while (resultSet.next()) {
+                stored.setBook_isbn(resultSet.getString("isbn"));
+                stored.setUser_id(resultSet.getInt("user"));
+                stored.setnumber_of_copies(resultSet.getInt("nbooks"));
+                stored.setStart_date(stringToDate(resultSet.getString("startdate")));
+                stored.setEnd_date(stringToDate(resultSet.getString("enddate")));
+            }
+            resultSet = st.executeQuery("select * from Book where isbn = '" + r.getBook_isbn() + "';");
+            Book tmp = new Book();
+            while (resultSet.next()) {
+                tmp.setAuthor(resultSet.getString("author"));
+                tmp.setName(resultSet.getString("title"));
+                tmp.setIsbn(resultSet.getString("isbn"));
+                tmp.setYear(resultSet.getInt("year"));
+                tmp.setCategory(resultSet.getString("category"));
+                tmp.setNumberOfCopies(resultSet.getInt("numberofcopies"));
+            }
+            if(stored.getNumber_of_copies() == r.getNumber_of_copies()){
+                return new Reservation();
+            }
+            else{
+                String update_reservation = "UPDATE Reservation (startdate,enddate,user,book) "
+                        + "VALUES('" + datetoString(r.getStart_date()) + "','"
+                        + datetoString(r.getEnd_date()) + "','"
+                        + r.getUser_id() + "','"
+                        + r.getBook_isbn() + "')"
+                        + " WHERE idReservation = '" + r.getId() +"';";
+                System.out.println(update_reservation);
+                st.execute(update_reservation);
+                addLineToLog("librarian.log", r.getBook_isbn() + " reservation edited!");
+                            
+                String ps = "UPDATE Book SET author = '" + tmp.getAuthor() + "',"
+                + " title = '" + tmp.getName() + "',"
+                + " year = '" + tmp.getYear() + "',"
+                + " category = '" + tmp.getCategory() + "',"
+                + " numberofcopies = '" + (stored.getNumber_of_copies()-r.getNumber_of_copies()) + "'";
                 ps += " WHERE isbn = '" + tmp.getIsbn() +"';";
 
                 System.out.println(ps);

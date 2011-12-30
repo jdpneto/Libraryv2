@@ -134,7 +134,7 @@ public class AddReservation extends javax.swing.JFrame {
         });
 
         error.setForeground(new java.awt.Color(255, 0, 0));
-        error.setText("Book or user does not exist;");
+        error.setText("Book or user does not exist");
 
         jLabel6.setText("Book's List");
 
@@ -332,21 +332,6 @@ private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     //store all information
     Reservation tmp = new Reservation(startDate, endDate, isbn, id, numberOfCopies);
     Reservation check;
-    /*if (!isbn.equals("")) // tirar depois de selecao de livro por lista e nao por escrita
-    {
-        check = dat.storeReservation(tmp);
-        if (!check.getBook_isbn().equals("")) {
-            new ManageReservations().setVisible(true);
-            dispose();
-        } else {
-            System.out.println(tmp.toString());
-            error.setText("Too many copies requested");
-            error.setVisible(true);
-        }
-    } else {
-        error.setText("Book/User does not exist");
-        error.setVisible(true);
-    }*/
     
     check = dat.storeReservation(tmp);
     if (!check.getBook_isbn().equals("")) {
@@ -448,7 +433,6 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JButton picker_end;
     private javax.swing.JButton picker_start;
     private javax.swing.JButton search1_button;
-    private javax.swing.JButton search_button;
     private javax.swing.JTextField search_field;
     private javax.swing.JTextField start_field;
     private javax.swing.JButton submit_button;
