@@ -1,5 +1,7 @@
 
+import java.util.Date;
 import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 
 /*
  * To change this template, choose Tools | Templates
@@ -58,6 +60,9 @@ public class EditReservation extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         reservation_list = new javax.swing.JList();
+        copies_selected = new javax.swing.JComboBox();
+        error = new javax.swing.JLabel();
+        user_id_field = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -172,6 +177,13 @@ public class EditReservation extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(reservation_list);
 
+        copies_selected.setModel(new javax.swing.DefaultComboBoxModel(new String[] {}));
+
+        error.setForeground(new java.awt.Color(255, 0, 0));
+        error.setText("Error");
+
+        user_id_field.setText("jTextField1");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,25 +193,6 @@ public class EditReservation extends javax.swing.JFrame {
                     .add(layout.createSequentialGroup()
                         .add(292, 292, 292)
                         .add(add_user))
-                    .add(layout.createSequentialGroup()
-                        .add(50, 50, 50)
-                        .add(jLabel4)
-                        .add(85, 85, 85)
-                        .add(start_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 281, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(19, 19, 19)
-                        .add(dPicker_start))
-                    .add(layout.createSequentialGroup()
-                        .add(50, 50, 50)
-                        .add(jLabel5)
-                        .add(92, 92, 92)
-                        .add(end_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 281, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(19, 19, 19)
-                        .add(dPicker_end))
-                    .add(layout.createSequentialGroup()
-                        .add(70, 70, 70)
-                        .add(submit_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 145, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(245, 245, 245)
-                        .add(back_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 160, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createSequentialGroup()
                         .add(50, 50, 50)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -213,24 +206,54 @@ public class EditReservation extends javax.swing.JFrame {
                                     .add(layout.createSequentialGroup()
                                         .add(94, 94, 94)
                                         .add(search_button))))
-                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                .add(layout.createSequentialGroup()
-                                    .add(jLabel3)
-                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .add(copies_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 281, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                                    .add(jLabel1)
-                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .add(title_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 281, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(jLabel2)
-                                        .add(jLabel7))
-                                    .add(37, 37, 37)
-                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                        .add(jScrollPane2)
-                                        .add(id_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)))))))
-                .addContainerGap(56, Short.MAX_VALUE))
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(layout.createSequentialGroup()
+                                        .add(jLabel4)
+                                        .add(85, 85, 85)
+                                        .add(start_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 281, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                                        .add(layout.createSequentialGroup()
+                                            .add(jLabel3)
+                                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .add(copies_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 281, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                        .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                                            .add(jLabel1)
+                                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .add(title_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 281, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                        .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                                .add(jLabel2)
+                                                .add(jLabel7))
+                                            .add(37, 37, 37)
+                                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                                .add(jScrollPane2)
+                                                .add(id_field, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)))))
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(layout.createSequentialGroup()
+                                        .add(19, 19, 19)
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                            .add(copies_selected, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .add(dPicker_start, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .add(layout.createSequentialGroup()
+                                        .add(138, 138, 138)
+                                        .add(user_id_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))))
+                    .add(layout.createSequentialGroup()
+                        .add(50, 50, 50)
+                        .add(jLabel5)
+                        .add(92, 92, 92)
+                        .add(end_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 281, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(19, 19, 19)
+                        .add(dPicker_end))
+                    .add(layout.createSequentialGroup()
+                        .add(247, 247, 247)
+                        .add(error, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 185, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(layout.createSequentialGroup()
+                        .add(70, 70, 70)
+                        .add(submit_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 145, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(245, 245, 245)
+                        .add(back_button, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 160, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -254,32 +277,39 @@ public class EditReservation extends javax.swing.JFrame {
                         .add(12, 12, 12)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(jLabel1)
-                            .add(title_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(12, 12, 12)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel3)
-                            .add(copies_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                            .add(title_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(layout.createSequentialGroup()
                         .add(search_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(6, 6, 6)
-                        .add(search_button)))
+                        .add(search_button)
+                        .add(145, 145, 145)
+                        .add(user_id_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .add(12, 12, 12)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel3)
+                    .add(copies_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(copies_selected, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(12, 12, 12)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(10, 10, 10)
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(start_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(jLabel4))
-                    .add(start_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(dPicker_start))
                 .add(10, 10, 10)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jLabel5)
                     .add(end_field, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(dPicker_end))
-                .add(40, 40, 40)
+                .add(18, 18, 18)
+                .add(error)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(submit_button)
                     .add(back_button)))
         );
+
+        user_id_field.setEditable(false);
+        user_id_field.setVisible(false);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -305,7 +335,25 @@ private void start_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 }//GEN-LAST:event_start_fieldActionPerformed
 
 private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_buttonActionPerformed
-// TODO add your handling code here:
+    //get all the information
+    int id = Integer.parseInt(id_field.getText());
+    String isbn = dat.getBookByTitle(title_field.getText()).getIsbn();
+    int numberOfCopies = copies_selected.getSelectedIndex()+1;
+    Date startDate = dat.stringToDate(start_field.getText());
+    Date endDate = dat.stringToDate(end_field.getText());
+
+    //store all information
+    Reservation tmp = new Reservation(startDate, endDate, isbn, id, numberOfCopies);
+    Reservation check;
+    check = dat.editReservation(tmp);
+    if (!check.getBook_isbn().equals("")) {
+        new ManageReservations().setVisible(true);
+        dispose();
+    } else {
+        System.out.println(tmp.toString());
+        error.setText("Error");
+        error.setVisible(true);
+    }
 }//GEN-LAST:event_submit_buttonActionPerformed
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
@@ -367,7 +415,15 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             copies_field.setText(""+r.getNumber_of_copies());
             start_field.setText(dat.datetoString(r.getStart_date()));
             end_field.setText(dat.datetoString(r.getStart_date()));
+            int reserved = Integer.parseInt(copies_field.getText());
+            Book b = dat.getBookByTitle(title_field.getName());
 
+            String[] options = new String [b.getNumberOfCopies()+reserved];
+            for(int i=1;i<=options.length;i++){
+                options[i-1] = ""+i;
+            }
+            copies_selected.removeAllItems();  
+            copies_selected.setModel(new DefaultComboBoxModel(options));  
         }
     }//GEN-LAST:event_reservation_listValueChanged
 
@@ -375,9 +431,11 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JLabel add_user;
     private javax.swing.JButton back_button;
     private javax.swing.JTextField copies_field;
+    private javax.swing.JComboBox copies_selected;
     private javax.swing.JButton dPicker_end;
     private javax.swing.JButton dPicker_start;
     private javax.swing.JTextField end_field;
+    private javax.swing.JLabel error;
     private javax.swing.JTextField id_field;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -394,6 +452,7 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JTextField start_field;
     private javax.swing.JButton submit_button;
     private javax.swing.JTextField title_field;
+    private javax.swing.JTextField user_id_field;
     private javax.swing.JList user_list;
     // End of variables declaration//GEN-END:variables
 }

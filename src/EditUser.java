@@ -190,10 +190,21 @@ public class EditUser extends javax.swing.JFrame {
             }
         });
 
+        search_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_fieldActionPerformed(evt);
+            }
+        });
+
         search_button.setText("Search");
         search_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 search_buttonMouseReleased(evt);
+            }
+        });
+        search_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_buttonActionPerformed(evt);
             }
         });
 
@@ -225,7 +236,7 @@ public class EditUser extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .add(307, 307, 307)
                 .add(add_user)
-                .addContainerGap(419, Short.MAX_VALUE))
+                .addContainerGap(437, Short.MAX_VALUE))
             .add(layout.createSequentialGroup()
                 .add(32, 32, 32)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
@@ -538,6 +549,14 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private void user_id_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_id_fieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_user_id_fieldActionPerformed
+
+    private void search_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_search_fieldActionPerformed
+
+    private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_search_buttonActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel add_user;
