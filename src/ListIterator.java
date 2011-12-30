@@ -9,34 +9,34 @@
  */
 public class ListIterator<T> {
     int index;
-    List<T> l;
+    List<T> list;
     ListIterator(List<T> l)
     {
-        this.l=l;
+        this.list=l;
         index = 0;
     }
     
     public T First()
     {
         this.index = 0;
-        return l.getElement(index);
+        return list.getElement(index);
     }
     
     public T Next()
     {
         this.index++;
-        return l.getElement(index);
+        return list.getElement(index);
     }
         
     public boolean IsDone()
     {//-1 porque começa em 0
-        if(index >= l.Count()-1)
+        if(index >= list.Count()-1)
             return true;
         else
             return false;
     }
     public T CurrentItem()
     {
-        return l.getElement(index);
+        return list.getElement(index);
     }
 }
