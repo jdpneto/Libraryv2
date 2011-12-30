@@ -1,6 +1,3 @@
-
-import java.awt.event.ActionEvent;
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -9,24 +6,19 @@ import java.awt.event.ActionEvent;
 /*
  * BookDetails.java
  *
- * Created on Dec 29, 2011, 2:34:24 PM
+ * Created on Dec 30, 2011, 4:10:45 PM
  */
 /**
  *
- * @author joaom
+ * @author david
  */
 public class BookDetails extends javax.swing.JFrame {
 
-    /** Creates new form BookDetails */
     Book b;
+    /** Creates new form BookDetails */
     public BookDetails(Book b) {
         initComponents();
         this.b=b;
-        this.title.setText("Title: "+b.getName());
-        this.author.setText("Author: "+b.getAuthor());
-        this.genre.setText("Genre: "+b.getCategory());
-        this.copies.setText("Available: "+b.getNumberOfCopies());
-        this.isbn.setText("ISBN: "+b.getIsbn());
     }
 
     /** This method is called from within the constructor to
@@ -38,215 +30,147 @@ public class BookDetails extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
-        jTitleValue = new javax.swing.JLabel();
-        jAuthorValue = new javax.swing.JLabel();
-        jISBNValue = new javax.swing.JLabel();
-        jCopiesValue = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         title = new javax.swing.JLabel();
-        author = new javax.swing.JLabel();
-        isbn = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        copies = new javax.swing.JLabel();
-        comment_button = new javax.swing.JButton();
+        Author = new javax.swing.JLabel();
+        ncopies = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        comments_list = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        comment_field = new javax.swing.JTextArea();
+        comment = new javax.swing.JTextArea();
         rating_slider = new javax.swing.JSlider();
-        rating_label = new javax.swing.JLabel();
-        genre = new javax.swing.JLabel();
+        rating = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        comment_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
-        jLabel6.setText("Book Details");
+        title.setText("Title");
 
-        title.setText("title");
+        Author.setText("Author");
 
-        author.setText("author");
+        ncopies.setText("ncopies");
 
-        isbn.setText("ISBN");
+        jLabel3.setText("ISBN");
 
-        jLabel11.setText("Comentários");
+        jLabel4.setText("Category");
 
-        copies.setText("copies");
+        comment.setColumns(20);
+        comment.setRows(5);
+        jScrollPane2.setViewportView(comment);
 
-        comment_button.setText("Comentar");
-        comment_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comment_buttonActionPerformed(evt);
-            }
-        });
-
-        comments_list.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = {};
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(comments_list);
-
-        comment_field.setColumns(20);
-        comment_field.setRows(5);
-        jScrollPane2.setViewportView(comment_field);
-
+        rating_slider.setMajorTickSpacing(1);
         rating_slider.setMaximum(5);
-        rating_slider.setMinimum(1);
         rating_slider.setValue(1);
-        rating_slider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                rating_sliderStateChanged(evt);
-            }
-        });
 
-        rating_label.setText("Rating");
+        rating.setText("1");
 
-        genre.setText("genre");
+        jLabel1.setText("Rating");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        comment_button.setText("Comment");
+
+        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(719, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(rating_slider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rating_label))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comment_button)))
-                .addGap(36, 36, 36))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(778, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jTitleValue, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(785, 785, 785))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addComponent(jLabel5)
-                .addGap(1043, 1043, 1043))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(175, 175, 175)
-                .addComponent(jLabel6)
-                .addGap(934, 934, 934))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(511, 511, 511))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(isbn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                            .addComponent(genre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(501, 501, 501))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(copies, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(author, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jAuthorValue, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jISBNValue, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCopiesValue, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(273, 273, 273))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                        .add(jLabel4)
+                        .add(jLabel3)
+                        .add(ncopies)
+                        .add(Author)
+                        .add(title)
+                        .add(jLabel1))
+                    .add(layout.createSequentialGroup()
+                        .add(rating_slider, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 131, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(rating))
+                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 274, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(comment_button))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 31, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 350, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel6)
-                .addComponent(jLabel5)
-                .addGap(6, 6, 6)
-                .addComponent(jTitleValue)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jAuthorValue)
-                        .addGap(2, 2, 2)
-                        .addComponent(jISBNValue)
-                        .addGap(6, 6, 6)
-                        .addComponent(jCopiesValue))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(copies, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(title)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(author)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(genre, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(isbn)
-                .addGap(22, 22, 22)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rating_slider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rating_label))
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(comment_button)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(44, Short.MAX_VALUE))
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                    .add(layout.createSequentialGroup()
+                        .add(title)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(Author)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(ncopies)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jLabel3)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jLabel4)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jLabel1)
+                        .add(19, 19, 19)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(rating_slider, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(rating))
+                        .add(18, 18, 18)
+                        .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 131, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(comment_button)))
+                .addContainerGap())
         );
-
-        jTitleValue.getAccessibleContext().setAccessibleName("jLabelTitle");
-        jAuthorValue.getAccessibleContext().setAccessibleName("jLabelAuthor");
-        jISBNValue.getAccessibleContext().setAccessibleName("jLabelISBN");
-        jCopiesValue.getAccessibleContext().setAccessibleName("jLabelCopies");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comment_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comment_buttonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comment_buttonActionPerformed
-
-    private void rating_sliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rating_sliderStateChanged
-        rating_label.setText(""+rating_slider.getValue());
-    }//GEN-LAST:event_rating_sliderStateChanged
-
     /**
      * @param args the command line arguments
      */
-    
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(BookDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(BookDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(BookDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(BookDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                new BookDetails().setVisible(true);
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel author;
+    private javax.swing.JLabel Author;
+    private javax.swing.JTextArea comment;
     private javax.swing.JButton comment_button;
-    private javax.swing.JTextArea comment_field;
-    private javax.swing.JList comments_list;
-    private javax.swing.JLabel copies;
-    private javax.swing.JLabel genre;
-    private javax.swing.JLabel isbn;
-    private javax.swing.JLabel jAuthorValue;
-    private javax.swing.JLabel jCopiesValue;
-    private javax.swing.JLabel jISBNValue;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel jTitleValue;
-    private javax.swing.JLabel rating_label;
+    private javax.swing.JLabel ncopies;
+    private javax.swing.JLabel rating;
     private javax.swing.JSlider rating_slider;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
