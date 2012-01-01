@@ -433,7 +433,13 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         //this.country_field.setText(this.lib.getCountry());
         String str = expires_field.getText();
         //this.date_field.setText(this.lib.getExpires());
-        p = dat.editUser(p, str, Integer.parseInt(limit_field.getText()));
+        EditPersonObject to = new EditPersonObject();
+        to.setP(p.clone());
+        to.setLimit(Integer.parseInt(limit_field.getText()));
+        to.setExpires(str);
+        //this.date_field.setText(this.lib.getExpires());
+        p = dat.editUser(to);
+        //p = dat.editUser(p, str, Integer.parseInt(limit_field.getText()));
         if(p.getId() == -1)
             error.setVisible(true);
         else

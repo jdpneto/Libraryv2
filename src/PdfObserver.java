@@ -33,6 +33,13 @@ import java.io.OutputStream;
 public class PdfObserver implements Observer {
     
     ArrayList<Stat> ObserverState;
+    Subject s;
+    
+    PdfObserver(Subject s)
+    {
+        this.s=s;
+    }
+    
     private static String FILE = "genre.pdf";
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
@@ -44,7 +51,7 @@ public class PdfObserver implements Observer {
             Font.BOLD);
     
     @Override
-    public void update(Subject s) {
+    public void update() {
         //throw new UnsupportedOperationException("Not supported yet.");
         ObserverState = s.getState();
         try {
