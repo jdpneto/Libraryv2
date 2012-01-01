@@ -493,8 +493,12 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         p.setCountry(country_field.getText());
         //this.country_field.setText(this.lib.getCountry());
         String str = expires_field.getText();
+        EditPersonObject to = new EditPersonObject();
+        to.setP(p);
+        to.setLimit(Integer.parseInt(limit_field.getText()));
+        to.setExpires(str);
         //this.date_field.setText(this.lib.getExpires());
-        this.p = dat.editUser(p, str, Integer.parseInt(limit_field.getText()));
+        this.p = dat.editUser(to);
         if(p.getId() == -1)
         {
             success.setVisible(false);
@@ -531,8 +535,11 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         this.user_id_field.setText(""+p.getId());
         this.current_id = p.getId();
         
-        
-        this.p = dat.editUser(p, expires_field.getText(), Integer.parseInt(limit_field.getText()));
+        EditPersonObject to = new EditPersonObject();
+        to.setP(p);
+        to.setLimit(Integer.parseInt(limit_field.getText()));
+        to.setExpires(expires_field.getText());
+        this.p = dat.editUser(to);
         if(this.p.getId() == -1)
         {
             success.setVisible(false);
