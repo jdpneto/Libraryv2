@@ -422,7 +422,7 @@ private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             title_field.setText(dat.getBookByISBN(r.getBook_isbn()).getName());
             copies_field.setText(""+r.getNumber_of_copies());
             start_field.setText(dat.datetoString(r.getStart_date()));
-            end_field.setText(dat.datetoString(r.getStart_date()));
+            end_field.setText(dat.datetoString(r.getEnd_date()));
             int reserved = Integer.parseInt(copies_field.getText());
             Book b = dat.getBookByTitle(title_field.getText());
 

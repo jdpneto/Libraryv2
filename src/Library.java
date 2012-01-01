@@ -1277,23 +1277,16 @@ public class Library implements Subject, Observer {
                 return new Reservation();
             }
             else{
-                String update_reservation = "UPDATE Reservation SET startdate='" + datetoString(r.getStart_date()) + "',"
-                        + " enddate = '" + datetoString(r.getEnd_date()) + "',"
-                        + " user = '" + r.getUser_id() + "',"
-                        + " book = '" + r.getBook_isbn() + "',"
-                        + " nbooks = '" + r.getNumber_of_copies() + "'"
+                String update_reservation = "UPDATE Reservation SET nbooks = '" + r.getNumber_of_copies() + "',"
+                        + "enddate = '" + datetoString(r.getEnd_date()) + "'"
                         + " WHERE idReservation = '" + r.getId() +"';";
                 System.out.println(update_reservation);
                 preparedStatement = (PreparedStatement) con.prepareStatement(update_reservation);
                 preparedStatement.executeUpdate();
                 addLineToLog("librarian.log", r.getBook_isbn() + " reservation edited!");
                             
-                String ps = "UPDATE Book SET author = '" + tmp.getAuthor() + "',"
-                + " title = '" + tmp.getName() + "',"
-                + " year = '" + tmp.getYear() + "',"
-                + " category = '" + tmp.getCategory() + "',"
-                + " numberofcopies = '" + (stored.getNumber_of_copies()-r.getNumber_of_copies()) + "'";
-                ps += " WHERE ISBN = '" + tmp.getIsbn() +"';";
+                String ps = "UPDATE Book SET numberofcopies = '" + (tmp.getNumberOfCopies()+stored.getNumber_of_copies()-r.getNumber_of_copies()) + "'"
+                        + " WHERE ISBN = '" + tmp.getIsbn() +"';";
 
                 System.out.println(ps);
                 preparedStatement = (PreparedStatement) con.prepareStatement(ps);
@@ -1309,10 +1302,17 @@ public class Library implements Subject, Observer {
 
     public boolean removeReservation(String id) throws SQLException {
         Reservation r = getReservation(id);
+        Book b = getBookByISBN(r.getBook_isbn());
+        System.out.println("--"+b.getIsbn());
         preparedStatement = (PreparedStatement) con.prepareStatement("DELETE FROM Reservation WHERE idReservation = '" + id + "';");
         preparedStatement.executeUpdate();
         if (preparedStatement != null) {
             //return new Person();
+            String ps = "UPDATE Book SET numberofcopies = '" + (b.getNumberOfCopies()+r.getNumber_of_copies()) + "'"
+            + " WHERE ISBN = '" + b.getIsbn() +"';";
+            System.out.println(ps);
+            preparedStatement = (PreparedStatement) con.prepareStatement(ps);
+            preparedStatement.executeUpdate();
             addLineToLog("librarian.log", r.getBook_isbn() + " returned!");
             return true;
         } else {
