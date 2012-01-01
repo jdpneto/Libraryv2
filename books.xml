@@ -32,16 +32,16 @@
     <author></author>
     <year>1997</year>
     <category>Fantasia</category>
-    <number__of__copies>8</number__of__copies>
+    <number__of__copies>5</number__of__copies>
     <comments/>
   </Book>
   <Book>
     <isbn>9789722325691</isbn>
-    <name>Harry Potter e a Câmara dos Segredos</name>
+    <name>Harry Potter e a Camara dos Segredos</name>
     <author></author>
     <year>1998</year>
     <category>Fantasia</category>
-    <number__of__copies>10</number__of__copies>
+    <number__of__copies>9</number__of__copies>
     <comments/>
   </Book>
   <Book>
@@ -55,7 +55,7 @@
   </Book>
   <Book>
     <isbn>9789722326803</isbn>
-    <name>Harry Potter e o Cálice de Fogo</name>
+    <name>Harry Potter e o Calice de Fogo</name>
     <author></author>
     <year>2000</year>
     <category>Fantasia</category>
@@ -64,7 +64,7 @@
   </Book>
   <Book>
     <isbn>9789722331005</isbn>
-    <name>Harry Potter e a Ordem da Fénix</name>
+    <name>Harry Potter e a Ordem da Fenix</name>
     <author></author>
     <year>2003</year>
     <category>Fantasia</category>
@@ -72,8 +72,17 @@
     <comments/>
   </Book>
   <Book>
+    <isbn>9789722334457</isbn>
+    <name>Harry Potter e o Príncipe Misterioso</name>
+    <author></author>
+    <year>2005</year>
+    <category>Fantasia</category>
+    <number__of__copies>18</number__of__copies>
+    <comments/>
+  </Book>
+  <Book>
     <isbn>9789722338356</isbn>
-    <name>Harry Potter e os Talismãs da Morte</name>
+    <name>Harry Potter e os Talismas da Morte</name>
     <author></author>
     <year>2007</year>
     <category>Fantasia</category>
@@ -109,7 +118,7 @@
   </Book>
   <Book>
     <isbn>9789727573899</isbn>
-    <name>Cirurgia Oncológica do Nariz</name>
+    <name>Cirurgia Oncologica do Nariz</name>
     <author></author>
     <year>2006</year>
     <category>Medico</category>
@@ -118,7 +127,7 @@
   </Book>
   <Book>
     <isbn>9789727574155</isbn>
-    <name>Ossos e Articulações</name>
+    <name>Ossos e Articulacoes</name>
     <author></author>
     <year>2006</year>
     <category>Medico</category>
