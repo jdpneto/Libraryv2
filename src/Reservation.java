@@ -81,5 +81,12 @@ public class Reservation {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Reservation{" + "start_date=" + start_date + ", end_date=" + end_date + ", number_of_copies=" + number_of_copies + ", book_isbn=" + book_isbn + ", user_id=" + user_id + ", id=" + id + '}';
+    }
+    
+    
     
 }
