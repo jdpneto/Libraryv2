@@ -1,3 +1,6 @@
+package tests;
+
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -44,6 +47,7 @@ public class Comment {
 
     public void setBook(String book) {
         this.book = book;
+        
     }
 
     public String getBody() {
@@ -69,6 +73,4 @@ public class Comment {
     public void setRating(int rating) {
         this.rating = rating;
     }
-
-
 }

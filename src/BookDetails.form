@@ -24,24 +24,32 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                      <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="ncopies" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="Author" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="title" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="cat" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="ISBN" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="ncopies" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="Author" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="title" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="avgrating" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="rating_slider" min="-2" pref="131" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="rating" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane2" alignment="0" min="-2" pref="274" max="-2" attributes="0"/>
+                          <Component id="comment_button" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="207" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="rating_slider" min="-2" pref="131" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="back_button" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="rating" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane2" alignment="0" min="-2" pref="274" max="-2" attributes="0"/>
-                  <Component id="comment_button" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="207" max="-2" attributes="0"/>
               <Component id="jScrollPane1" pref="448" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -60,11 +68,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="ncopies" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ISBN" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      <Component id="cat" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="avgrating" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="rating_slider" min="-2" max="-2" attributes="0"/>
@@ -74,6 +82,8 @@
                       <Component id="jScrollPane2" min="-2" pref="131" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="comment_button" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="22" max="32767" attributes="0"/>
+                      <Component id="back_button" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -97,12 +107,12 @@
         <Property name="text" type="java.lang.String" value="ncopies"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="ISBN">
       <Properties>
         <Property name="text" type="java.lang.String" value="ISBN"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="cat">
       <Properties>
         <Property name="text" type="java.lang.String" value="Category"/>
       </Properties>
@@ -128,13 +138,17 @@
         <Property name="maximum" type="int" value="5"/>
         <Property name="value" type="int" value="1"/>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="rating_sliderStateChanged"/>
+        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="rating_sliderPropertyChange"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="rating">
       <Properties>
         <Property name="text" type="java.lang.String" value="1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="avgrating">
       <Properties>
         <Property name="text" type="java.lang.String" value="Rating"/>
       </Properties>
@@ -143,6 +157,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Comment"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="comment_buttonMouseReleased"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -160,5 +177,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="back_button">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Return to the Previous Menu"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="back_buttonMouseReleased"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

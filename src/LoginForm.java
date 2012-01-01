@@ -155,7 +155,7 @@ private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:even
             new LibrarianForm().setVisible(true);
             dispose();
         } else if (option == 2 && type[1] == 1) {
-            new UserForm().setVisible(true);
+            new UserForm(p.getId()).setVisible(true);
             dispose();
         } else{
             error_msg.setText("Invalid type");

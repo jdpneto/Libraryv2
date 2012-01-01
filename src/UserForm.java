@@ -15,9 +15,11 @@
 public class UserForm extends javax.swing.JFrame {
 
     Library dat;
+    int id;
     /** Creates new form UserForm */
-    public UserForm() {
+    public UserForm(int id) {
         this.dat = Library.Instance();
+        this.id=id;
         initComponents();
     }
 
@@ -113,13 +115,13 @@ public class UserForm extends javax.swing.JFrame {
 
 private void find_bookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_find_bookActionPerformed
 // TODO add your handling code here:
-    new FindBook().setVisible(true);
+    new FindBook(id).setVisible(true);
     dispose();
 }//GEN-LAST:event_find_bookActionPerformed
 
 private void view_notificationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_notificationsActionPerformed
 // TODO add your handling code here:
-    new ViewNotifications().setVisible(true);
+    new ViewNotifications(id).setVisible(true);
     dispose();
 }//GEN-LAST:event_view_notificationsActionPerformed
 

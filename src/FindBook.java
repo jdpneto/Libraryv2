@@ -20,10 +20,12 @@ public class FindBook extends javax.swing.JFrame {
 
     Library dat;
     Book b;
+    int id;
     /** Creates new form FindBook */
-    public FindBook() {
+    public FindBook(int id) {
         this.dat = Library.Instance();
         initComponents();
+        this.id=id;
         open_details.setEnabled(false);
     }
 
@@ -133,7 +135,7 @@ private void find_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 
 private void users_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_users_panelActionPerformed
 // TODO add your handling code here:
-    new UserForm().setVisible(true);
+    new UserForm(id).setVisible(true);
     dispose();
 }//GEN-LAST:event_users_panelActionPerformed
 
@@ -169,7 +171,7 @@ private void users_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     }//GEN-LAST:event_list_fieldValueChanged
 
     private void open_detailsMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_open_detailsMouseReleased
-        new BookDetails(b).setVisible(true);
+        new BookDetails(b,id).setVisible(true);
         dispose();
     }//GEN-LAST:event_open_detailsMouseReleased
 

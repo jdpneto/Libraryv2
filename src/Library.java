@@ -536,10 +536,14 @@ public class Library implements Subject, Observer {
 
     public Reader getReaderById(int id) {
         Reader r = new Reader();
-        try {
+        
+        
+        try{
+            
+            
             //Vai a base de dados confirmar o login e a password...
             resultSet = st.executeQuery("select * from User where idUser=" + id + ";");
-
+            
             while (resultSet.next()) {
                 Person pb = new Person();
                 pb.setId(resultSet.getInt("idUser"));
@@ -1083,8 +1087,8 @@ public class Library implements Subject, Observer {
             return new Comment();
         }
         try {
-            String insert = "INSERT INTO Review (user_id,book_ISBN,messagebody,rating) "
-                    + "VALUES(" + c.getCommenter().getId() + ",'"
+            String insert = "INSERT INTO Review (username,book_ISBN,messagebody,book_r) "
+                    + "VALUES('" + c.getCommenter() + "','"
                     + c.getBook() + "','"
                     + c.getBody() + "',"
                     + c.getRating() + ");";
@@ -1102,14 +1106,21 @@ public class Library implements Subject, Observer {
     public ArrayList<Comment> getCommentsByBook(String ISBN) {
         ArrayList<Comment> comments = new ArrayList<Comment>();
         try {
+            //System.out.println("select rating from Review where book_ISBN='" + ISBN + "';");
             resultSet = st.executeQuery("select * from Review where book_ISBN='" + ISBN + "';");
             Comment tmp;
+            //System.out.print(resultSet);
             while (resultSet.next()) {
+                
+                //Reader r = getReaderById(readerid);
                 tmp = new Comment();
                 tmp.setId(resultSet.getInt("idReview"));
-                tmp.setBook(resultSet.getString("ISBN"));
-                tmp.setCommenter(getReaderById(resultSet.getInt("user_id")));
-                tmp.setRating(resultSet.getInt("rating"));
+                tmp.setBook(resultSet.getString("book_ISBN"));
+                tmp.setCommenter(resultSet.getString("username"));
+                tmp.setBody(resultSet.getString("messagebody"));
+                tmp.setRating(resultSet.getInt("book_r"));
+                //tmp.setCommenter();
+                
                 comments.add(tmp);
             }
             return comments;
@@ -1118,6 +1129,40 @@ public class Library implements Subject, Observer {
             System.err.println(e);
         }
         return comments;
+    }
+    
+    public double getBookRatingByISBN(String ISBN)
+    {
+        double avg = 0.0;
+        ArrayList<Comment> comments = getCommentsByBook(ISBN);
+        for(Comment c : comments)
+        {
+            avg+=c.getRating();
+        }
+        if(avg != 0.0)
+            avg = avg/comments.size();
+        
+        return avg;
+    }
+    
+    public Object[] getCommentsListByBook(String ISBN)
+    {
+        ArrayList<Comment> comments = getCommentsByBook(ISBN);
+        ArrayList<String> ret = new ArrayList<String>();
+        
+        ret.add("Comments\n\n");
+        
+        
+        for(Comment c : comments)
+        {
+            ret.add("Author: "+c.getCommenter());
+            ret.add("Rating: "+c.getRating());
+            ret.add("Review: "+c.getBody());
+            ret.add("\n");
+            ret.add("---------------------------");
+            ret.add("\n");
+        }
+        return ret.toArray();
     }
 
     /************************RESERVATIONS**************************/

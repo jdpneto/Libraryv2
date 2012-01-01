@@ -1,6 +1,7 @@
 
 import java.util.Vector;
 import javax.swing.JLabel;
+import javax.swing.ScrollPaneConstants;
 
 /*
  * To change this template, choose Tools | Templates
@@ -19,19 +20,24 @@ import javax.swing.JLabel;
 public class BookDetails extends javax.swing.JFrame {
 
     Book b;
+    int id;
     /** Creates new form BookDetails */
     Library dat;
-    public BookDetails(Book b) {
+    public BookDetails(Book b, int id) {
         dat = Library.Instance();
         initComponents();
         this.b=b;
-        Vector v = new Vector();
+        this.id=id;
+        title.setText("Title: "+b.getName());
+        Author.setText("Author: "+b.getAuthor());
+        ncopies.setText("Number of Copies: "+b.getNumberOfCopies());
+        ISBN.setText("ISBN: "+b.getIsbn());
+        cat.setText("Category: "+b.getCategory());
+        avgrating.setText("Avg. Rating: "+String.format("%.3g%n",dat.getBookRatingByISBN(b.getIsbn())));
         
-        for(int i = 0; i < 400; i++)
-        {
-           v.add("ola "+i);
-        }
-        comment_list.setListData(v);
+        
+        //jScrollPane1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        comment_list.setListData(dat.getCommentsListByBook(b.getIsbn()));
     }
 
     /** This method is called from within the constructor to
@@ -46,16 +52,17 @@ public class BookDetails extends javax.swing.JFrame {
         title = new javax.swing.JLabel();
         Author = new javax.swing.JLabel();
         ncopies = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        ISBN = new javax.swing.JLabel();
+        cat = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         comment = new javax.swing.JTextArea();
         rating_slider = new javax.swing.JSlider();
         rating = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        avgrating = new javax.swing.JLabel();
         comment_button = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         comment_list = new javax.swing.JList();
+        back_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,9 +72,9 @@ public class BookDetails extends javax.swing.JFrame {
 
         ncopies.setText("ncopies");
 
-        jLabel3.setText("ISBN");
+        ISBN.setText("ISBN");
 
-        jLabel4.setText("Category");
+        cat.setText("Category");
 
         comment.setColumns(20);
         comment.setRows(5);
@@ -76,12 +83,27 @@ public class BookDetails extends javax.swing.JFrame {
         rating_slider.setMajorTickSpacing(1);
         rating_slider.setMaximum(5);
         rating_slider.setValue(1);
+        rating_slider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                rating_sliderStateChanged(evt);
+            }
+        });
+        rating_slider.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                rating_sliderPropertyChange(evt);
+            }
+        });
 
         rating.setText("1");
 
-        jLabel1.setText("Rating");
+        avgrating.setText("Rating");
 
         comment_button.setText("Comment");
+        comment_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                comment_buttonMouseReleased(evt);
+            }
+        });
 
         comment_list.setModel(new javax.swing.AbstractListModel() {
             String[] strings = {};
@@ -90,27 +112,39 @@ public class BookDetails extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(comment_list);
 
+        back_button.setText("Return to the Previous Menu");
+        back_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                back_buttonMouseReleased(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                        .add(jLabel4)
-                        .add(jLabel3)
-                        .add(ncopies)
-                        .add(Author)
-                        .add(title)
-                        .add(jLabel1))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(layout.createSequentialGroup()
-                        .add(rating_slider, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 131, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(rating))
-                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 274, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(comment_button))
-                .add(207, 207, 207)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                .add(cat)
+                                .add(ISBN)
+                                .add(ncopies)
+                                .add(Author)
+                                .add(title)
+                                .add(avgrating))
+                            .add(layout.createSequentialGroup()
+                                .add(rating_slider, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 131, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(rating))
+                            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 274, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(comment_button))
+                        .add(207, 207, 207))
+                    .add(layout.createSequentialGroup()
+                        .add(back_button)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)))
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -127,11 +161,11 @@ public class BookDetails extends javax.swing.JFrame {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(ncopies)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel3)
+                        .add(ISBN)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel4)
+                        .add(cat)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel1)
+                        .add(avgrating)
                         .add(19, 19, 19)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(rating_slider, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -139,12 +173,39 @@ public class BookDetails extends javax.swing.JFrame {
                         .add(18, 18, 18)
                         .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 131, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(comment_button)))
+                        .add(comment_button)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 22, Short.MAX_VALUE)
+                        .add(back_button)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void comment_buttonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comment_buttonMouseReleased
+        
+        if(comment.getText().length()>5)
+        {
+            Reader r = dat.getReaderById(id);
+            Comment c = new Comment(-1,r.getLogin(),rating_slider.getValue(),comment.getText(),b.getIsbn());
+            dat.storeComment(c);
+            new BookDetails(b,id).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_comment_buttonMouseReleased
+
+    private void rating_sliderPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_rating_sliderPropertyChange
+        
+    }//GEN-LAST:event_rating_sliderPropertyChange
+
+    private void rating_sliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rating_sliderStateChanged
+       rating.setText(""+rating_slider.getValue());
+    }//GEN-LAST:event_rating_sliderStateChanged
+
+    private void back_buttonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back_buttonMouseReleased
+        new FindBook(id).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_back_buttonMouseReleased
 
     /**
      * @param args the command line arguments
@@ -152,12 +213,13 @@ public class BookDetails extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Author;
+    private javax.swing.JLabel ISBN;
+    private javax.swing.JLabel avgrating;
+    private javax.swing.JButton back_button;
+    private javax.swing.JLabel cat;
     private javax.swing.JTextArea comment;
     private javax.swing.JButton comment_button;
     private javax.swing.JList comment_list;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel ncopies;
