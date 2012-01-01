@@ -27,8 +27,16 @@ import java.io.OutputStream;
  */
 public class ImageObserver implements Observer {
     ArrayList<Stat> ObserverState;
+    Subject s;
+    
+    ImageObserver(Subject s)
+    {
+        this.s=s;
+    }
+    
+    
     @Override
-    public void update(Subject s) {
+    public void update() {
         OutputStream out = null;
         try {
             this.ObserverState = s.getState();

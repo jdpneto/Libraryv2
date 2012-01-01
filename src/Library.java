@@ -51,8 +51,9 @@ public class Library implements Subject, Observer {
 
 
             //**************OBSERVERS***************//
-            attach(new ImageObserver());
-            attach(new PdfObserver());
+            attach(new ImageObserver(this));
+            attach(new PdfObserver(this));
+            attach(this);
 
             /********PROXY*******/
             librarianlog = new LogProxy("librarian.log");
@@ -1493,7 +1494,7 @@ public class Library implements Subject, Observer {
     public void Notify() {
         //throw new UnsupportedOperationException("Not supported yet.");
         for (Observer o : observers) {
-            o.update(this);
+            o.update();
         }
     }
 
@@ -1512,8 +1513,8 @@ public class Library implements Subject, Observer {
 
     //observer classes
     @Override
-    public void update(Subject s) {
-        subjectState = s.getState();
+    public void update() {
+        subjectState = this.getState();
     }
     //**************SINGLETON*****************
     private static Library _instance = null;

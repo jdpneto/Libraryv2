@@ -8,5 +8,5 @@
  * @author david
  */
 public interface Observer {
-    public void update(Subject o);
+    public void update();
 }
