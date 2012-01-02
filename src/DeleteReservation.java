@@ -332,30 +332,27 @@ private void start_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 }//GEN-LAST:event_start_fieldActionPerformed
 
 private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_buttonActionPerformed
-        try {
-            //get all the information
-            int id = Integer.parseInt(id_field.getText());
-            String isbn = dat.getBookByTitle(title_field.getText()).getIsbn();
-            int numberOfCopies = Integer.parseInt(copies_field.getText());
-            Date startDate = dat.stringToDate(start_field.getText());
-            Date endDate = dat.stringToDate(end_field.getText());
 
-            //store all information
-            Reservation tmp = new Reservation(startDate, endDate, isbn, id, numberOfCopies);
-            tmp.setId(id);
-            boolean check;
-            check = dat.removeReservation(tmp.getId()+"");
-            if (check) {
-                new ManageReservations().setVisible(true);
-                dispose();
-            } else {
-                System.out.println(tmp.toString());
-                error.setText("Error");
-                error.setVisible(true);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(DeleteReservation.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    //get all the information
+    int id = Integer.parseInt(id_field.getText());
+    String isbn = dat.getBookByTitle(title_field.getText()).getIsbn();
+    int numberOfCopies = Integer.parseInt(copies_field.getText());
+    Date startDate = dat.stringToDate(start_field.getText());
+    Date endDate = dat.stringToDate(end_field.getText());
+
+    //store all information
+    Reservation tmp = new Reservation(startDate, endDate, isbn, id, numberOfCopies);
+    tmp.setId(id);
+    boolean check;
+    check = dat.removeReservation(tmp.getId()+"");
+    if (check) {
+        new ManageReservations().setVisible(true);
+        dispose();
+    } else {
+        System.out.println(tmp.toString());
+        error.setText("Error");
+        error.setVisible(true);
+    }
 }//GEN-LAST:event_submit_buttonActionPerformed
 
 private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed

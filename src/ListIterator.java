@@ -19,21 +19,20 @@ public class ListIterator<T> {
     public T First()
     {
         this.index = 0;
-        return list.getElement(index);
+        return list.getElement(index++);
     }
     
     public T Next()
     {
-        this.index++;
-        return list.getElement(index);
+        return list.getElement(index++);
     }
         
     public boolean IsDone()
     {//-1 porque começa em 0
-        if(index >= list.Count()-1)
-            return true;
-        else
+        if(index < list.Count())
             return false;
+        else
+            return true;
     }
     public T CurrentItem()
     {

@@ -1,3 +1,6 @@
+
+import java.util.Vector;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -19,6 +22,24 @@ public class ManageReservations extends javax.swing.JFrame {
     public ManageReservations() {
         this.dat = Library.Instance();
         initComponents();
+        
+        Vector <String> v1 = dat.expiredReservations();
+        if(v1.size() == 0){
+            String [] temp = {"There are no expired reservations."};
+            expired_list.setListData(temp);
+        }
+        else{
+            expired_list.setListData(v1);
+        }
+        
+        Vector <String> v2 = dat.expiringReservations(3);
+        if(v2.size() == 0){
+            String [] temp = {"There are no critical reservations."};
+            critical_list.setListData(temp);
+        }
+        else{
+            critical_list.setListData(v2);
+        }
     }
 
     /** This method is called from within the constructor to
@@ -30,26 +51,20 @@ public class ManageReservations extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        search_reservations = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        search = new javax.swing.JButton();
         add_reservation = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        list_field = new javax.swing.JList();
         delete_reservation = new javax.swing.JButton();
         librarians_panel = new javax.swing.JButton();
         edit_reservation = new javax.swing.JButton();
+        tab_panel = new javax.swing.JTabbedPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        critical_list = new javax.swing.JList();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        expired_list = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Manage Reservations");
-
-        search.setText("Search");
-        search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchActionPerformed(evt);
-            }
-        });
 
         add_reservation.setText("Add Reservation");
         add_reservation.addActionListener(new java.awt.event.ActionListener() {
@@ -57,8 +72,6 @@ public class ManageReservations extends javax.swing.JFrame {
                 add_reservationActionPerformed(evt);
             }
         });
-
-        jScrollPane1.setViewportView(list_field);
 
         delete_reservation.setText("Delete Reservation");
         delete_reservation.addActionListener(new java.awt.event.ActionListener() {
@@ -81,53 +94,65 @@ public class ManageReservations extends javax.swing.JFrame {
             }
         });
 
+        critical_list.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = {};
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(critical_list);
+
+        tab_panel.addTab("Critical Reservations", jScrollPane1);
+
+        expired_list.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = {};
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(expired_list);
+
+        tab_panel.addTab("Expired Reservations", jScrollPane2);
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(33, 33, 33)
+                        .add(tab_panel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 514, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(layout.createSequentialGroup()
-                                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 491, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(36, 36, 36)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(librarians_panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                    .add(add_reservation, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                    .add(edit_reservation, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, delete_reservation, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)))
-                            .add(layout.createSequentialGroup()
-                                .add(search_reservations, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 441, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(26, 26, 26)
-                                .add(search, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                    .add(layout.createSequentialGroup()
+                            .add(add_reservation, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                            .add(edit_reservation, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, delete_reservation, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
+                        .add(42, 42, 42))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(299, 299, 299)
                         .add(jLabel1)))
-                .addContainerGap(26, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(570, 570, 570)
+                .add(librarians_panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                .add(75, 75, 75))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jLabel1)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(search_reservations, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(search))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                .add(48, 48, 48)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
                         .add(add_reservation)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(edit_reservation)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(delete_reservation)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(librarians_panel))
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 354, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(26, 26, 26))
+                        .add(delete_reservation))
+                    .add(tab_panel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 384, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(17, 17, 17)
+                .add(librarians_panel)
+                .add(32, 32, 32))
         );
 
         pack();
@@ -157,19 +182,16 @@ private void edit_reservationActionPerformed(java.awt.event.ActionEvent evt) {//
     dispose();
 }//GEN-LAST:event_edit_reservationActionPerformed
 
-private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_searchActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_reservation;
+    private javax.swing.JList critical_list;
     private javax.swing.JButton delete_reservation;
     private javax.swing.JButton edit_reservation;
+    private javax.swing.JList expired_list;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton librarians_panel;
-    private javax.swing.JList list_field;
-    private javax.swing.JButton search;
-    private javax.swing.JTextField search_reservations;
+    private javax.swing.JTabbedPane tab_panel;
     // End of variables declaration//GEN-END:variables
 }

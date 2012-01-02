@@ -94,6 +94,57 @@ public class Library implements Subject, Observer {
         return "empty";
     }
 
+    public Vector<String> expiredReservations() {
+        Vector<String> expired_reservations =  new Vector <String>();
+        Date actual = new Date();
+        List<Reservation> reservation = getAllReservations();
+        ListIterator<Reservation> iter = new ListIterator(reservation);
+        Reservation r;
+        if (!iter.IsDone()) {
+            r = iter.First();
+            if(actual.after(r.getEnd_date())){
+                expired_reservations.add("id: "+r.getId()+"  title: "+getBookByISBN(r.getBook_isbn()).getName()+"  reader: "+getReaderById(r.getUser_id()).getLogin());
+            }
+            while (!iter.IsDone()) {
+                r = iter.Next();
+                if(actual.after(r.getEnd_date())){
+                    expired_reservations.add("id: "+r.getId()+"  title: "+getBookByISBN(r.getBook_isbn()).getName()+"  reader: "+getReaderById(r.getUser_id()).getLogin());
+                }
+            }
+        }
+
+
+        return expired_reservations;
+    }
+    
+     public Vector<String> expiringReservations(long interval) {
+        Vector<String> expiring_reservations =  new Vector <String>();
+        Date actual = new Date();
+        //get time in ms
+        long interval_in_ms = interval * 24 * 60 * 60 * 1000;
+
+        List<Reservation> reservations = getAllReservations();
+        ListIterator<Reservation> iter = new ListIterator(reservations);
+        Reservation r;
+        if (!iter.IsDone()) {
+            r = iter.First();
+            if (!actual.after(r.getEnd_date()) && (r.getEnd_date().getTime() - actual.getTime()) < interval_in_ms) {
+                expiring_reservations.add("id: "+r.getId()+"  title: "+getBookByISBN(r.getBook_isbn()).getName()+"  reader: "+getReaderById(r.getUser_id()).getLogin());
+            }
+            while (!iter.IsDone()) {
+                r = iter.Next();
+                if (!actual.after(r.getEnd_date()) && (r.getEnd_date().getTime() - actual.getTime()) < interval_in_ms) {
+                    expiring_reservations.add("id: "+r.getId()+"  title: "+getBookByISBN(r.getBook_isbn()).getName()+"  reader: "+getReaderById(r.getUser_id()).getLogin());
+                }
+
+            }
+
+        }
+
+        return expiring_reservations;
+    }
+    
+    /* Alterada para devolver Vector <String>
     public ArrayList<Reservation> expiredReservations() {
         ArrayList<Reservation> expired_reservations = new ArrayList<Reservation>();
         Date actual = new Date();
@@ -132,7 +183,7 @@ public class Library implements Subject, Observer {
         }
 
         return expiring_reservations;
-    }
+    }*/
 
     public ArrayList<Stat> generateStats() {
         ArrayList<Stat> stats = new ArrayList<Stat>();
@@ -1443,6 +1494,7 @@ public class Library implements Subject, Observer {
                 tmp.setStart_date(stringToDate(resultSet.getString("startdate")));
                 tmp.setEnd_date(stringToDate(resultSet.getString("enddate")));
                 tmp.setUser_id(resultSet.getInt("user"));
+                tmp.setBook_isbn(resultSet.getString("book"));
                 reservations.Append(tmp);
             }
             return reservations;
